@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-enum NavBarItem { home, services, profile }
+enum NavBarItem { home, education, profile, aichat }
 
 // extension NavBarItemExtensions on NavBarItem {
 //   bool get isTopics => this == NavBarItem.home;
@@ -45,19 +45,23 @@ class BottomNavBar extends StatelessWidget {
       selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
       currentIndex: context
           .select((NavBarController controller) => controller.item.index),
-      items: const [
+      items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           label: 'Home',
           icon: Icon(Icons.home),
         ),
         BottomNavigationBarItem(
-          label: 'Services',
-          icon: Icon(Icons.medical_services_rounded),
+          label: 'Education',
+          icon: Icon(Icons.cast_for_education),
         ),
         BottomNavigationBarItem(
           label: 'Account',
           icon: Icon(Icons.account_circle_outlined),
         ),
+        BottomNavigationBarItem(
+          label: 'AI chat',
+          icon: Icon(Icons.cloud_circle_rounded),
+        )
       ],
     );
   }

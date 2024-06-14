@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:nephrology_app/pages/app_bar.dart';
+import 'package:nephrology_app/pages/bodies/ai_chat_body.dart';
+import 'package:nephrology_app/pages/bodies/education_body.dart';
+// import 'package:nephrology_app/pages/bodies/home_body.dart';
+import 'package:nephrology_app/pages/bodies/login_body.dart';
+import 'package:nephrology_app/pages/bodies/home_body.dart';
 import 'package:nephrology_app/pages/bottom_nav_bar.dart';
 import 'package:nephrology_app/pages/floating_buttons.dart';
 import 'package:nephrology_app/pages/side_drawer.dart';
@@ -32,6 +38,10 @@ class CenterBody extends StatelessWidget {
       controller: context.watch<NavBarController>(),
       // physics: const NeverScrollableScrollPhysics(),
       children: const [
+        HomeBody(),
+        EducationBody(),
+        LoginBody(),
+        AiChatBody(),
         // TopicsFlow(),
         // AboutView(),
         // ProfileView(),

@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class FloatingButtons extends StatelessWidget {
   const FloatingButtons({super.key});
- launchUrl(Uri url) async {
+ static urlLauncher(Uri url) async {
     // const url = ;   
     if (await canLaunchUrl(url)) {
        await launchUrl(url);
@@ -21,7 +21,7 @@ class FloatingButtons extends StatelessWidget {
     children: [
       FloatingActionButton(
         onPressed: () {
-          launchUrl( Uri(scheme: 'tel', path: '+1-559-228-6600'));
+          urlLauncher( Uri(scheme: 'tel', path: '+1-559-228-6600'));
           //...
         },
         tooltip: 'Contact Us',
@@ -33,15 +33,15 @@ class FloatingButtons extends StatelessWidget {
       const SizedBox(
         width: 300,
       ),
-      FloatingActionButton(           
-        onPressed: () {
+      // FloatingActionButton(           
+      //   onPressed: () {
 
-        },
-        heroTag: null,           
-        child: const Icon(
-          Icons.chat
-        ),
-      )
+      //   },
+      //   heroTag: null,           
+      //   child: const Icon(
+      //     Icons.chat
+      //   ),
+      // )
     ]
     )
   );
