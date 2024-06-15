@@ -16,7 +16,7 @@ class FloatingButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
     // mainAxisAlignment: MainAxisAlignment.end,
-    padding: const EdgeInsets.only(left: 30),
+    padding: const EdgeInsets.only(left: 30, bottom: 50),
     child : Row(
     children: [
       FloatingActionButton(

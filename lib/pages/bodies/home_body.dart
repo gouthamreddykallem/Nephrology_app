@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nephrology_app/shared/color.dart';
 
+import '../../shared/data.dart';
+
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
 
@@ -9,8 +11,8 @@ class HomeBody extends StatelessWidget {
     return SafeArea(
         child: ListView(
           children: [
-            searchBar(context)
-
+            searchBar(context),
+            category(context, "Services", categories)
           ],
         )
     );
@@ -59,7 +61,7 @@ Widget searchBar(BuildContext context) {
   );
 }
 
-Widget _category() {
+Widget category(BuildContext context, String title, List<Map<String, String>> categories) {
   return Column(
     children: <Widget>[
       Padding(
@@ -67,95 +69,126 @@ Widget _category() {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            const Text("Category", style: TextStyle(fontWeight: FontWeight.bold)),
             Text(
-              "See All",
-              style: TextStyles.titleNormal
-                  .copyWith(color: Theme.of(context).primaryColor),
-            ).p(8).ripple(() {})
+              title,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            GestureDetector(
+              onTap: () {
+                // Add your onTap functionality here
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "See All",
+                  style: TextStyle(
+                    fontSize: 16.0, // Adjust the font size as needed
+                    fontWeight: FontWeight.normal,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
       SizedBox(
-        height: AppTheme.fullHeight(context) * .28,
-        width: AppTheme.fullWidth(context),
-        child: ListView(
+        height: MediaQuery.of(context).size.height * .28,
+        width: MediaQuery.of(context).size.width,
+        child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          children: <Widget>[
-            _categoryCard("Chemist & Drugist", "350 + Stores",
-                color: LightColor.green, lightColor: LightColor.lightGreen),
-            _categoryCard("Covid - 19 Specialist", "899 Doctors",
-                color: LightColor.skyBlue, lightColor: LightColor.lightBlue),
-            _categoryCard("Cardiologists Specialist", "500 + Doctors",
-                color: LightColor.orange, lightColor: LightColor.lightOrange),
-            _categoryCard("Dermatologist", "300 + Doctors",
-                color: LightColor.green, lightColor: LightColor.lightGreen),
-            _categoryCard("General Surgeon", "500 + Doctors",
-                color: LightColor.skyBlue, lightColor: LightColor.lightBlue)
-          ],
+          itemCount: categories.length,
+          itemBuilder: (context, index) {
+            var category = categories[index];
+            return categoryCard(
+              context,
+              category["title"]!,
+              category["subtitle"]!,
+              color: Color(int.parse(category["color"]!)),
+              lightColor: Color(int.parse(category["lightColor"]!)),
+            );
+          },
         ),
       ),
     ],
   );
 }
 
-Widget _categoryCard(String title, String subtitle,
-    {Color color, Color lightColor}) {
-  TextStyle titleStyle = TextStyles.title.bold.white;
-  TextStyle subtitleStyle = TextStyles.body.bold.white;
-  if (AppTheme.fullWidth(context) < 392) {
-    titleStyle = TextStyles.body.bold.white;
-    subtitleStyle = TextStyles.bodySm.bold.white;
+Widget categoryCard(BuildContext context, String title, String subtitle,
+    {required Color color, required Color lightColor}) {
+  TextStyle titleStyle = const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white);
+  TextStyle subtitleStyle = const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white);
+
+  if (MediaQuery.of(context).size.width < 392) {
+    titleStyle = const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white);
+    subtitleStyle = const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white);
   }
+
   return AspectRatio(
     aspectRatio: 6 / 8,
     child: Container(
       height: 280,
-      width: AppTheme.fullWidth(context) * .3,
-      margin: EdgeInsets.only(left: 10, right: 10, bottom: 20, top: 10),
+      width: MediaQuery.of(context).size.width * .3,
+      margin: const EdgeInsets.only(left: 10, right: 10, bottom: 20, top: 10),
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.all(Radius.circular(20)),
         boxShadow: <BoxShadow>[
           BoxShadow(
-            offset: Offset(4, 4),
+            offset: const Offset(4, 4),
             blurRadius: 10,
             color: lightColor.withOpacity(.8),
           )
         ],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        child: Container(
-          child: Stack(
-            children: <Widget>[
-              Positioned(
-                top: -20,
-                left: -20,
-                child: CircleAvatar(
-                  backgroundColor: lightColor,
-                  radius: 60,
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        child: InkWell(
+          onTap: () {
+            // Add your onTap functionality here
+          },
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
+          child: Container(
+            child: Stack(
+              children: <Widget>[
+                Positioned(
+                  top: -20,
+                  left: -20,
+                  child: CircleAvatar(
+                    backgroundColor: lightColor,
+                    radius: 60,
+                  ),
                 ),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Flexible(
-                    child: Text(title, style: titleStyle).hP8,
-                  ),
-                  SizedBox(height: 10),
-                  Flexible(
-                    child: Text(
-                      subtitle,
-                      style: subtitleStyle,
-                    ).hP8,
-                  ),
-                ],
-              ).p16
-            ],
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Text(title, style: titleStyle),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Text(subtitle, style: subtitleStyle),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ).padding(const EdgeInsets.all(16)),
           ),
         ),
-      ).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(20))),
+      ),
     ),
+  );
+}
+
+extension WidgetPadding on Widget {
+  Widget padding([EdgeInsetsGeometry? insets]) => Padding(
+    padding: insets ?? const EdgeInsets.all(0),
+    child: this,
   );
 }
