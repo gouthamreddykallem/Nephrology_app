@@ -37,13 +37,13 @@ class _AiChatBodyState extends State<AiChatBody> {
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
+                            color: const Color.fromARGB(255, 30, 166, 207).withOpacity(0.5),
                             spreadRadius: 2,
                             blurRadius: 5,
                             offset: const Offset(0, 3),
                           ),
                         ],
-                        color: (_chatHistory[index]["isSender"]?const Color(0xFFF69170):Colors.white),
+                        color: (_chatHistory[index]["isSender"]?Color.fromARGB(255, 15, 120, 206):Colors.white),
                       ),
                       padding: const EdgeInsets.all(16),
                       child: Text(_chatHistory[index]["message"], style: TextStyle(fontSize: 15, color: _chatHistory[index]["isSender"]?Colors.white:Colors.black)),
@@ -70,7 +70,7 @@ class _AiChatBodyState extends State<AiChatBody> {
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                                 colors: [
-                                  Color(0xFFF69170),
+                                  Color.fromARGB(255, 12, 76, 136),
                                   Color(0xFF7D96E6),
                                 ]
                             ),
@@ -81,7 +81,7 @@ class _AiChatBodyState extends State<AiChatBody> {
                         padding: const EdgeInsets.all(4.0),
                         child: TextField(
                           decoration: const InputDecoration(
-                            hintText: "Type a message",
+                            hintText: "          Type a message",
                             border: InputBorder.none,
                             contentPadding: EdgeInsets.all(8.0),
                           ),
@@ -103,7 +103,7 @@ class _AiChatBodyState extends State<AiChatBody> {
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                             colors: [
-                              Color(0xFFF69170),
+                              Color.fromARGB(255, 15, 81, 167),
                               Color(0xFF7D96E6),
                             ]
                         ),

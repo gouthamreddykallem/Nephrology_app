@@ -40,8 +40,9 @@ class _LayOutState
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0.5,
-        title: const Text("The Nephrology Group, Inc",
-            style: TextStyle(color: Colors.white), textDirection: TextDirection.ltr),
+        title: Image.asset('assets/logo.jpg', fit: BoxFit.cover), 
+        // const Text("The Nephrology Group, Inc",
+        //     style: TextStyle(color: Colors.white), textDirection: TextDirection.ltr),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
