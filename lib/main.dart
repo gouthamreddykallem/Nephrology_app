@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nephrology_app/pages/home.dart';
+import 'package:nephrology_app/pages/layout.dart';
+import 'package:nephrology_app/shared/color.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -13,8 +15,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Poppins'),
-      home: const LayOut()
+      theme: ThemeData(
+          fontFamily: 'Poppins',
+          primaryColor: primaryColor,
+          scaffoldBackgroundColor: bgColor ),
+      initialRoute: "/LayOutScreen",
+      routes: {
+        "/LayOutScreen": (context) => const LayOut(),
+      },
     );
   }
 }

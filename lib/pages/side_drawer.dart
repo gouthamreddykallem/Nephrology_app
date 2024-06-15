@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nephrology_app/shared/color.dart';
 
 class SideDrawer extends StatelessWidget {
   const SideDrawer({super.key});
@@ -9,9 +10,11 @@ class SideDrawer extends StatelessWidget {
           child: ListView(padding: EdgeInsets.zero, children: [
         const DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: primaryColorLight,
             ),
-            child: Text('User Name')),
+            child: Text(
+                'User Name',
+                style: TextStyle(color: Colors.white, fontSize: 30))),
         const ExpansionTile(
           title: Text('About US'),
           children: [Text("Who We Are"), Text("Providers"), Text('Administration')],
