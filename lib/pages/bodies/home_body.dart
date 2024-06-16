@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nephrology_app/pages/bodies/home_body_scrap.dart';
 import 'package:nephrology_app/shared/color.dart';
 
 import '../../shared/data.dart';
@@ -12,7 +13,9 @@ class HomeBody extends StatelessWidget {
         child: ListView(
           children: [
             searchBar(context),
-            category(context, "Services", categories)
+            const ButtonSection(),
+            category(context, "Kidney Services", kidneyServices),
+            category(context, "Vascular Access", kidneyServices)
           ],
         )
     );
@@ -61,7 +64,7 @@ Widget searchBar(BuildContext context) {
   );
 }
 
-Widget category(BuildContext context, String title, List<Map<String, String>> categories) {
+Widget category(BuildContext context, String title, List<Map<String, String>> kidneyServices) {
   return Column(
     children: <Widget>[
       Padding(
@@ -71,7 +74,7 @@ Widget category(BuildContext context, String title, List<Map<String, String>> ca
           children: <Widget>[
             Text(
               title,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             GestureDetector(
               onTap: () {
@@ -97,9 +100,9 @@ Widget category(BuildContext context, String title, List<Map<String, String>> ca
         width: MediaQuery.of(context).size.width,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: categories.length,
+          itemCount: kidneyServices.length,
           itemBuilder: (context, index) {
-            var category = categories[index];
+            var category = kidneyServices[index];
             return categoryCard(
               context,
               category["title"]!,
