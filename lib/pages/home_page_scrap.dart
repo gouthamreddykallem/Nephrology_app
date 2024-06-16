@@ -137,8 +137,8 @@ class ButtonSection extends StatelessWidget {
           style: style,
           // Button 1 style and properties
           onPressed: () {
-            FloatingButtons.urlLauncher(
-                Uri.parse('https://www.myhealthrecord.com/Portal/SSO'));
+            // FloatingButtons.urlLauncher(
+            //     Uri.parse('https://www.myhealthrecord.com/Portal/SSO'));
           },
           child: const Text('PATIENT PORTAL'),
         ),
@@ -147,8 +147,8 @@ class ButtonSection extends StatelessWidget {
           style: style,
           // Button 2 style and properties
           onPressed: () {
-            FloatingButtons.urlLauncher(Uri.parse(
-                'https://www.thenephrologygroupinc.com/Portals/0/Online%20Forms/Forms%202-12-2018/NewPatientRF.pdf?ver=2018-02-16-140849-517'));
+            // FloatingButtons.urlLauncher(Uri.parse(
+            //     'https://www.thenephrologygroupinc.com/Portals/0/Online%20Forms/Forms%202-12-2018/NewPatientRF.pdf?ver=2018-02-16-140849-517'));
           },
           child: const Text('REFER A PATIENT'),
         ),

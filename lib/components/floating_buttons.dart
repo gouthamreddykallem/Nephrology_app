@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:nephrology_app/utilities/utils.dart';
 
 
 class FloatingButtons extends StatelessWidget {
   const FloatingButtons({super.key});
- static urlLauncher(Uri url) async {
-    // const url = ;   
-    if (await canLaunchUrl(url)) {
-       await launchUrl(url);
-    } else {
-      throw 'Could not launch $url';
-    }   
-}
+//  static urlLauncher(Uri url) async {
+//     // const url = ;   
+//     if (await canLaunchUrl(url)) {
+//        await launchUrl(url);
+//     } else {
+//       throw 'Could not launch $url';
+//     }   
+// }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +21,7 @@ class FloatingButtons extends StatelessWidget {
     children: [
       FloatingActionButton(
         onPressed: () {
-          urlLauncher( Uri(scheme: 'tel', path: '+1-559-228-6600'));
+          Utilities.urlLauncher( Uri(scheme: 'tel', path: '+1-559-228-6600'));
           //...
         },
         tooltip: 'Contact Us',
