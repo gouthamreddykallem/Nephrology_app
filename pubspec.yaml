@@ -43,6 +43,7 @@ dependencies:
   latlong2: ^0.9.1
   google_maps_flutter: ^2.7.0
   gradient_borders: ^1.0.1
+  flutter_svg: ^1.1.6
 
 dev_dependencies:
   flutter_test:
@@ -56,13 +57,16 @@ dev_dependencies:
   flutter_lints: ^3.0.0
   http: ^1.1.0
 
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-  - assets/
+  - assets/kidneyIcon.svg
+  - assets/hypertension.svg
+  - assets/vascular.svg
   # /logo.jpg
   # - assets/background.jpg
   # - assets/background.jpg

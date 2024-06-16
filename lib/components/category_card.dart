@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:nephrology_app/pages/details_page.dart';
 import 'package:nephrology_app/pages/see_all_page.dart';
 import 'package:nephrology_app/shared/style.dart';
@@ -93,6 +94,18 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget iconWidget = const SizedBox.shrink(); // Default to an empty SizedBox
+
+    // Check if 'icon' exists in details and is not null or empty
+    if (details.containsKey('icon') && details['icon']!.isNotEmpty) {
+      iconWidget = SvgPicture.asset(
+        details['icon']!, // Ensure this path matches your asset
+        width: 48,
+        height: 48,
+        color: Colors.white.withOpacity(0.9),
+      );
+    }
+
     return AspectRatio(
       aspectRatio: 6 / 8,
       child: Padding(
@@ -130,6 +143,7 @@ class CategoryCard extends StatelessWidget {
                     child: CircleAvatar(
                       backgroundColor: lightColor,
                       radius: 60,
+                      child: iconWidget,
                     ),
                   ),
                   Column(
