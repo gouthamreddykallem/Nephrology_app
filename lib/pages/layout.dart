@@ -47,8 +47,8 @@ class _LayOutState
           decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: [
-                  primaryColorLight,
-                  primaryColor,
+                  // primaryColorLight,
+                  appBarColor,
                 ],
                 begin: FractionalOffset(0.0, 0.0),
                 end: FractionalOffset(1.0, 0.0),
@@ -61,7 +61,7 @@ class _LayOutState
             return IconButton(
               icon: const Icon(
                 Icons.menu,
-                color: Colors.white,
+                color: Colors.black,
               ),
               onPressed: () {
                 Scaffold.of(context).openDrawer();
@@ -74,6 +74,7 @@ class _LayOutState
             builder: (context) {
               return IconButton(
                 icon: const Icon(Icons.settings),
+                color: Colors.black,
                 onPressed: () {
                   Scaffold.of(context).openEndDrawer();
                 },
