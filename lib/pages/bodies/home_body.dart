@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nephrology_app/pages/bodies/home_body_scrap.dart';
+import 'package:nephrology_app/pages/buttons_section.dart';
+// import 'package:nephrology_app/pages/bodies/home_body_scrap.dart';
 import 'package:nephrology_app/shared/color.dart';
 
 import '../../shared/data.dart';
