@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nephrology_app/pages/floating_buttons.dart';
+import 'package:nephrology_app/components/floating_buttons.dart';
 
 class ButtonSection extends StatelessWidget {
   const ButtonSection({super.key});

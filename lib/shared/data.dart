@@ -1,4 +1,4 @@
-List<Map<String, String>> services = [
+List<Map<String, String>> kidneyServices = [
   {
     "title": "Chronic Kidney Disease",
     "subtitle": "",

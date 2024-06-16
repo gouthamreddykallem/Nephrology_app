@@ -22,7 +22,7 @@ class HomeBody extends StatelessWidget {
             ],
           ),
         ),
-        Category(title: "Services", categories: services),
+        Category(title: "Services", categories: kidneyServices),
         Category(title: "Vascular Access", categories: vascularAccess),
         Category(title: "About Us", categories: aboutUs),
       ],
