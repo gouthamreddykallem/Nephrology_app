@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nephrology_app/components/category_card.dart';
 import 'package:nephrology_app/shared/color.dart';
 import 'package:nephrology_app/shared/data.dart';
+import 'package:nephrology_app/utilities/utils.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
@@ -22,7 +23,7 @@ class HomeBody extends StatelessWidget {
             ],
           ),
         ),
-        Category(title: "Services", categories: kidneyServices),
+        Category(title: "Kidney Services", categories: kidneyServices),
         Category(title: "Vascular Access", categories: vascularAccess),
         Category(title: "About Us", categories: aboutUs),
       ],
@@ -82,10 +83,16 @@ Widget buildButton(BuildContext context, String text) {
           const EdgeInsets.symmetric(horizontal: 24, vertical: 16), // Padding
     ),
     onPressed: () {
+      if(text=="PATIENT PORTAL"){
+        Utilities.urlLauncher(Uri.parse("https://www.myhealthrecord.com/Portal/SSO"));
+      }
+      else{
+        Utilities.urlLauncher(Uri.parse("https://www.thenephrologygroupinc.com/Portals/0/Online%20Forms/Forms%202-12-2018/NewPatientRF.pdf?ver=2018-02-16-140849-517"));
+      }
       // Button pressed action
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('$text pressed')),
-      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(content: Text('$text pressed')),
+      // );
     },
     child: Text(text, style: const TextStyle(fontWeight: FontWeight.bold))
   );
