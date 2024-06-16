@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:nephrology_app/pages/details_page.dart';
 
 List<String> colors = ["0xFF4CAF50", "0xFF2196F3", "0xFFFF9800"];
 List<String> lightColors = ["0xFF81C784", "0xFF64B5F6", "0xFFFFB74D"];
@@ -23,7 +24,8 @@ class Category extends StatelessWidget {
             children: <Widget>[
               Text(
                 title,
-                style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                    fontSize: 20.0, fontWeight: FontWeight.bold),
               ),
               GestureDetector(
                 onTap: () {
@@ -53,8 +55,7 @@ class Category extends StatelessWidget {
             itemBuilder: (context, index) {
               var category = categories[index];
               return CategoryCard(
-                title: category["title"]!,
-                subtitle: category["subtitle"]!,
+                details: category,
                 color: Color(int.parse(colors[index % 3])),
                 lightColor: Color(int.parse(lightColors[index % 3])),
               );
@@ -67,17 +68,15 @@ class Category extends StatelessWidget {
 }
 
 class CategoryCard extends StatelessWidget {
-  final String title;
-  final String subtitle;
+  final Map<String, String> details;
   final Color color;
   final Color lightColor;
 
   const CategoryCard({
     super.key,
-    required this.title,
-    required this.subtitle,
     required this.color,
     required this.lightColor,
+    required this.details,
   });
 
   @override
@@ -115,7 +114,16 @@ class CategoryCard extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(20)),
           child: InkWell(
             onTap: () {
-              // Add your onTap functionality here
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return new DetailsPage(
+                      details: details,
+                    );
+                  },
+                ),
+              );
             },
             borderRadius: const BorderRadius.all(Radius.circular(20)),
             child: Container(
@@ -135,7 +143,7 @@ class CategoryCard extends StatelessWidget {
                       Flexible(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text(title, style: titleStyle),
+                          child: Text(details['title']!, style: titleStyle),
                         ),
                       ),
                       const SizedBox(height: 10),
