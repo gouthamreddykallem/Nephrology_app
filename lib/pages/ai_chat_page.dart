@@ -81,7 +81,7 @@ class _AiChatBodyState extends State<AiChatBody> {
                         padding: const EdgeInsets.all(4.0),
                         child: TextField(
                           decoration: const InputDecoration(
-                            hintText: "          Type a message",
+                            hintText: " Type a message ",
                             border: InputBorder.none,
                             contentPadding: EdgeInsets.all(8.0),
                           ),

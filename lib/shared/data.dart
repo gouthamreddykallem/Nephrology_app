@@ -1,74 +1,102 @@
-List<Map<String, String>> kidneyServices = [
+List<Map<String, String>> services = [
   {
-    "title": "Chronic Kidney Disease ",
-    "subtitle": "350 + Stores",
-    "color": "0xFF2196F3", // Colors.blue
-    "lightColor": "0xFF64B5F6", // Colors.lightGreen
+    "title": "Chronic Kidney Disease",
+    "subtitle": "",
   },
   {
     "title": "End Stage Renal Disease",
-    "subtitle": "899 Doctors",
-    "color": "0xFFFF9800", // Colors.orange
-    "lightColor": "0xFFFFB74D", // Colors.lightBlue
+    "subtitle": "",
   },
   {
     "title": "Hypertension",
-    "subtitle": "500 + Doctors",
-    "color": "0xFF4CAF50", // Colors.green
-    "lightColor": "0xFF81C784", // Colors.orangeAccent
+    "subtitle": "",
   },
   {
     "title": "Kidney Stones",
-    "subtitle": "500 + Doctors",
-    "color": "0xFF2196F3", // Colors.blue
-    "lightColor": "0xFF64B5F6", // Colors.lightBlue
+    "subtitle": "",
   },
   {
     "title": "Vascular Access",
-    "subtitle": "300 + Doctors",
-    "color": "0xFF4CAF50", // Colors.green
-    "lightColor": "0xFF81C784", // Colors.lightGreen
+    "subtitle": "",
   },
   {
-    "title": "Vascular Access",
-    "subtitle": "300 + Doctors",
-    "color": "0xFF4CAF50", // Colors.green
-    "lightColor": "0xFF81C784", // Colors.lightGreen
+    "title": "Ultrasound",
+    "subtitle": "",
   },
   {
-    "title": "Vascular Access",
-    "subtitle": "300 + Doctors",
-    "color": "0xFF4CAF50", // Colors.green
-    "lightColor": "0xFF81C784", // Colors.lightGreen
+    "title": "Laboratory",
+    "subtitle": "",
   },
   {
-    "title": "Vascular Access",
-    "subtitle": "300 + Doctors",
-    "color": "0xFF4CAF50", // Colors.green
-    "lightColor": "0xFF81C784", // Colors.lightGreen
+    "title": "Anemia Management Clinic",
+    "subtitle": "",
   },
   {
-    "title": "Vascular Access",
-    "subtitle": "300 + Doctors",
-    "color": "0xFF4CAF50", // Colors.green
-    "lightColor": "0xFF81C784", // Colors.lightGreen
+    "title": "Home Dialysis Program",
+    "subtitle": "",
   },
   {
-    "title": "Vascular Access",
-    "subtitle": "300 + Doctors",
-    "color": "0xFF4CAF50", // Colors.green
-    "lightColor": "0xFF81C784", // Colors.lightGreen
+    "title": "Dialysis Center",
+    "subtitle": "",
   },
   {
-    "title": "Vascular Access",
-    "subtitle": "300 + Doctors",
-    "color": "0xFF4CAF50", // Colors.green
-    "lightColor": "0xFF81C784", // Colors.lightGreen
+    "title": "Kidney Transplant",
+    "subtitle": "",
   },
   {
-    "title": "Vascular Access",
-    "subtitle": "300 + Doctors",
-    "color": "0xFF4CAF50", // Colors.green
-    "lightColor": "0xFF81C784", // Colors.lightGreen
+    "title": "Dietary Services",
+    "subtitle": "",
+  },
+  {
+    "title": "Peripheral Artery Disease Program",
+    "subtitle": "",
+  },
+  {
+    "title": "Dialysis Options Education",
+    "subtitle": "",
+  },
+];
+
+
+List<Map<String, String>> vascularAccess = [
+  {
+    "title": "Vascular Disease Overview",
+    "subtitle": "",
+  },
+  {
+    "title": "Vascular Assessment",
+    "subtitle": "",
+  },
+  {
+    "title": "Vascular Procedures",
+    "subtitle": "",
+  },
+  {
+    "title": "FASC Team",
+    "subtitle": "",
+  },
+];
+
+
+List<Map<String, String>> aboutUs = [
+  {
+    "title": "Who We Are",
+    "subtitle": "",
+  },
+  {
+    "title": "Providers",
+    "subtitle": "",
+  },
+  {
+    "title": "Administration",
+    "subtitle": "",
+  },
+  {
+    "title": "Executive Board",
+    "subtitle": "",
+  },
+  {
+    "title": "Clinic Information",
+    "subtitle": "",
   },
 ];
