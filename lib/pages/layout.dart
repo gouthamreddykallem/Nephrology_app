@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:nephrology_app/pages/side_drawer.dart';
+import 'package:nephrology_app/components/floating_buttons.dart';
+import 'package:nephrology_app/components/side_drawer.dart';
 import 'package:nephrology_app/shared/color.dart';
 
-import 'bodies/ai_chat_body.dart';
-import 'bodies/education_body.dart';
-import 'bodies/home_body.dart';
-import 'bodies/login_body.dart';
-import 'floating_buttons.dart';
+import 'ai_chat_page.dart';
+import 'education_page.dart';
+import 'home_page.dart';
+import 'login_page.dart';
 
 
 class LayOut extends StatefulWidget {
@@ -40,7 +40,7 @@ class _LayOutState
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0.5,
-        title: Image.asset('assets/logo.jpg', fit: BoxFit.cover), 
+        title: Image.asset('assets/logo.jpg', fit: BoxFit.cover, alignment: Alignment.center),
         // const Text("The Nephrology Group, Inc",
         //     style: TextStyle(color: Colors.white), textDirection: TextDirection.ltr),
         flexibleSpace: Container(
