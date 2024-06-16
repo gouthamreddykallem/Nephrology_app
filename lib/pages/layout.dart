@@ -38,24 +38,12 @@ class _LayOutState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: Colors.white),
-        elevation: 0.5,
-        title: Image.asset('assets/logo.jpg', fit: BoxFit.cover, alignment: Alignment.center),
+        elevation: 0.0,
+        title: Image.asset('assets/logo.jpg', fit: BoxFit.fill, alignment: Alignment.center),
         // const Text("The Nephrology Group, Inc",
         //     style: TextStyle(color: Colors.white), textDirection: TextDirection.ltr),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: [
-                  // primaryColorLight,
-                  appBarColor,
-                ],
-                begin: FractionalOffset(0.0, 0.0),
-                end: FractionalOffset(1.0, 0.0),
-                stops: [0.0, 1.0],
-                tileMode: TileMode.clamp),
-          ),
-        ),
         leading: Builder(
           builder: (context) {
             return IconButton(
