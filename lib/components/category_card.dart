@@ -143,7 +143,13 @@ class CategoryCard extends StatelessWidget {
                       Flexible(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text(details['title']!, style: titleStyle),
+                          child: Text(details['title']!,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.5,
+                              )),
                         ),
                       ),
                       const SizedBox(height: 10),
