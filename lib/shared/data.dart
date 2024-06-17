@@ -3,9 +3,7 @@ List<Map<String, String>> kidneyServices = [
     "title": "Chronic Kidney Disease",
     "icon": "assets/kidneyIcon.svg",
     "description":
-        "Chronic Kidney Disease is characterized by the gradual loss of kidney function, over time. It affects 26 millions Americans while there are million others who are at risk.It is followed by complications like high blood pressure, anemia, weak bones, poor nutritional health and nerve damage. ",
-    "heading":
-        "At The Nephrology Group, Inc. , we help patients who suffer from chronic kidney disease by doing the following treatments:",
+        "Chronic Kidney Disease is characterized by the gradual loss of kidney function, over time. It affects 26 millions Americans while there are million others who are at risk.It is followed by complications like high blood pressure, anemia, weak bones, poor nutritional health and nerve damage.\n\nAt The Nephrology Group, Inc. , we help patients who suffer from chronic kidney disease by doing the following treatments:",
     "points":
         "Glomerulonephropathy\nInterstitial disease\nDiabetic Kidney Disease\nHereditary Kidney Disease\nMineral metabolism\nNutritional Consultation & Management\nAnemia Management & Administration of ESA\nElectrolyte Management\nKidney Stone Work-up & Treatment\nUltrasound facilities\nWe provide access to second opinions",
   },
@@ -13,9 +11,7 @@ List<Map<String, String>> kidneyServices = [
     "title": "End Stage Renal Disease",
     "icon": "assets/kidneyIcon.svg",
     "description":
-        "End Stage Renal Disease (ESRD) is when the kidneys stop functioning well enough for someone to live without a dialysis or a transplant. People with diabetes or high blood pressure are at increased risk to suffer from ESRD. It necessitates severe action to be taken to ensure the health of the individual, unlike Chronic Kidney Disease, where the patient can survive with treatment to the existing kidney. Regular check ups like blood test for eGFR, urine test, can help the patient know his or her condition soon enough to start proper treatment.",
-    "heading":
-        "At The Nephrology Group, Inc., we help ESRD patients in the following ways:",
+        "End Stage Renal Disease (ESRD) is when the kidneys stop functioning well enough for someone to live without a dialysis or a transplant. People with diabetes or high blood pressure are at increased risk to suffer from ESRD. It necessitates severe action to be taken to ensure the health of the individual, unlike Chronic Kidney Disease, where the patient can survive with treatment to the existing kidney. Regular check ups like blood test for eGFR, urine test, can help the patient know his or her condition soon enough to start proper treatment.\n\nAt The Nephrology Group, Inc., we help ESRD patients in the following ways:",
     "points":
         "Conducting regular hemodialysis\nWe offer these services at home or in the hospital, depending on the patient's convenience\nPeritoneal Dialysis\nWe offer manual and automated dialysis services depending on the severity of the case\nKidney Transplant Management - Pre and Post- Transplant Care\nNocturnal Hemodialysis\nHome dialysis",
   },
@@ -79,17 +75,20 @@ List<Map<String, String>> vascularAccess = [
   {
     "title": "Vascular Disease Overview",
     "icon": "assets/vascular.svg",
-    "subtitle": "",
+    "description": "Vascular disease affects the circulatory system, including arteries, veins and lymphs. The following can arise as a result of vascular diseases:\n\nThere are three types of dialysis access: catheters, grafts and fistulas. We perform and assist with all three accesses. After insertion of the access, we also help maintain it. We perform angiograms and angioplasty to ensure that the accesses are long lasting and durable. ",
+    "image": "assets/vascular_disease_overview.jpg",
   },
   {
     "title": "Vascular Assessment",
     "icon": "assets/vascular.svg",
-    "subtitle": "",
+    "description": "Fresno Ambulatory Surgical Center offers the opportunity to improve patient outcomes and quality of life while helping physicians concentrate on proactive care and early intervention.\n\nOur goal is to work with local physicians and surgeons to improve the delivery and outcomes of interventional vascular access care through our dedicated outpatient center. ",
   },
   {
     "title": "Vascular Procedures",
     "icon": "assets/vascular.svg",
-    "subtitle": "",
+    "description": "Our physicians perform the following procedures:",
+    "points": "Angiograms\nAngioplasty\nThrombectomy\nCatheter placements, removals and exchanges\nComprehensive peritoneal catheter care\nVessel mapping for optimal access placement\nEndovascular Stenting\nFistula maturation and repair",
+    "image": "assets/vascular_procedures.jpg",
   },
   {
     "title": "FASC Team",

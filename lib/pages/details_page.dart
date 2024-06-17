@@ -64,7 +64,8 @@ class _DetailsPageState extends State<DetailsPage> {
                         const SizedBox(width: 8.0),
                         Expanded(
                           child: Text(
-                            point.trim(), // Trim to remove any leading/trailing spaces
+                            point
+                                .trim(), // Trim to remove any leading/trailing spaces
                             style: descriptionStyle,
                           ),
                         ),
@@ -72,6 +73,12 @@ class _DetailsPageState extends State<DetailsPage> {
                     ),
                   );
                 }).toList(),
+              ),
+            if (widget.details['image']?.isNotEmpty ?? false)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: Image.asset(widget.details['image']!,
+                    fit: BoxFit.fill, alignment: Alignment.center),
               ),
           ],
         ),
