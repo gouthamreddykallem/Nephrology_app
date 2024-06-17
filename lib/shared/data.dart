@@ -124,10 +124,16 @@ List<List<Detail>> aboutUs = [
         "Board Certified in Nephrology\nBoard Certified in Internal Medicine"),
     Detail("description",
         "Our physicians have additional education and associated credentials and are the highest caliber individuals.\n\nOur team of physicians and associated care givers are compassionate, understanding and thorough in their analysis and treatment."),
-    // Detail("heading", "Fresno, Madera, Selma, and Sanger Providers"),
-    // Detail("providerList", providers1),
     Detail("providerList",
         [Detail("title", "Fresno, Madera, Selma, and Sanger Providers"), providers1]),
+    Detail("providerList",
+        [Detail("title", "Nephro-Hospitalists"), providers2]),
+    Detail("providerList",
+        [Detail("title", "Visalia, Hanford, and Tulare Providers"), providers3]),
+    Detail("providerList",
+        [Detail("title", "Bakersfield And Kern County Providers"), providers4]),
+    Detail("providerList",
+        [Detail("title", "Merced and Los Banos Providers"), providers5]),
   ],
   [
     Detail("title", "Administration"),
@@ -203,5 +209,73 @@ List<List<Detail>> providers1 = [
   [
     Detail("name", "Dominique Dorsainvil M.D."),
     Detail("picture", "assets/providers/p1_15.jpg"),
+  ],
+];
+
+List<List<Detail>> providers2 = [
+  [
+    Detail("name", "Supriya Gerardine M.D."),
+    Detail("picture", "assets/providers/p2_1.jpg"),
+  ],
+  [
+    Detail("name", "Ibrahim Katibah M.D."),
+    Detail("picture", "assets/providers/p2_2.jpg"),
+  ],
+  [
+    Detail("name", "Bikash Chapagain, M.D."),
+    Detail("picture", "assets/providers/p2_3.jpg"),
+  ],
+  [
+    Detail("name", "Dhayanithi Dhayalan, M.D."),
+    Detail("picture", "assets/providers/p2_4.jpg"),
+  ],
+];
+
+List<List<Detail>> providers3 = [
+  [
+    Detail("name", "Sreedhar Adapa, M.D."),
+    Detail("picture", "assets/providers/p3_1.jpg"),
+  ],
+  [
+    Detail("name", "Wei-Tzuoh Chen M.D."),
+    Detail("picture", "assets/providers/p3_2.jpg"),
+  ],
+  [
+    Detail("name", "Amarinder Garcha M.D."),
+    Detail("picture", "assets/providers/p3_3.jpg"),
+  ],
+  [
+    Detail("name", "Maryanne Y. Sourial, D.O."),
+    Detail("picture", "assets/providers/p3_4.jpg"),
+  ],
+];
+
+List<List<Detail>> providers4 = [
+  [
+    Detail("name", "Sudhir S. Joshi M.D."),
+    Detail("picture", "assets/providers/p4_1.jpg"),
+  ],
+  [
+    Detail("name", "Hashim R. Kazmi M.D."),
+    Detail("picture", "assets/providers/p4_2.jpg"),
+  ],
+  [
+    Detail("name", "Nishkarsh Saxena M.D."),
+    Detail("picture", "assets/providers/p4_3.jpg"),
+  ],
+  [
+    Detail("name", "Slamat Ali, M.D."),
+    Detail("picture", "assets/providers/p4_4.jpg"),
+  ],
+];
+
+List<List<Detail>> providers5 = [
+  [
+    Detail("name", "Atul T. Roy, M.D."),
+    Detail("picture", "assets/providers/p5_1.jpg"),
+  ],
+  [
+    Detail("name", "Daniel Ikemiyashiro, M.D."),
+    Detail("picture", "assets/providers/p5_2.jpg"),
   ],
 ];
