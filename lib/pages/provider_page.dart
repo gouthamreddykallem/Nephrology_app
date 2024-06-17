@@ -48,6 +48,36 @@ class _ProviderPageState extends State<ProviderPage> {
                           height: size.height * 0.6,
                         ),
                       ),
+                      //const SizedBox(height: 16.0), // Spacing below the image
+                      Container(
+                        decoration: BoxDecoration(
+                          color: primaryColorLight,
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(24.0),
+                            topRight: Radius.circular(24.0),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 2,
+                              blurRadius: 7,
+                              offset: const Offset(
+                                  0, 3), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        padding: const EdgeInsets.all(16.0),
+                        child: Center(
+                          child: Text(
+                            name,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 24.0,
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -79,4 +109,3 @@ class _ProviderPageState extends State<ProviderPage> {
     );
   }
 }
-
