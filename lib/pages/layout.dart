@@ -61,7 +61,7 @@ class _LayOutState
           Builder(
             builder: (context) {
               return IconButton(
-                icon: const Icon(Icons.settings),
+                icon: const Icon(Icons.help_outline_rounded),
                 color: Colors.black,
                 onPressed: () {
                   Scaffold.of(context).openEndDrawer();

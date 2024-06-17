@@ -15,8 +15,8 @@ class HomeBody extends StatelessWidget {
           children: [
             searchBar(context),
             const ButtonSection(),
-            category(context, "Kidney Services", kidneyServices),
-            category(context, "Vascular Access", kidneyServices)
+            //category(context, "Kidney Services", kidneyServices),
+            //category(context, "Vascular Access", kidneyServices)
           ],
         )
     );

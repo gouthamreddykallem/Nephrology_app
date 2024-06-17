@@ -1,14 +1,18 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:nephrology_app/pages/details_page.dart';
+import 'package:nephrology_app/pages/see_all_page.dart';
+import 'package:nephrology_app/shared/detail.dart';
+import 'package:nephrology_app/shared/style.dart';
 
 List<String> colors = ["0xFF4CAF50", "0xFF2196F3", "0xFFFF9800"];
 List<String> lightColors = ["0xFF81C784", "0xFF64B5F6", "0xFFFFB74D"];
 
 class Category extends StatelessWidget {
   final String title;
-  final List<Map<String, String>> categories;
+  final List<List<Detail>> categories;
 
   const Category({super.key, required this.title, required this.categories});
 
@@ -27,9 +31,19 @@ class Category extends StatelessWidget {
                 style: const TextStyle(
                     fontSize: 20.0, fontWeight: FontWeight.bold),
               ),
-              GestureDetector(
+              InkWell(
                 onTap: () {
-                  // Add your onTap functionality here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return SeeAllPage(
+                          title: title,
+                          categories: categories,
+                        );
+                      },
+                    ),
+                  );
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -68,7 +82,7 @@ class Category extends StatelessWidget {
 }
 
 class CategoryCard extends StatelessWidget {
-  final Map<String, String> details;
+  final List<Detail> details;
   final Color color;
   final Color lightColor;
 
@@ -81,52 +95,62 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextStyle titleStyle = const TextStyle(
-        fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white);
-    TextStyle subtitleStyle = const TextStyle(
-        fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white);
+    String? title;
+    String? iconPath;
 
-    if (MediaQuery.of(context).size.width < 392) {
-      titleStyle = const TextStyle(
-          fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white);
-      subtitleStyle = const TextStyle(
-          fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white);
+    // Extract details from the list
+    for (var detail in details) {
+      switch (detail.key) {
+        case 'title':
+          title = detail.value;
+          break;
+        case 'icon':
+          iconPath = detail.value;
+          break;
+      }
+    }
+
+    Widget iconWidget = const SizedBox(); // Default empty widget if iconPath is null or empty
+
+    // Check if 'iconPath' exists and is not null or empty
+    if (iconPath != null && iconPath.isNotEmpty) {
+      iconWidget = SvgPicture.asset(
+        iconPath, // Ensure this path matches your asset
+        width: 48,
+        height: 48,
+        color: Colors.white.withOpacity(0.9),
+      );
     }
 
     return AspectRatio(
       aspectRatio: 6 / 8,
-      child: Container(
-        height: 200,
-        width: MediaQuery.of(context).size.width * .3,
-        margin: const EdgeInsets.only(left: 10, right: 10, bottom: 20, top: 10),
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              offset: const Offset(4, 4),
-              blurRadius: 10,
-              color: lightColor.withOpacity(.8),
-            )
-          ],
-        ),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
-          child: InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return new DetailsPage(
-                      details: details,
-                    );
-                  },
-                ),
-              );
-            },
-            borderRadius: const BorderRadius.all(Radius.circular(20)),
-            child: Container(
+      child: Padding(
+        padding:
+            const EdgeInsets.all(10.0), // Add padding around the entire card
+        child: Container(
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                offset: const Offset(4, 4),
+                blurRadius: 10,
+                color: lightColor.withOpacity(0.8),
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailsPage(details: details),
+                  ),
+                );
+              },
+              borderRadius: BorderRadius.circular(20),
               child: Stack(
                 children: <Widget>[
                   Positioned(
@@ -135,6 +159,7 @@ class CategoryCard extends StatelessWidget {
                     child: CircleAvatar(
                       backgroundColor: lightColor,
                       radius: 60,
+                      child: iconWidget,
                     ),
                   ),
                   Column(
@@ -143,20 +168,14 @@ class CategoryCard extends StatelessWidget {
                       Flexible(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text(details['title']!, style: titleStyle),
+                          child: Text(title!, style: titleStyle),
                         ),
                       ),
-                      const SizedBox(height: 10),
-                      // Flexible(
-                      //   child: Padding(
-                      //     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      //     child: Text(subtitle, style: subtitleStyle),
-                      //   ),
-                      // ),
+                      const SizedBox(height: 20),
                     ],
                   ),
                 ],
-              ).padding(const EdgeInsets.all(16)),
+              ),
             ),
           ),
         ),
