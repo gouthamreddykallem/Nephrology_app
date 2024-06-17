@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nephrology_app/pages/details_page.dart';
 import 'package:nephrology_app/pages/see_all_page.dart';
+import 'package:nephrology_app/shared/detail.dart';
 import 'package:nephrology_app/shared/style.dart';
 
 List<String> colors = ["0xFF4CAF50", "0xFF2196F3", "0xFFFF9800"];
@@ -11,7 +12,7 @@ List<String> lightColors = ["0xFF81C784", "0xFF64B5F6", "0xFFFFB74D"];
 
 class Category extends StatelessWidget {
   final String title;
-  final List<Map<String, String>> categories;
+  final List<List<Detail>> categories;
 
   const Category({super.key, required this.title, required this.categories});
 
@@ -81,7 +82,7 @@ class Category extends StatelessWidget {
 }
 
 class CategoryCard extends StatelessWidget {
-  final Map<String, String> details;
+  final List<Detail> details;
   final Color color;
   final Color lightColor;
 
@@ -94,12 +95,27 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget iconWidget = const SizedBox.shrink(); // Default to an empty SizedBox
+    String? title;
+    String? iconPath;
 
-    // Check if 'icon' exists in details and is not null or empty
-    if (details.containsKey('icon') && details['icon']!.isNotEmpty) {
+    // Extract details from the list
+    for (var detail in details) {
+      switch (detail.key) {
+        case 'title':
+          title = detail.value;
+          break;
+        case 'icon':
+          iconPath = detail.value;
+          break;
+      }
+    }
+
+    Widget iconWidget = const SizedBox(); // Default empty widget if iconPath is null or empty
+
+    // Check if 'iconPath' exists and is not null or empty
+    if (iconPath != null && iconPath.isNotEmpty) {
       iconWidget = SvgPicture.asset(
-        details['icon']!, // Ensure this path matches your asset
+        iconPath, // Ensure this path matches your asset
         width: 48,
         height: 48,
         color: Colors.white.withOpacity(0.9),
@@ -152,7 +168,7 @@ class CategoryCard extends StatelessWidget {
                       Flexible(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text(details['title']!, style: titleStyle),
+                          child: Text(title!, style: titleStyle),
                         ),
                       ),
                       const SizedBox(height: 20),

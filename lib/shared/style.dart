@@ -16,3 +16,17 @@ TextStyle descriptionStyle = const TextStyle(
   color: Colors.black87, // Slightly softer than pure black for less strain
   height: 1.5, // Line height for better readability
 );
+
+TextStyle headingStyle = const TextStyle(
+  fontSize: 24.0, // Comfortable reading size
+  fontWeight: FontWeight.bold, // Regular weight for readability
+  color: Colors.black, // Slightly softer than pure black for less strain
+  height: 1.5, // Line height for better readability
+);
+
+TextStyle picStyle = const TextStyle(
+  color: Colors.black,
+  fontSize: 16,
+  fontWeight: FontWeight.bold,
+  letterSpacing: 1,
+);

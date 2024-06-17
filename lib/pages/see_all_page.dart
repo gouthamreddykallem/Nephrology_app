@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:nephrology_app/components/category_card.dart';
 import 'package:nephrology_app/shared/color.dart';
+import 'package:nephrology_app/shared/detail.dart';
 
 class SeeAllPage extends StatefulWidget {
   final String title;
-  final List<Map<String, String>> categories;
+  final List<List<Detail>> categories;
   const SeeAllPage({super.key, required this.categories, required this.title});
 
   @override

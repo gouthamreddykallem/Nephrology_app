@@ -67,8 +67,10 @@ flutter:
   - assets/kidneyIcon.svg
   - assets/hypertension.svg
   - assets/vascular.svg
+  - assets/aboutus.svg
   - assets/logo.jpg
   - assets/
+  - assets/providers/
   # /logo.jpg
   # - assets/background.jpg
   # - assets/background.jpg
