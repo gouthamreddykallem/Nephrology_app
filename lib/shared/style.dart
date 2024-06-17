@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nephrology_app/shared/color.dart';
 
 TextStyle titleStyle = const TextStyle(
   color: Colors.white,
@@ -22,6 +23,13 @@ TextStyle headingStyle = const TextStyle(
   fontWeight: FontWeight.bold, // Regular weight for readability
   color: Colors.black, // Slightly softer than pure black for less strain
   height: 1.5, // Line height for better readability
+);
+
+TextStyle picTitleStyle = const TextStyle(
+  color: primaryColor,
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+  letterSpacing: 1,
 );
 
 TextStyle picStyle = const TextStyle(

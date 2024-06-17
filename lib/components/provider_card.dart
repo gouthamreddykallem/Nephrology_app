@@ -1,33 +1,75 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:nephrology_app/pages/all_providers_page.dart';
 import 'package:nephrology_app/pages/provider_page.dart';
 import 'package:nephrology_app/shared/detail.dart';
 import 'package:nephrology_app/shared/style.dart';
 
 class Providers extends StatelessWidget {
+  final String title;
   final List<List<Detail>> providers;
 
-  const Providers({super.key, required this.providers});
+  const Providers({super.key, required this.providers, required this.title});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 8, right: 8, left: 8, bottom: 4),
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height * .28,
-        width: MediaQuery.of(context).size.width,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: min(providers.length, 5),
-          itemBuilder: (context, index) {
-            var provider = providers[index];
-            return ProviderCard(
-              details: provider,
-            );
-          },
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Flexible(
+              child: Text(
+                title,
+                style: picTitleStyle,
+                maxLines: 2, // Allow the text to span up to 2 lines
+                overflow: TextOverflow.ellipsis, // Handle overflow with an ellipsis
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return AllProvidersPage(
+                        title: title,
+                        details: providers,
+                      );
+                    },
+                  ),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "See All",
+                  style: TextStyle(
+                    fontSize: 18.0, // Adjust the font size as needed
+                    fontWeight: FontWeight.normal,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
-      ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * .28,
+          width: MediaQuery.of(context).size.width,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: min(providers.length, 5),
+            itemBuilder: (context, index) {
+              var provider = providers[index];
+              return ProviderCard(
+                details: provider,
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }
@@ -76,7 +118,6 @@ class ProviderCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-
                 Expanded(
                   child: Image.asset(
                     imgPath!,
@@ -90,8 +131,7 @@ class ProviderCard extends StatelessWidget {
                   child: Flexible(
                     child: Text(
                       name!,
-                      style:
-                          picStyle, // Ensure titleStyle is defined correctly
+                      style: picStyle, // Ensure titleStyle is defined correctly
                       textAlign: TextAlign.center,
                       //overflow: TextOverflow.ellipsis,
                     ),

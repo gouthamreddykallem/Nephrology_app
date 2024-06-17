@@ -72,8 +72,11 @@ class _DetailsPageState extends State<DetailsPage> {
     );
   }
 
-  Widget buildProviders(List<List<Detail>> providers) {
-    return Providers(providers: providers);
+  Widget buildProviders(value) {
+    String title = value[0].value;
+    List<List<Detail>> providers = value[1];
+
+    return Providers(title: title, providers: providers);
   }
 
   List<Widget> buildChildren() {
@@ -82,7 +85,7 @@ class _DetailsPageState extends State<DetailsPage> {
       'heading': (value) => buildHeading(value as String),
       'image': (value) => buildImage(value as String),
       'points': (value) => buildPoints(value as String),
-      'providerList': (value) => buildProviders(value as List<List<Detail>>),
+      'providerList': (value) => buildProviders(value),
     };
 
     List<Widget> children = [];
