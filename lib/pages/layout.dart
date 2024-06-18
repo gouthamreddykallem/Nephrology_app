@@ -79,12 +79,13 @@ class _LayOutState
       bottomNavigationBar: BottomNavigationBar(
 
         selectedFontSize: 20,
-        selectedIconTheme: const IconThemeData(color: primaryColorLight, size: 40),
+        selectedIconTheme: const IconThemeData(color: primaryColorLight, size: 30),
         selectedItemColor: Colors.blue,
         selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
+        showUnselectedLabels: true,
 
         unselectedFontSize: 20,
-        unselectedIconTheme: const IconThemeData(color: secondaryColor, size: 40),
+        unselectedIconTheme: const IconThemeData(color: primaryColorLight, size: 27),
         unselectedItemColor: Colors.blue,
         unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
 
