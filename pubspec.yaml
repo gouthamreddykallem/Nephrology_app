@@ -71,6 +71,7 @@ flutter:
   - assets/logo.jpg
   - assets/
   - assets/providers/
+  - assets/covers/
   # /logo.jpg
   # - assets/background.jpg
   # - assets/background.jpg

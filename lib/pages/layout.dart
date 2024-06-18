@@ -8,17 +8,14 @@ import 'education_page.dart';
 import 'home_page.dart';
 import 'login_page.dart';
 
-
 class LayOut extends StatefulWidget {
   const LayOut({super.key});
 
   @override
-  State<LayOut> createState() =>
-      _LayOutState();
+  State<LayOut> createState() => _LayOutState();
 }
 
-class _LayOutState
-    extends State<LayOut> {
+class _LayOutState extends State<LayOut> {
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = <Widget>[
@@ -41,7 +38,10 @@ class _LayOutState
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0.0,
-        title: Image.asset('assets/logo.jpg', fit: BoxFit.fill, alignment: Alignment.center),
+        title: Flexible(
+          child: Image.asset('assets/logo.jpg',
+              fit: BoxFit.cover, alignment: Alignment.center),
+        ),
         // const Text("The Nephrology Group, Inc",
         //     style: TextStyle(color: Colors.white), textDirection: TextDirection.ltr),
         leading: Builder(
@@ -61,7 +61,7 @@ class _LayOutState
           Builder(
             builder: (context) {
               return IconButton(
-                icon: const Icon(Icons.help_outline_rounded),
+                icon: const Icon(Icons.account_circle_outlined),
                 color: Colors.black,
                 onPressed: () {
                   Scaffold.of(context).openEndDrawer();
@@ -77,17 +77,16 @@ class _LayOutState
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-
         selectedFontSize: 20,
-        selectedIconTheme: const IconThemeData(color: primaryColorLight, size: 40),
+        selectedIconTheme:
+            const IconThemeData(color: primaryColorLight, size: 40),
         selectedItemColor: Colors.blue,
         selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-
         unselectedFontSize: 20,
-        unselectedIconTheme: const IconThemeData(color: secondaryColor, size: 40),
+        unselectedIconTheme:
+            const IconThemeData(color: secondaryColor, size: 40),
         unselectedItemColor: Colors.blue,
         unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
-
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             label: 'Home',
