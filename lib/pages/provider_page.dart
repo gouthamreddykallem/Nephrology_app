@@ -48,20 +48,21 @@ class _ProviderPageState extends State<ProviderPage> {
                           height: size.height * 0.6,
                         ),
                       ),
-                      //const SizedBox(height: 16.0), // Spacing below the image
+                      const SizedBox(height: 16.0), // Spacing below the image
                       Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: primaryColorLight,
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(24.0),
-                            topRight: Radius.circular(24.0),
-                          ),
+                          // borderRadius: const BorderRadius.only(
+                          //   topLeft: Radius.circular(24.0),
+                          //   topRight: Radius.circular(24.0),
+                          // ),
+                          borderRadius: BorderRadius.all(Radius.circular(24.0)),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
+                              color: Colors.grey,
                               spreadRadius: 2,
                               blurRadius: 7,
-                              offset: const Offset(
+                              offset: Offset(
                                   0, 3), // changes position of shadow
                             ),
                           ],
