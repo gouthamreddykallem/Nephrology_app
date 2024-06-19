@@ -4,7 +4,6 @@ import 'package:nephrology_app/components/category_card.dart';
 import 'package:nephrology_app/pages/education_page.dart';
 import 'package:nephrology_app/shared/color.dart';
 import 'package:nephrology_app/shared/data.dart';
-import 'package:nephrology_app/shared/detail.dart';
 import 'package:nephrology_app/shared/style.dart';
 import 'package:nephrology_app/utilities/utils.dart';
 
