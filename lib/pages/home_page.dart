@@ -43,23 +43,25 @@ class _HomeBodyState extends State<HomeBody> {
               children: [
                 Expanded(
                   child: buildTile(
-                    context,
-                    Colors.green,
-                    Colors.lightGreen,
-                    "SERVICES",
-                    "assets/kidneyIcon.svg",
-                        () => _toggleExpand(ExpandState.expanded1),
-                  ),
+                      context,
+                      Colors.green,
+                      Colors.green.shade300,
+                      "SERVICES",
+                      "assets/kidneyIcon.svg",
+                      () => _toggleExpand(ExpandState.expanded1),
+                      _expandState == ExpandState.expanded1,
+                      true),
                 ),
                 Expanded(
                   child: buildTile(
-                    context,
-                    Colors.green,
-                    Colors.lightGreen,
-                    "ABOUT US",
-                    "assets/aboutus.svg",
-                        () => _toggleExpand(ExpandState.expanded2),
-                  ),
+                      context,
+                      Colors.green,
+                      Colors.green.shade300,
+                      "ABOUT US",
+                      "assets/aboutus.svg",
+                      () => _toggleExpand(ExpandState.expanded2),
+                      _expandState == ExpandState.expanded2,
+                      true),
                 ),
               ],
             ),
@@ -69,42 +71,48 @@ class _HomeBodyState extends State<HomeBody> {
             child: _expandState == ExpandState.collapsed
                 ? const SizedBox.shrink()
                 : AnimatedSize(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-              child: _expandState == ExpandState.expanded1
-                  ? Container(
-                key: const ValueKey(ExpandState.expanded1),
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: ListView(
-                  shrinkWrap: true, // Make ListView take only the necessary space
-                  physics: const NeverScrollableScrollPhysics(), // Disable scrolling inside the ListView
-                  children: [
-                    Category(
-                      title: "Kidney Services",
-                      categories: kidneyServices,
-                    ),
-                    Category(
-                      title: "Vascular Access",
-                      categories: vascularAccess,
-                    ),
-                  ],
-                ),
-              )
-                  : Container(
-                key: const ValueKey(ExpandState.expanded2),
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: ListView(
-                  shrinkWrap: true, // Make ListView take only the necessary space
-                  physics: const NeverScrollableScrollPhysics(), // Disable scrolling inside the ListView
-                  children: [
-                    Category(
-                      title: "About Us",
-                      categories: aboutUs,
-                    ),
-                  ],
-                ),
-              ),
-            ),
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                    child: _expandState == ExpandState.expanded1
+                        ? Container(
+                            key: const ValueKey(ExpandState.expanded1),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: ListView(
+                              shrinkWrap:
+                                  true, // Make ListView take only the necessary space
+                              physics:
+                                  const NeverScrollableScrollPhysics(), // Disable scrolling inside the ListView
+                              children: [
+                                Category(
+                                  title: "Kidney Services",
+                                  categories: kidneyServices,
+                                ),
+                                Category(
+                                  title: "Vascular Access",
+                                  categories: vascularAccess,
+                                ),
+                              ],
+                            ),
+                          )
+                        : Container(
+                            key: const ValueKey(ExpandState.expanded2),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: ListView(
+                              shrinkWrap:
+                                  true, // Make ListView take only the necessary space
+                              physics:
+                                  const NeverScrollableScrollPhysics(), // Disable scrolling inside the ListView
+                              children: [
+                                Category(
+                                  title: "About Us",
+                                  categories: aboutUs,
+                                ),
+                              ],
+                            ),
+                          ),
+                  ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -113,31 +121,38 @@ class _HomeBodyState extends State<HomeBody> {
               children: [
                 Expanded(
                   child: buildTile(
-                    context,
-                    Colors.green,
-                    Colors.lightGreen,
-                    "PATIENT PORTAL",
-                    "assets/medical.svg",
-                        () => {Utilities.urlLauncher(
-                        Uri.parse("https://www.myhealthrecord.com/Portal/SSO"))},
-                  ),
+                      context,
+                      Colors.green,
+                      Colors.green.shade300,
+                      "PATIENT PORTAL",
+                      "assets/medical.svg",
+                      () => {
+                            Utilities.urlLauncher(Uri.parse(
+                                "https://www.myhealthrecord.com/Portal/SSO"))
+                          },
+                      false,
+                      false),
                 ),
                 Expanded(
                   child: buildTile(
-                    context,
-                    Colors.green,
-                    Colors.lightGreen,
-                    "EDUCATION",
-                    "assets/school.svg",
-                        () => {Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return const EducationBody();
-                            },
-                          ),
-                        )}),
-                  ),
+                      context,
+                      Colors.green,
+                      Colors.green.shade300,
+                      "EDUCATION",
+                      "assets/school.svg",
+                      () => {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const EducationBody();
+                                },
+                              ),
+                            )
+                          },
+                      false,
+                      false),
+                ),
               ],
             ),
           ),
@@ -256,13 +271,15 @@ Widget buildHeader(BuildContext context) {
 }
 
 Widget buildTile(
-    BuildContext context,
-    Color color,
-    Color lightColor,
-    String title,
-    String iconPath,
-    Function onTap,
-    ) {
+  BuildContext context,
+  Color color,
+  Color lightColor,
+  String title,
+  String iconPath,
+  Function onTap,
+  bool isExpanded,
+  bool canExpand,
+) {
   Widget iconWidget = SvgPicture.asset(
     iconPath,
     width: 48,
@@ -272,7 +289,9 @@ Widget buildTile(
   return Column(
     children: <Widget>[
       SizedBox(
-        height: MediaQuery.of(context).size.height * .20,
+        height: isExpanded
+            ? MediaQuery.of(context).size.height * .22
+            : MediaQuery.of(context).size.height * .20,
         child: InkWell(
           onTap: onTap as void Function()?,
           child: AspectRatio(
@@ -304,13 +323,30 @@ Widget buildTile(
                           child: iconWidget,
                         ),
                       ),
+                      if (canExpand)
+                        Positioned(
+                          bottom: 5,
+                          right: 5,
+                          child: CircleAvatar(
+                            backgroundColor: lightColor,
+                            radius: 20,
+                            child: Icon(
+                              size: 40.0,
+                              isExpanded
+                                  ? Icons.expand_less
+                                  : Icons.expand_more,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      const SizedBox(height: 10),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
                           Flexible(
                             child: Padding(
                               padding:
-                              const EdgeInsets.symmetric(horizontal: 8.0),
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
                               child: Text(title, style: titleStyle),
                             ),
                           ),
