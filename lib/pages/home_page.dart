@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:nephrology_app/components/category_card.dart';
 import 'package:nephrology_app/shared/color.dart';
 import 'package:nephrology_app/shared/data.dart';
@@ -18,29 +19,62 @@ class _HomeBodyState extends State<HomeBody> {
       child: ListView(
         children: [
           searchBar(context),
-          Padding(
+          Container(
             padding: const EdgeInsets.all(16.0),
+            alignment: Alignment.center,
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Expanded(
-                      child: Category(
-                        title: "Services",
-                        categories: kidneyServices,
-                        iconPath: "assets/kidneyIcon.svg",
-                      ),
+                const Text(
+                  "WELCOME\nTO TNG",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: primaryColor,
+                    fontSize: 40.0,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: MediaQuery.of(context).size.height * .12,
+                    child: Image.asset(
+                      "assets/logo_2.jpg",
+                      fit: BoxFit.fill,
                     ),
-                    const SizedBox(width: 16.0),
-                    Expanded(
-                      child: Category(
-                        title: "About Us",
-                        categories: aboutUs,
-                        iconPath: "assets/aboutus.svg",
-                      ),
-                    ),
-                  ],
+                  ),
+                ),
+                const Text(
+                  "description",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Expanded(
+                  child: Category(
+                    title: "Services",
+                    categories: kidneyServices,
+                    iconPath: "assets/kidneyIcon.svg",
+                  ),
+                ),
+                const SizedBox(width: 16.0),
+                Expanded(
+                  child: Category(
+                    title: "About Us",
+                    categories: aboutUs,
+                    iconPath: "assets/aboutus.svg",
+                  ),
                 ),
               ],
             ),
