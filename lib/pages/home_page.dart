@@ -306,7 +306,7 @@ Widget buildTile(
                     BoxShadow(
                       offset: const Offset(4, 4),
                       blurRadius: 10,
-                      color: lightColor.withOpacity(0.8),
+                      color: color.withOpacity(0.9),
                     ),
                   ],
                 ),
