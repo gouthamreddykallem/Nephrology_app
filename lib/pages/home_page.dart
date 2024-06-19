@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nephrology_app/components/category_card.dart';
+import 'package:nephrology_app/pages/education_page.dart';
 import 'package:nephrology_app/shared/color.dart';
 import 'package:nephrology_app/shared/data.dart';
+import 'package:nephrology_app/shared/detail.dart';
+import 'package:nephrology_app/shared/style.dart';
 import 'package:nephrology_app/utilities/utils.dart';
+
+enum ExpandState { collapsed, expanded1, expanded2 }
 
 class HomeBody extends StatefulWidget {
   const HomeBody({super.key});
@@ -13,6 +18,18 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State<HomeBody> {
+  ExpandState _expandState = ExpandState.collapsed;
+
+  void _toggleExpand(ExpandState state) {
+    setState(() {
+      if (_expandState == state) {
+        _expandState = ExpandState.collapsed;
+      } else {
+        _expandState = state;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -26,20 +43,102 @@ class _HomeBodyState extends State<HomeBody> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Expanded(
-                  child: Category(
-                    title: "Services",
-                    categories: kidneyServices,
-                    iconPath: "assets/kidneyIcon.svg",
+                  child: buildTile(
+                    context,
+                    Colors.green,
+                    Colors.lightGreen,
+                    "SERVICES",
+                    "assets/kidneyIcon.svg",
+                        () => _toggleExpand(ExpandState.expanded1),
                   ),
                 ),
-                const SizedBox(width: 16.0),
                 Expanded(
-                  child: Category(
-                    title: "About Us",
-                    categories: aboutUs,
-                    iconPath: "assets/aboutus.svg",
+                  child: buildTile(
+                    context,
+                    Colors.green,
+                    Colors.lightGreen,
+                    "ABOUT US",
+                    "assets/aboutus.svg",
+                        () => _toggleExpand(ExpandState.expanded2),
                   ),
                 ),
+              ],
+            ),
+          ),
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            child: _expandState == ExpandState.collapsed
+                ? const SizedBox.shrink()
+                : AnimatedSize(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+              child: _expandState == ExpandState.expanded1
+                  ? Container(
+                key: const ValueKey(ExpandState.expanded1),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: ListView(
+                  shrinkWrap: true, // Make ListView take only the necessary space
+                  physics: const NeverScrollableScrollPhysics(), // Disable scrolling inside the ListView
+                  children: [
+                    Category(
+                      title: "Kidney Services",
+                      categories: kidneyServices,
+                    ),
+                    Category(
+                      title: "Vascular Access",
+                      categories: vascularAccess,
+                    ),
+                  ],
+                ),
+              )
+                  : Container(
+                key: const ValueKey(ExpandState.expanded2),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: ListView(
+                  shrinkWrap: true, // Make ListView take only the necessary space
+                  physics: const NeverScrollableScrollPhysics(), // Disable scrolling inside the ListView
+                  children: [
+                    Category(
+                      title: "About Us",
+                      categories: aboutUs,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Expanded(
+                  child: buildTile(
+                    context,
+                    Colors.green,
+                    Colors.lightGreen,
+                    "PATIENT PORTAL",
+                    "assets/medical.svg",
+                        () => {Utilities.urlLauncher(
+                        Uri.parse("https://www.myhealthrecord.com/Portal/SSO"))},
+                  ),
+                ),
+                Expanded(
+                  child: buildTile(
+                    context,
+                    Colors.green,
+                    Colors.lightGreen,
+                    "EDUCATION",
+                    "assets/school.svg",
+                        () => {Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const EducationBody();
+                            },
+                          ),
+                        )}),
+                  ),
               ],
             ),
           ),
@@ -54,8 +153,8 @@ Widget searchBar(BuildContext context) {
     decoration: const BoxDecoration(
       gradient: LinearGradient(
         colors: [primaryColorLight, primaryColor],
-        begin: FractionalOffset(0.0, 0.0),  // Top center
-        end: FractionalOffset(0.0, 1.0),    // Bottom center
+        begin: FractionalOffset(0.0, 0.0),
+        end: FractionalOffset(0.0, 1.0),
         stops: [0.0, 1.0],
         tileMode: TileMode.clamp,
       ),
@@ -90,31 +189,6 @@ Widget searchBar(BuildContext context) {
   );
 }
 
-Widget buildButton(BuildContext context, String text) {
-  return ElevatedButton(
-    style: ElevatedButton.styleFrom(
-      foregroundColor: Colors.white,
-      backgroundColor: primaryColor,
-      shadowColor: Colors.blueAccent,
-      elevation: 8,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-    ),
-    onPressed: () {
-      if (text == "PATIENT PORTAL") {
-        Utilities.urlLauncher(
-            Uri.parse("https://www.myhealthrecord.com/Portal/SSO"));
-      } else {
-        Utilities.urlLauncher(Uri.parse(
-            "https://www.thenephrologygroupinc.com/Portals/0/Online%20Forms/Forms%202-12-2018/NewPatientRF.pdf?ver=2018-02-16-140849-517"));
-      }
-    },
-    child: Text(text, style: const TextStyle(fontWeight: FontWeight.bold)),
-  );
-}
-
 Widget buildHeader(BuildContext context) {
   return Container(
     padding: const EdgeInsets.all(16.0),
@@ -126,10 +200,9 @@ Widget buildHeader(BuildContext context) {
           width: double.infinity,
           decoration: BoxDecoration(
             gradient: const LinearGradient(
-              //colors: [primaryColorLight, secondaryColor],
               colors: [primaryColorLight, primaryColorLight],
-              begin: FractionalOffset(0.0, 0.0),  // Top center
-              end: FractionalOffset(0.0, 1.0),    // Bottom center
+              begin: FractionalOffset(0.0, 0.0),
+              end: FractionalOffset(0.0, 1.0),
               stops: [0.0, 1.0],
               tileMode: TileMode.clamp,
             ),
@@ -149,10 +222,10 @@ Widget buildHeader(BuildContext context) {
                 "WELCOME\nTO TNG",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 40.0,
-                  fontFamily: 'TimesNewRoman',
-                  fontWeight: FontWeight.w700, // Use the corresponding weight
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w700,
                 ),
               ),
               Padding(
@@ -170,7 +243,7 @@ Widget buildHeader(BuildContext context) {
                 "The Nephrology Group, Inc. (TNG) is Central California’s largest Nephrology Practice. Since founded in 1975, our physicians are committed to providing quality care to patients with acute kidney",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.black54,
+                  color: Colors.white,
                   fontSize: 18.0,
                   fontWeight: FontWeight.normal,
                 ),
@@ -180,5 +253,79 @@ Widget buildHeader(BuildContext context) {
         ),
       ],
     ),
+  );
+}
+
+Widget buildTile(
+    BuildContext context,
+    Color color,
+    Color lightColor,
+    String title,
+    String iconPath,
+    Function onTap,
+    ) {
+  Widget iconWidget = SvgPicture.asset(
+    iconPath,
+    width: 48,
+    height: 48,
+    color: Colors.white.withOpacity(0.9),
+  );
+  return Column(
+    children: <Widget>[
+      SizedBox(
+        height: MediaQuery.of(context).size.height * .20,
+        child: InkWell(
+          onTap: onTap as void Function()?,
+          child: AspectRatio(
+            aspectRatio: 2 / 2,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: color,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      offset: const Offset(4, 4),
+                      blurRadius: 10,
+                      color: lightColor.withOpacity(0.8),
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        top: -20,
+                        right: -20,
+                        child: CircleAvatar(
+                          backgroundColor: lightColor,
+                          radius: 60,
+                          child: iconWidget,
+                        ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Flexible(
+                            child: Padding(
+                              padding:
+                              const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Text(title, style: titleStyle),
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    ],
   );
 }
