@@ -9,7 +9,7 @@ class HomeBody extends StatefulWidget {
   const HomeBody({super.key});
 
   @override
-  _HomeBodyState createState() => _HomeBodyState();
+  State<HomeBody> createState() => _HomeBodyState();
 }
 
 class _HomeBodyState extends State<HomeBody> {
@@ -19,45 +19,9 @@ class _HomeBodyState extends State<HomeBody> {
       child: ListView(
         children: [
           searchBar(context),
-          Container(
-            padding: const EdgeInsets.all(16.0),
-            alignment: Alignment.center,
-            child: Column(
-              children: [
-                const Text(
-                  "WELCOME\nTO TNG",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: primaryColor,
-                    fontSize: 40.0,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: MediaQuery.of(context).size.height * .12,
-                    child: Image.asset(
-                      "assets/logo_2.jpg",
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
-                const Text(
-                  "description",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          buildHeader(context),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -90,8 +54,8 @@ Widget searchBar(BuildContext context) {
     decoration: const BoxDecoration(
       gradient: LinearGradient(
         colors: [primaryColorLight, primaryColor],
-        begin: FractionalOffset(0.0, 0.0),
-        end: FractionalOffset(1.0, 0.0),
+        begin: FractionalOffset(0.0, 0.0),  // Top center
+        end: FractionalOffset(0.0, 1.0),    // Bottom center
         stops: [0.0, 1.0],
         tileMode: TileMode.clamp,
       ),
@@ -148,5 +112,73 @@ Widget buildButton(BuildContext context, String text) {
       }
     },
     child: Text(text, style: const TextStyle(fontWeight: FontWeight.bold)),
+  );
+}
+
+Widget buildHeader(BuildContext context) {
+  return Container(
+    padding: const EdgeInsets.all(16.0),
+    alignment: Alignment.center,
+    child: Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(16.0),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              //colors: [primaryColorLight, secondaryColor],
+              colors: [primaryColorLight, primaryColorLight],
+              begin: FractionalOffset(0.0, 0.0),  // Top center
+              end: FractionalOffset(0.0, 1.0),    // Bottom center
+              stops: [0.0, 1.0],
+              tileMode: TileMode.clamp,
+            ),
+            color: primaryColorLight,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                offset: const Offset(4, 4),
+                blurRadius: 10,
+                color: primaryColorLight.withOpacity(0.8),
+              ),
+            ],
+          ),
+          child: Column(
+            children: [
+              const Text(
+                "WELCOME\nTO TNG",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 40.0,
+                  fontFamily: 'TimesNewRoman',
+                  fontWeight: FontWeight.w700, // Use the corresponding weight
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: MediaQuery.of(context).size.height * .12,
+                  child: Image.asset(
+                    "assets/logo_2.jpg",
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+              const Text(
+                "The Nephrology Group, Inc. (TNG) is Central California’s largest Nephrology Practice. Since founded in 1975, our physicians are committed to providing quality care to patients with acute kidney",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
   );
 }

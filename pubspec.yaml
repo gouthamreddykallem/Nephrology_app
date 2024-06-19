@@ -108,6 +108,17 @@ flutter:
           weight: 400 
         - asset: fonts/Poppins-SemiBold.ttf
           weight: 600
+    - family: TimesNewRoman
+      fonts:
+        - asset: fonts/TimesNewRoman.ttf
+          weight: 400
+        - asset: fonts/TimesNewRoman-Bold.ttf
+          weight: 700
+        - asset: fonts/TimesNewRoman-Italic.ttf
+          style: italic
+        - asset: fonts/TimesNewRoman-BoldItalic.ttf
+          weight: 700
+          style: italic
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

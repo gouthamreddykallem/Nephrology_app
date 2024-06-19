@@ -23,7 +23,12 @@ class _LayOutState extends State<LayOut> {
         title: const Center(
           child: Text(
             "THE NEPHROLOGY GROUP, INC",
-            style: TextStyle(fontSize: 20.0, color: Colors.white),
+            style: TextStyle(
+              fontSize: 19.0,
+              color: Colors.white,
+              fontFamily: 'TimesNewRoman',
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ),
         flexibleSpace: Container(
