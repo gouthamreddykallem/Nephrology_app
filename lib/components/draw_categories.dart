@@ -20,26 +20,43 @@ List<String> lightColors = [
 
 class DrawCategories extends StatelessWidget {
   final List<List<Detail>> categories;
+  final bool drawLinesOnRight;
 
-  const DrawCategories({super.key, required this.categories});
+  const DrawCategories({super.key, required this.categories, required this.drawLinesOnRight});
 
   @override
   Widget build(BuildContext context) {
+    double cardHeight =
+        90; // Adjust this based on the actual height of your cards
+
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.8,
-      child: ListView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        scrollDirection: Axis.vertical,
-        itemCount: min(categories.length, 5),
-        itemBuilder: (context, index) {
-          var category = categories[index];
-          return DrawCard(
-            details: category,
-            color: Color(int.parse(colors[index % 3])),
-            lightColor: Color(int.parse(lightColors[index % 3])),
-          );
-        },
+      child: Stack(
+        children: [
+          // Add the CustomPaint widget as the first child in the stack
+          CustomPaint(
+            size: Size(MediaQuery.of(context).size.width * 0.8, cardHeight * min(categories.length, 5)),
+            painter: CardLinePainter(
+              itemCount: min(categories.length, 5),
+              cardHeight: cardHeight,
+              drawLinesOnRight: drawLinesOnRight,
+            ),
+          ),
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            itemCount: min(categories.length, 5),
+            itemBuilder: (context, index) {
+              var category = categories[index];
+              return DrawCard(
+                details: category,
+                color: Color(int.parse(colors[index % 3])),
+                lightColor: Color(int.parse(lightColors[index % 3])),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
@@ -87,8 +104,8 @@ class DrawCard extends StatelessWidget {
       );
     }
 
-    return AspectRatio(
-      aspectRatio: 4 / 1,
+    return SizedBox(
+      height: 90, // Adjust this based on your card height
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(
@@ -145,5 +162,47 @@ class DrawCard extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class CardLinePainter extends CustomPainter {
+  final int itemCount;
+  final double cardHeight;
+  final bool drawLinesOnRight;
+
+  CardLinePainter({
+    required this.itemCount,
+    required this.cardHeight,
+    required this.drawLinesOnRight,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colors.grey
+      ..strokeWidth = 4;
+
+    double mainLineX = drawLinesOnRight ? size.width : 0;
+
+    // Draw the main vertical line
+    canvas.drawLine(
+      Offset(mainLineX, 0),
+      Offset(mainLineX, size.height - cardHeight / 2),
+      paint,
+    );
+
+    for (int i = 0; i < itemCount; i++) {
+      double cardY = (i * cardHeight) + cardHeight / 2;
+      if (drawLinesOnRight) {
+        canvas.drawLine(Offset(mainLineX, cardY), Offset(mainLineX - 10, cardY), paint);
+      } else {
+        canvas.drawLine(Offset(mainLineX, cardY), Offset(mainLineX + 10, cardY), paint);
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return false;
   }
 }

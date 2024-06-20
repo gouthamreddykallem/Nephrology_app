@@ -85,21 +85,21 @@ class _HomeBodyState extends State<HomeBody> {
                     curve: Curves.easeInOut,
                     child: _expandState == ExpandState.expanded1
                         ? Container(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: Container(
                               key: const ValueKey(ExpandState.expanded1),
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10.0),
-                              child: DrawCategories(categories: kidneyServices,),
+                              child: DrawCategories(categories: kidneyServices,drawLinesOnRight: false,),
                             ),
                           )
                         : Container(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: Container(
                               key: const ValueKey(ExpandState.expanded2),
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10.0),
-                              child: DrawCategories(categories: aboutUs,),
+                              child: DrawCategories(categories: aboutUs, drawLinesOnRight: true,),
                             ),
                           )),
           ),
