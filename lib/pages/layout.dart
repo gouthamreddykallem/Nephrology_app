@@ -24,10 +24,10 @@ class _LayOutState extends State<LayOut> {
           child: Text(
             "THE NEPHROLOGY GROUP, INC",
             style: TextStyle(
-              fontSize: 19.0,
-              color: Colors.white,
-              fontFamily: 'TimesNewRoman',
-              fontWeight: FontWeight.w400,
+              fontSize: 20.0,
+              color: Colors.black,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w700,
             ),
           ),
         ),
@@ -35,8 +35,7 @@ class _LayOutState extends State<LayOut> {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: [
-                  primaryColor,
-                  primaryColorLight,
+                  lightCyan, lightCyan
                 ],
                 begin: FractionalOffset(0.0, 0.0),
                 end: FractionalOffset(1.0, 0.0),
