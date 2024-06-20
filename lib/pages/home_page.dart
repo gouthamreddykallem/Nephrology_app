@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nephrology_app/components/category_card.dart';
+import 'package:nephrology_app/components/draw_categories.dart';
 import 'package:nephrology_app/pages/education_page.dart';
 import 'package:nephrology_app/shared/color.dart';
 import 'package:nephrology_app/shared/data.dart';
@@ -86,69 +87,19 @@ class _HomeBodyState extends State<HomeBody> {
                         ? Container(
                             padding: const EdgeInsets.all(16.0),
                             child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.blue.shade100,
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(26)),
-                                boxShadow: [
-                                  BoxShadow(
-                                    offset: const Offset(4, 4),
-                                    blurRadius: 10,
-                                    color: primaryColorLight.withOpacity(0.8),
-                                  ),
-                                ],
-                              ),
                               key: const ValueKey(ExpandState.expanded1),
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10.0),
-                              child: ListView(
-                                shrinkWrap:
-                                    true, // Make ListView take only the necessary space
-                                physics:
-                                    const NeverScrollableScrollPhysics(), // Disable scrolling inside the ListView
-                                children: [
-                                  Category(
-                                    title: "Kidney Services",
-                                    categories: kidneyServices,
-                                  ),
-                                  Category(
-                                    title: "Vascular Access",
-                                    categories: vascularAccess,
-                                  ),
-                                ],
-                              ),
+                              child: DrawCategories(categories: kidneyServices,),
                             ),
                           )
                         : Container(
                             padding: const EdgeInsets.all(16.0),
                             child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.blue.shade100,
-                                borderRadius:
-                                const BorderRadius.all(Radius.circular(26)),
-                                boxShadow: [
-                                  BoxShadow(
-                                    offset: const Offset(4, 4),
-                                    blurRadius: 10,
-                                    color: primaryColorLight.withOpacity(0.8),
-                                  ),
-                                ],
-                              ),
                               key: const ValueKey(ExpandState.expanded2),
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10.0),
-                              child: ListView(
-                                shrinkWrap:
-                                    true, // Make ListView take only the necessary space
-                                physics:
-                                    const NeverScrollableScrollPhysics(), // Disable scrolling inside the ListView
-                                children: [
-                                  Category(
-                                    title: "About Us",
-                                    categories: aboutUs,
-                                  ),
-                                ],
-                              ),
+                              child: DrawCategories(categories: aboutUs,),
                             ),
                           )),
           ),
@@ -415,3 +366,4 @@ Widget buildTile(
     ],
   );
 }
+
