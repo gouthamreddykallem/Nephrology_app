@@ -34,8 +34,17 @@ class _HomeBodyState extends State<HomeBody> {
     return SafeArea(
       child: ListView(
         children: [
-          searchBar(context),
-          buildHeader(context),
+          Stack(
+            children: [
+              buildHeader(context),
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: searchBar(context),
+              ),
+            ],
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -44,8 +53,8 @@ class _HomeBodyState extends State<HomeBody> {
                 Expanded(
                   child: buildTile(
                       context,
-                      Colors.green,
-                      Colors.green.shade300,
+                      Colors.blue,
+                      Colors.blue.shade300,
                       "SERVICES",
                       "assets/kidneyIcon.svg",
                       () => _toggleExpand(ExpandState.expanded1),
@@ -55,8 +64,8 @@ class _HomeBodyState extends State<HomeBody> {
                 Expanded(
                   child: buildTile(
                       context,
-                      Colors.green,
-                      Colors.green.shade300,
+                      Colors.blue,
+                      Colors.blue.shade300,
                       "ABOUT US",
                       "assets/aboutus.svg",
                       () => _toggleExpand(ExpandState.expanded2),
@@ -75,44 +84,73 @@ class _HomeBodyState extends State<HomeBody> {
                     curve: Curves.easeInOut,
                     child: _expandState == ExpandState.expanded1
                         ? Container(
-                            key: const ValueKey(ExpandState.expanded1),
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: ListView(
-                              shrinkWrap:
-                                  true, // Make ListView take only the necessary space
-                              physics:
-                                  const NeverScrollableScrollPhysics(), // Disable scrolling inside the ListView
-                              children: [
-                                Category(
-                                  title: "Kidney Services",
-                                  categories: kidneyServices,
-                                ),
-                                Category(
-                                  title: "Vascular Access",
-                                  categories: vascularAccess,
-                                ),
-                              ],
+                            padding: const EdgeInsets.all(16.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.blue.shade100,
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(26)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    offset: const Offset(4, 4),
+                                    blurRadius: 10,
+                                    color: primaryColorLight.withOpacity(0.8),
+                                  ),
+                                ],
+                              ),
+                              key: const ValueKey(ExpandState.expanded1),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                              child: ListView(
+                                shrinkWrap:
+                                    true, // Make ListView take only the necessary space
+                                physics:
+                                    const NeverScrollableScrollPhysics(), // Disable scrolling inside the ListView
+                                children: [
+                                  Category(
+                                    title: "Kidney Services",
+                                    categories: kidneyServices,
+                                  ),
+                                  Category(
+                                    title: "Vascular Access",
+                                    categories: vascularAccess,
+                                  ),
+                                ],
+                              ),
                             ),
                           )
                         : Container(
-                            key: const ValueKey(ExpandState.expanded2),
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: ListView(
-                              shrinkWrap:
-                                  true, // Make ListView take only the necessary space
-                              physics:
-                                  const NeverScrollableScrollPhysics(), // Disable scrolling inside the ListView
-                              children: [
-                                Category(
-                                  title: "About Us",
-                                  categories: aboutUs,
-                                ),
-                              ],
+                            padding: const EdgeInsets.all(16.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.blue.shade100,
+                                borderRadius:
+                                const BorderRadius.all(Radius.circular(26)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    offset: const Offset(4, 4),
+                                    blurRadius: 10,
+                                    color: primaryColorLight.withOpacity(0.8),
+                                  ),
+                                ],
+                              ),
+                              key: const ValueKey(ExpandState.expanded2),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                              child: ListView(
+                                shrinkWrap:
+                                    true, // Make ListView take only the necessary space
+                                physics:
+                                    const NeverScrollableScrollPhysics(), // Disable scrolling inside the ListView
+                                children: [
+                                  Category(
+                                    title: "About Us",
+                                    categories: aboutUs,
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                  ),
+                          )),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -164,18 +202,25 @@ class _HomeBodyState extends State<HomeBody> {
 
 Widget searchBar(BuildContext context) {
   return Container(
-    decoration: const BoxDecoration(
-      gradient: LinearGradient(
-        colors: [primaryColorLight, primaryColor],
+    decoration: BoxDecoration(
+      gradient: const LinearGradient(
+        colors: [lightCyan, lightCyan],
         begin: FractionalOffset(0.0, 0.0),
         end: FractionalOffset(0.0, 1.0),
         stops: [0.0, 1.0],
         tileMode: TileMode.clamp,
       ),
-      borderRadius: BorderRadius.only(
+      borderRadius: const BorderRadius.only(
         bottomRight: Radius.circular(26),
         bottomLeft: Radius.circular(26),
       ),
+      boxShadow: [
+        BoxShadow(
+          offset: const Offset(4, 4),
+          blurRadius: 10,
+          color: primaryColorLight.withOpacity(0.8),
+        ),
+      ],
     ),
     child: Padding(
       padding: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 10),
@@ -204,24 +249,29 @@ Widget searchBar(BuildContext context) {
 }
 
 Widget buildHeader(BuildContext context) {
+  bool isExpanded = true;
   return Container(
-    padding: const EdgeInsets.all(16.0),
+    padding: const EdgeInsets.only(top: 0.0),
     alignment: Alignment.center,
     child: Column(
       children: [
         Container(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.only(
+              left: 16.0, right: 16.0, top: 88.0, bottom: 16.0),
           width: double.infinity,
           decoration: BoxDecoration(
             gradient: const LinearGradient(
-              colors: [primaryColorLight, primaryColorLight],
+              colors: [primaryColor, primaryColorLight],
               begin: FractionalOffset(0.0, 0.0),
               end: FractionalOffset(0.0, 1.0),
               stops: [0.0, 1.0],
               tileMode: TileMode.clamp,
             ),
             color: primaryColorLight,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: const BorderRadius.only(
+              bottomRight: Radius.circular(26),
+              bottomLeft: Radius.circular(26),
+            ),
             boxShadow: [
               BoxShadow(
                 offset: const Offset(4, 4),
@@ -262,6 +312,7 @@ Widget buildHeader(BuildContext context) {
                   fontWeight: FontWeight.normal,
                 ),
               ),
+              // Add a widget here, which when pressed the whole header need to colapse.
             ],
           ),
         ),

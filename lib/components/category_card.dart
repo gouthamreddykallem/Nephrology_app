@@ -7,8 +7,20 @@ import 'package:nephrology_app/pages/see_all_page.dart';
 import 'package:nephrology_app/shared/detail.dart';
 import 'package:nephrology_app/shared/style.dart';
 
-List<String> colors = ["0xFF4CAF50", "0xFF2196F3", "0xFFFF9800"];
-List<String> lightColors = ["0xFF81C784", "0xFF64B5F6", "0xFFFFB74D"];
+// List<String> colors = ["0xFF4CAF50", "0xFF2196F3", "0xFFFF9800"];
+// List<String> lightColors = ["0xFF81C784", "0xFF64B5F6", "0xFFFFB74D"];
+
+List<String> colors = [
+  "0xFF3F51B5", // Indigo
+  "0xFFFFA000", // Amber
+  "0xFFFF7043"  // Coral
+];
+
+List<String> lightColors = [
+  "0xFF9FA8DA", // Lighter Indigo
+  "0xFFFFE082", // Lighter Amber
+  "0xFFFFAB91"  // Lighter Coral
+];
 
 class Category extends StatelessWidget {
   final String title;
