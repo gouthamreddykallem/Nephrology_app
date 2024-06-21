@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:nephrology_app/pages/ai_chat_page.dart';
 import 'package:nephrology_app/utilities/utils.dart';
 
@@ -42,7 +43,11 @@ class FloatingButtons extends StatelessWidget {
             },
             tooltip: 'Chat Bot',
             heroTag: 'chatBot',
-            child: const Icon(Icons.chat_rounded),
+            child: SvgPicture.asset(
+              'assets/chat.svg', // Replace with your SVG file path
+              width: 36.0, // Adjust width as needed
+              height: 36.0, // Adjust height as needed
+            ),
           ),
         ],
       ),
