@@ -72,6 +72,7 @@ class _LayOutState extends State<LayOut> {
       ),
       drawer: const SideDrawer(),
       floatingActionButton: const FloatingButtons(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: const Center(
         child: HomeBody(),
       ),
