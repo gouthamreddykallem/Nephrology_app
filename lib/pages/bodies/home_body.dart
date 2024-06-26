@@ -3,7 +3,6 @@ import 'package:nephrology_app/pages/buttons_section.dart';
 // import 'package:nephrology_app/pages/bodies/home_body_scrap.dart';
 import 'package:nephrology_app/shared/color.dart';
 
-import '../../shared/data.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
@@ -136,7 +135,7 @@ Widget categoryCard(BuildContext context, String title, String subtitle,
       margin: const EdgeInsets.only(left: 10, right: 10, bottom: 20, top: 10),
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
         boxShadow: <BoxShadow>[
           BoxShadow(
             offset: const Offset(4, 4),

@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:nephrology_app/shared/color.dart';
 
 class AnimatedProgressBar extends StatelessWidget {
   const AnimatedProgressBar({

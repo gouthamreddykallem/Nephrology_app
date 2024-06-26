@@ -43,7 +43,7 @@ class _AiChatBodyState extends State<AiChatBody> {
                             offset: const Offset(0, 3),
                           ),
                         ],
-                        color: (_chatHistory[index]["isSender"]?Color.fromARGB(255, 15, 120, 206):Colors.white),
+                        color: (_chatHistory[index]["isSender"]?const Color.fromARGB(255, 15, 120, 206):Colors.white),
                       ),
                       padding: const EdgeInsets.all(16),
                       child: Text(_chatHistory[index]["message"], style: TextStyle(fontSize: 15, color: _chatHistory[index]["isSender"]?Colors.white:Colors.black)),

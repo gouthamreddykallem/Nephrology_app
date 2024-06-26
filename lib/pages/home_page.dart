@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nephrology_app/components/category_card.dart';
 import 'package:nephrology_app/components/draw_categories.dart';
 import 'package:nephrology_app/components/header.dart';
 import 'package:nephrology_app/pages/education_page.dart';
@@ -38,7 +37,13 @@ class _HomeBodyState extends State<HomeBody> {
         children: [
           Stack(
             children: [
-              Header(),
+              const Header(),
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: quickButtons(context),
+              ),
               Positioned(
                 top: 0,
                 left: 0,
@@ -84,36 +89,37 @@ class _HomeBodyState extends State<HomeBody> {
             child: _expandState == ExpandState.collapsed
                 ? const SizedBox.shrink()
                 : AnimatedSize(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-              child: ClipRect(
-                child: _expandState == ExpandState.expanded1
-                    ? Container(
-                  key: const ValueKey(ExpandState.expanded1),
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: DrawCategories(
-                      categories: kidneyServices,
-                      drawLinesOnRight: false,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                    child: ClipRect(
+                      child: _expandState == ExpandState.expanded1
+                          ? Container(
+                              key: const ValueKey(ExpandState.expanded1),
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10.0),
+                                child: DrawCategories(
+                                  categories: kidneyServices,
+                                  drawLinesOnRight: false,
+                                ),
+                              ),
+                            )
+                          : Container(
+                              key: const ValueKey(ExpandState.expanded2),
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10.0),
+                                child: DrawCategories(
+                                  categories: aboutUs,
+                                  drawLinesOnRight: true,
+                                ),
+                              ),
+                            ),
                     ),
                   ),
-                )
-                    : Container(
-                  key: const ValueKey(ExpandState.expanded2),
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: DrawCategories(
-                      categories: aboutUs,
-                      drawLinesOnRight: true,
-                    ),
-                  ),
-                ),
-              ),
-            ),
           ),
-
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -165,13 +171,7 @@ class _HomeBodyState extends State<HomeBody> {
 Widget searchBar(BuildContext context) {
   return Container(
     decoration: BoxDecoration(
-      gradient: const LinearGradient(
-        colors: [lightCyan, lightCyan],
-        begin: FractionalOffset(0.0, 0.0),
-        end: FractionalOffset(0.0, 1.0),
-        stops: [0.0, 1.0],
-        tileMode: TileMode.clamp,
-      ),
+      color: lightCyan,
       borderRadius: const BorderRadius.only(
         bottomRight: Radius.circular(26),
         bottomLeft: Radius.circular(26),
@@ -302,5 +302,64 @@ Widget buildTile(
         ),
       ),
     ],
+  );
+}
+
+Widget quickButtons(BuildContext context) {
+  return Container(
+    padding:
+        const EdgeInsets.only(top: 98.0, bottom: 16.0, left: 16.0, right: 16.0),
+    alignment: Alignment.center,
+    width: double.infinity,
+    decoration: const BoxDecoration(
+      color: lightCyan,
+      borderRadius: BorderRadius.only(
+        bottomRight: Radius.circular(26),
+        bottomLeft: Radius.circular(26),
+      ),
+      boxShadow: [
+        BoxShadow(
+          offset: Offset(4, 4),
+          blurRadius: 10,
+          color: Colors.black38,
+        ),
+      ],
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Expanded(
+          child: buildButton(context, "PATIENT PORTAL", () => {}),
+        ),
+        // const SizedBox(width: 8), // Adjust spacing as needed
+        // Expanded(
+        //   child: buildButton(context, "PAYMENTS", () => {}),
+        // ),
+        const SizedBox(width: 16), // Adjust spacing as needed
+        Expanded(
+          child: buildButton(context, "REFER A PATIENT", () => {}),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget buildButton(BuildContext context, String title, Function onTap) {
+  return ElevatedButton(
+    onPressed: onTap as void Function()?,
+    style: ElevatedButton.styleFrom(
+      foregroundColor: Colors.white,
+      backgroundColor: primaryColor, // Set the text color
+      textStyle: const TextStyle(
+        fontSize: 20, // Set the font size
+        fontWeight: FontWeight.bold, // Set the font weight
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16), // Adjust as needed
+      ),
+    ),
+    child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Text(title, textAlign: TextAlign.center)),
   );
 }
