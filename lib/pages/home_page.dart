@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nephrology_app/components/draw_categories.dart';
 import 'package:nephrology_app/components/header.dart';
 import 'package:nephrology_app/pages/education_page.dart';
+import 'package:nephrology_app/pages/payments_page.dart';
 import 'package:nephrology_app/shared/color.dart';
 import 'package:nephrology_app/shared/data.dart';
 import 'package:nephrology_app/shared/style.dart';
@@ -130,12 +131,16 @@ class _HomeBodyState extends State<HomeBody> {
                       context,
                       Colors.green,
                       Colors.green.shade300,
-                      "PATIENT PORTAL",
-                      "assets/medical.svg",
-                      () => {
-                            Utilities.urlLauncher(Uri.parse(
-                                "https://www.myhealthrecord.com/Portal/SSO"))
+                      "PAYMENTS",
+                      "assets/payment.svg",
+                      () => {Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const PaymentsPage();
                           },
+                        ),
+                      )},
                       false,
                       false),
                 ),
@@ -329,15 +334,24 @@ Widget quickButtons(BuildContext context) {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Expanded(
-          child: buildButton(context, "PATIENT PORTAL", () => {}),
+          child: buildButton(
+              context,
+              "PATIENT PORTAL",
+              () => {
+                    Utilities.urlLauncher(
+                        Uri.parse("https://www.myhealthrecord.com/Portal/SSO"))
+                  }),
         ),
-        // const SizedBox(width: 8), // Adjust spacing as needed
-        // Expanded(
-        //   child: buildButton(context, "PAYMENTS", () => {}),
-        // ),
+
         const SizedBox(width: 16), // Adjust spacing as needed
         Expanded(
-          child: buildButton(context, "REFER A PATIENT", () => {}),
+          child: buildButton(
+              context,
+              "REFER A PATIENT",
+              () => {
+                    Utilities.urlLauncher(Uri.parse(
+                        "https://www.thenephrologygroupinc.com/Portals/0/Online%20Forms/Forms%202-12-2018/NewPatientRF.pdf?ver=2018-02-16-140849-517"))
+                  }),
         ),
       ],
     ),

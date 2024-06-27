@@ -8,13 +8,13 @@ List<Topic> topics = [
       imageName: 'assets/covers/angular.png',
       quizzes: []),
   const Topic(
-      id: '101',
+      id: '102',
       title: 'Kidney Care',
       description: 'Hello',
       imageName: 'assets/covers/angular.png',
       quizzes: []),
   const Topic(
-      id: '101',
+      id: '103',
       title: 'Kidney Care',
       description: 'Hello',
       imageName: 'assets/covers/angular.png',

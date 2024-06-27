@@ -1,126 +1,62 @@
 import 'package:flutter/material.dart';
-// import 'package:nephrology_app/widgets/gradient_text.dart';
-import 'package:gradient_borders/gradient_borders.dart';
+import 'package:flutter_chat_ui/flutter_chat_ui.dart';
+import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:uuid/uuid.dart';
 
-class AiChatBody extends StatefulWidget {
-  const AiChatBody({super.key});
+
+class ChatScreen extends StatefulWidget {
+  const ChatScreen({super.key});
 
   @override
-  State<AiChatBody> createState() => _AiChatBodyState();
+  State<ChatScreen> createState() => _ChatScreenState();
 }
 
-class _AiChatBodyState extends State<AiChatBody> {
-  final TextEditingController _chatController = TextEditingController();
-  final ScrollController _scrollController = ScrollController();
-  final List<Map<String, dynamic>> _chatHistory = [];
+class _ChatScreenState extends State<ChatScreen> {
+  final List<types.Message> _messages = [];
+  final _user = types.User(id: const Uuid().v4());
+
+  void _handleSendPressed(types.PartialText message) async {
+    final textMessage = types.TextMessage(
+      author: _user,
+      createdAt: DateTime.now().millisecondsSinceEpoch,
+      id: const Uuid().v4(),
+      text: message.text,
+    );
+
+    setState(() {
+      _messages.insert(0, textMessage);
+    });
+
+    final response = await http.post(
+      Uri.parse('http://localhost:5005/webhooks/rest/webhook'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'sender': 'user', 'message': message.text}),
+    );
+
+    final List<dynamic> responseData = jsonDecode(response.body);
+    for (var element in responseData) {
+      final botMessage = types.TextMessage(
+        author: const types.User(id: 'bot'),
+        createdAt: DateTime.now().millisecondsSinceEpoch,
+        id: const Uuid().v4(),
+        text: element['text'],
+      );
+
+      setState(() {
+        _messages.insert(0, botMessage);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-        children: [
-          SizedBox(
-            //get max height
-            height: MediaQuery.of(context).size.height - 160,
-            child: ListView.builder(
-              itemCount: _chatHistory.length,
-              shrinkWrap: false,
-              controller: _scrollController,
-              padding: const EdgeInsets.only(top: 10,bottom: 10),
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index){
-                return Container(
-                  padding: const EdgeInsets.only(left: 14,right: 14,top: 10,bottom: 10),
-                  child: Align(
-                    alignment: (_chatHistory[index]["isSender"]?Alignment.topRight:Alignment.topLeft),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color.fromARGB(255, 30, 166, 207).withOpacity(0.5),
-                            spreadRadius: 2,
-                            blurRadius: 5,
-                            offset: const Offset(0, 3),
-                          ),
-                        ],
-                        color: (_chatHistory[index]["isSender"]?const Color.fromARGB(255, 15, 120, 206):Colors.white),
-                      ),
-                      padding: const EdgeInsets.all(16),
-                      child: Text(_chatHistory[index]["message"], style: TextStyle(fontSize: 15, color: _chatHistory[index]["isSender"]?Colors.white:Colors.black)),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-              height: 60,
-              width: double.infinity,
-              color: Colors.white,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        border: GradientBoxBorder(
-                            gradient: LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: [
-                                  Color.fromARGB(255, 12, 76, 136),
-                                  Color(0xFF7D96E6),
-                                ]
-                            ),
-                        ),
-                        borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: TextField(
-                          decoration: const InputDecoration(
-                            hintText: " Type a message ",
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.all(8.0),
-                          ),
-                          controller: _chatController,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 4.0,),
-                  MaterialButton(
-                    onPressed: (){
+    return Chat(
+      messages: _messages,
+      onSendPressed: _handleSendPressed,
+      user: _user,
 
-                    },
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                    padding: const EdgeInsets.all(0.0),
-                    child: Ink(
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              Color.fromARGB(255, 15, 81, 167),
-                              Color(0xFF7D96E6),
-                            ]
-                        ),
-                        borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                      ),
-                      child: Container(
-                        constraints: const BoxConstraints(minWidth: 88.0, minHeight: 36.0), // min sizes for Material buttons
-                        alignment: Alignment.center,
-                        child: const Icon(Icons.send, color: Colors.white,)
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          )
-        ],
-      );
+    );
   }
 }
