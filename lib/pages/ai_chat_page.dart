@@ -5,6 +5,13 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:uuid/uuid.dart';
 
+class CustomChatTheme extends DefaultChatTheme {
+  @override
+  Decoration? get inputContainerDecoration => BoxDecoration(
+    color: const Color(0xff1C4D85), // Custom input field color
+    borderRadius: BorderRadius.circular(20.0), // Custom border radius
+  );
+}
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -56,7 +63,7 @@ class _ChatScreenState extends State<ChatScreen> {
       messages: _messages,
       onSendPressed: _handleSendPressed,
       user: _user,
-
+      theme: CustomChatTheme(),
     );
   }
 }
