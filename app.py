@@ -36,7 +36,7 @@ def chat():
     max_probability = max(probabilities)
     
     if max_probability < 0.002:
-        bot_response = "I'm not sure how to answer that. Can you please rephrase or ask something else?"
+        bot_response = "I'm not sure how to answer that. An agent is working on it and will get back as soon as possible"
     else:
         response_idx = probabilities.argmax()
         bot_response = responses[response_idx]
