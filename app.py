@@ -6,7 +6,7 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
 app = Flask(__name__)
-CORS(app)  # This will enable CORS for all routes
+CORS(app, resources={r"/*": {"origins": "*"}})  # This will enable CORS for all routes
 
 # Load the model
 with open('chatbot_model.pkl', 'rb') as f:
