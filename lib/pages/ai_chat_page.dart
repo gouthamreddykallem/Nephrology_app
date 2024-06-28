@@ -5,14 +5,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:uuid/uuid.dart';
 
-class CustomChatTheme extends DefaultChatTheme {
-  @override
-  Decoration? get inputContainerDecoration => BoxDecoration(
-    color: const Color(0xff1C4D85), // Custom input field color
-    borderRadius: BorderRadius.circular(20.0), // Custom border radius
-  );
-}
-
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
 
@@ -22,7 +14,7 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   final List<types.Message> _messages = [];
-  final _user = types.User(id: const Uuid().v4());
+  final _user = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
 
   void _handleSendPressed(types.PartialText message) async {
     final textMessage = types.TextMessage(
@@ -37,33 +29,37 @@ class _ChatScreenState extends State<ChatScreen> {
     });
 
     final response = await http.post(
-      Uri.parse('http://localhost:5005/webhooks/rest/webhook'),
+      Uri.parse('http://172.20.10.3:5000/chat'),
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({'sender': 'user', 'message': message.text}),
+      body: jsonEncode({'message': message.text}),
     );
 
-    final List<dynamic> responseData = jsonDecode(response.body);
-    for (var element in responseData) {
+    if (response.statusCode == 200) {
+      final responseData = jsonDecode(response.body);
       final botMessage = types.TextMessage(
         author: const types.User(id: 'bot'),
         createdAt: DateTime.now().millisecondsSinceEpoch,
         id: const Uuid().v4(),
-        text: element['text'],
+        text: responseData['response'],
       );
 
       setState(() {
         _messages.insert(0, botMessage);
       });
+    } else {
+      // Handle error
+      print('Failed to get response from the chatbot');
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Chat(
-      messages: _messages,
-      onSendPressed: _handleSendPressed,
-      user: _user,
-      theme: CustomChatTheme(),
+    return Scaffold(
+      body: Chat(
+        messages: _messages,
+        onSendPressed: _handleSendPressed,
+        user: _user,
+      ),
     );
   }
 }
