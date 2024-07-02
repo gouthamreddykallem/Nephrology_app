@@ -4,6 +4,7 @@ import 'package:nephrology_app/components/draw_categories.dart';
 import 'package:nephrology_app/components/header.dart';
 import 'package:nephrology_app/pages/education_page.dart';
 import 'package:nephrology_app/pages/payments_page.dart';
+import 'package:nephrology_app/pages/refer_patient_page.dart';
 import 'package:nephrology_app/shared/color.dart';
 import 'package:nephrology_app/shared/data.dart';
 import 'package:nephrology_app/shared/style.dart';
@@ -349,8 +350,14 @@ Widget quickButtons(BuildContext context) {
               context,
               "REFER A PATIENT",
               () => {
-                    Utilities.urlLauncher(Uri.parse(
-                        "https://www.thenephrologygroupinc.com/Portals/0/Online%20Forms/Forms%202-12-2018/NewPatientRF.pdf?ver=2018-02-16-140849-517"))
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const ReferPage();
+                    },
+                  ),
+                )
                   }),
         ),
       ],
