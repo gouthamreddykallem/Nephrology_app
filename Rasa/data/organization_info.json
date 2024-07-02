@@ -1,0 +1,244 @@
+{
+  "AboutUs": {
+    "WhoWeAre": {
+      "Description": "The Nephrology Group, Inc. is Central California’s largest Nephrology Practice. Since founded in 1975, we have grown from one physician to multiple board-certified Nephrologists, Nurse Practitioners, Renal Dietitians, nurse educators and a Social Worker. We provide office and hospital-based patient care along with a wide range of services that benefit patients and healthcare providers. These services include comprehensive onsite lab testing, infusion clinic, dialysis options education, dietician classes, injection clinic, UCSF Transplant Clinic (pre and post) and ultrasound.",
+      "Locations": [
+        "Fresno",
+        "Clovis",
+        "Madera",
+        "Selma",
+        "Sanger",
+        "Visalia",
+        "Hanford",
+        "Tulare",
+        "Delano",
+        "Bakersfield"
+      ],
+      "InsuranceAccepted": [
+        "Medicare",
+        "Medi-Cal",
+        "Sante",
+        "CCIPA",
+        "Anthem Blue Cross",
+        "Blue Shield",
+        "Dignity Health",
+        "Key Medical",
+        "and more"
+      ],
+      "Hospitals": [
+        "Saint Agnes Medical Center",
+        "Community Medical Centers",
+        "Fresno Heart and Surgical Hospital",
+        "Kaweah Delta",
+        "Bakersfield Memorial"
+      ],
+      "OfficeLocations": [
+        "Fresno",
+        "Clovis",
+        "Madera",
+        "Selma",
+        "Sanger",
+        "Visalia",
+        "Hanford",
+        "Tulare",
+        "Delano",
+        "Bakersfield",
+        "Lake Isabella"
+      ]
+    },
+    "Mission": {
+      "Description": "The Nephrology Group, Inc. physicians are dedicated to the treatment of kidney disease in a quality and cost-effective manner. We are committed to leadership and excellence in the delivery of quality healthcare services, expanding the horizons of our medical knowledge with continuing education, striving to improve nephrology services in our community, teaching medical students and other physicians about kidney diseases, and providing support for local healthcare organizations."
+    },
+    "OurDifference": {
+      "Description": "The mix of discovery, innovation and adaptability has enabled The Nephrology Group, Inc. to become pioneers in the field of combating renal diseases across the region. We have the expertise to diagnose and treat exceedingly complex diseases with the most minimally invasive methods possible."
+    },
+    "MedicalProviders": {
+      "Description": "All our physicians are board certified in Nephrology and Internal Medicine. Our physicians have additional education and associated credentials and are the highest caliber individuals. Our team of physicians and associated caregivers are compassionate, understanding and thorough in their analysis and treatment.",
+      "Providers": [
+        "Steve W. Su, M.D.",
+        "Steven B. Levy, M.D.",
+        "Joseph C. Duflot, M.D",
+        "Anuradha Suri, M.D.",
+        "Harpreet S. Dhindsa, M.D.",
+        "Yangming Cao, M.D.",
+        "Mei Hwang, M.D.",
+        "Hemant Dhingra, M.D.",
+        "Sukhvir Atwal, M.D",
+        "Gregory Martinez, M.D.",
+        "Jasjit Singh, MD",
+        "Harmeet Gurm M.D.",
+        "Neysha J. Sanchez-Rivera, M.D.",
+        "Pankaj Ram M.D.",
+        "Dominique Dorsainvil M.D.",
+        "Nephro-Hospitalists",
+        "Supriya Gerardine M.D.",
+        "Ibrahim Katibah M.D.",
+        "Bikash Chapagain, M.D.",
+        "Dhayanithi Dhayalan, M.D."
+      ]
+    },
+    "ClinicInformation": {
+      "AfterHours": {
+        "Description": "Our telephones are answered by the Medical Answering Service. The Nephrologist on call will be paged for medical problems after hours and over the weekend. In case of telephone failure, the direct Medical Answering Service number is 559-221-4545. The Nephrologist on-call will take all calls after hours and during the weekend. If you have an emergency, go directly to the emergency room. We are on call 24 hours a day, 7 days a week for emergencies."
+      },
+      "PatientPortal": {
+        "Description": "With your patient portal, you can be in control of your health and care. Patient Portals can save you time by helping you communicate with your doctor and their medical staff between visits. Your online health record is available through our Patient Portal.",
+        "Features": [
+          "Request Appointments (non-urgent)",
+          "Refill prescriptions",
+          "Check benefits",
+          "Update insurance or contact information",
+          "Complete forms",
+          "Ask questions through secure messaging"
+        ],
+        "ViewableItems": [
+          "Test & Lab results",
+          "Visit Summaries",
+          "Your medication history including allergies, immunizations, and medicines",
+          "Patient Education"
+        ],
+        "Contact": {
+          "Description": "If you are currently a patient with our practice and are interested in signing up for your patient portal, please ask our staff at the front desk or you may call the office directly at 559-228-6600 and they can assist you on how to register."
+        }
+      },
+      "PrescriptionRefills": {
+        "Description": "Monday - Thursday we will attempt a 24-hour turnaround. Request all refills direct from your pharmacy for the quickest results. Friday & weekend refills will be processed only for emergencies."
+      },
+      "ReturnVisitLabs": {
+        "Description": "Your labs should be done 1 week prior to your return visit/appointment."
+      },
+      "InsuranceInformation": {
+        "Description": "Your Insurance Card is required at each office visit. We accept most insurance. Co-pays are due at the time of each office visit. If your insurance requires prior authorization, allow for delays in appointments and refills. If you begin dialysis treatment you may be eligible for Medicare. Our Billing Staff is available to explain eligibility issues. This information is also available at the Social Security Office and the Dialysis Unit where your treatment will be provided."
+      }
+    },
+    "DietaryServices": {
+      "Description": "The Nephrology Group, Inc. has a team of expert nutritionists and dietitians because we realize the importance of a balanced and healthy lifestyle that supports the recovery process in patients with kidney and vascular disease. Diet often changes depending on the type of kidney disease patients have and can affect how they process the food they eat. This is a big adjustment for most patients, and requires the help and support of an experienced professional.",
+      "Services": [
+        "Manage a food diary with details of the meals and their respective nutritional values",
+        "Monitor calorie intake with respect to the physical condition of the patient",
+        "Add vitamin, sodium and potassium supplements to the diet",
+        "Have regular check-ups to ensure the recommended diet is working well",
+        "Work in collaboration with the medical team to ensure a well-rounded treatment and recovery"
+      ]
+    }
+  },
+  "services": {
+    "Chronic Kidney Disease": {
+      "description": "Chronic Kidney Disease is characterized by the gradual loss of kidney function over time. It affects 26 million Americans while millions of others are at risk. It can lead to complications such as high blood pressure, anemia, weak bones, poor nutritional health, and nerve damage.",
+      "treatments": [
+        "Glomerulonephropathy",
+        "Interstitial disease",
+        "Diabetic Kidney Disease",
+        "Hereditary Kidney Disease",
+        "Mineral metabolism",
+        "Nutritional Consultation & Management",
+        "Anemia Management & Administration of ESA",
+        "Electrolyte Management",
+        "Kidney Stone Work-up & Treatment",
+        "Ultrasound facilities",
+        "Access to second opinions"
+      ]
+    },
+    "End Stage Renal Disease": {
+      "description": "End Stage Renal Disease (ESRD) is when the kidneys stop functioning well enough for someone to live without dialysis or a transplant. It requires severe action to ensure health.",
+      "treatments": [
+        "Regular hemodialysis (at home or in the hospital)",
+        "Peritoneal Dialysis (manual and automated)",
+        "Kidney Transplant Management (Pre and Post-Transplant Care)",
+        "Nocturnal Hemodialysis",
+        "Home dialysis"
+      ]
+    },
+    "Hypertension": {
+      "description": "Hypertension, also known as High Blood Pressure, is the second leading cause of ESRD and a chronic medical condition that can damage the kidneys.",
+      "details": [
+        "Certified comprehensive hypertension center by the American Heart Association",
+        "Guideline-based management of anti-hypertensive therapy",
+        "Patient-specific therapy including lifestyle changes and interventions",
+        "Screening and management of secondary hypertension",
+        "24-hour ambulatory blood pressure monitoring",
+        "Automated oscillometer blood pressure protocol",
+        "Captopril and Losartan suppression test protocol"
+      ]
+    },
+    "Kidney Stones": {
+      "description": "Kidney stones, also known as renal calculus or renal lithiasis, are solid concretions or crystal aggregations that form in the kidneys. They can cause severe pain and require treatment to pass.",
+      "treatments": [
+        "Hydration",
+        "Pain medication",
+        "Medication to speed the passage of stones",
+        "Extracorporeal Shock Wave Lithotripsy (ESWL)",
+        "Surgery"
+      ],
+      "additional_info": "The Nephrology Group works with urologists to offer comprehensive care for kidney stones, including 24-hour urine collection to assess risk factors."
+    },
+    "Vascular Access": {
+      "description": "Vascular access is a surgically created vein used for hemodialysis. There are three types of vascular access: AV fistula, AV graft, and venous catheter.",
+      "types": {
+        "AV Fistula": "A connection of an artery to a vein, usually made in the forearm or upper arm. It requires 2 to 3 months before it can be used for hemodialysis.",
+        "AV Graft": "A looped plastic tube that connects an artery to a vein. It can be used 2 to 3 weeks after surgery but has more problems with infection and clotting.",
+        "Venous Catheter": "A tube inserted into a vein in the neck, chest, or leg near the groin for short-term hemodialysis. It is more susceptible to blood clots and infections."
+      }
+    },
+    "Ultrasound": {
+      "description": "Ultrasonography allows evaluation of the kidneys and urinary tract. The Nephrology Group offers in-house ultrasound services for assessment of dialysis-related access and peritoneal diseases."
+    },
+    "Laboratory": {
+      "description": "In-house laboratory services offering all blood and urine tests needed for disease evaluation. Open Monday - Friday, 7:30am to 5:00pm, downstairs in suite 104."
+    },
+    "Anemia Management Clinic": {
+      "description": "Anemia Management Clinic offers comprehensive evaluation and assessment for Erythropoietin to stimulate red blood cell production. This is monitored under physician guidance."
+    },
+    "Home Dialysis Program": {
+      "description": "Home Dialysis Program offers hemodialysis and peritoneal dialysis options. Post-dialysis care is available at the clinic and at home. Hemodialysis and peritoneal dialysis details are provided.",
+      "hemodialysis": [
+        "Used to remove waste, fluids, and unnecessary chemicals from the body.",
+        "Requires minor surgery in the arm or leg or a catheter in the neck for blood vessel access."
+      ],
+      "peritoneal_dialysis": [
+        "Cleans blood through a catheter inserted in the abdomen.",
+        "Two main types: Continuous Ambulatory Peritoneal Dialysis (CAPD) and Automated Peritoneal Dialysis (APD)."
+      ]
+    },
+    "Dialysis Center": {
+      "description": "Dialysis Center offers hemodialysis and peritoneal dialysis for end-stage renal failure. Post-dialysis care is available at the clinic and at home."
+    },
+    "Dialysis Facilities": [
+      "American Renal Associates",
+      "Dialysis Patient Citizens",
+      "Dialysis at Sea Cruises",
+      "Kidney Options",
+      "Kidney & Urology Foundation",
+      "Kidney Patient Guide",
+      "Kidney School",
+      "Medicare",
+      "The Kidney Transplant/Dialysis Association",
+      "Medscape",
+      "National Kidney Disease Education Program",
+      "National Organization for Renal Disease",
+      "Social Security Administration (ESRD)",
+      "Davita",
+      "Community Regional Medical Centers Fresno/Clovis",
+      "Fresenius Medical Care"
+    ],
+    "Kidney Transplant": {
+      "description": "The Nephrology Group works with several medical centers, including California Pacific Medical Center, Stanford University Medical, and others, for kidney transplant services."
+    },
+    "Dietary Services": {
+      "description": "Dietary Services offer support from expert nutritionists to manage diet and nutrition for kidney and vascular disease patients.",
+      "services": [
+        "Manage food diary and nutritional values",
+        "Monitor calorie intake",
+        "Add vitamin, sodium, and potassium supplements",
+        "Follow-up to ensure diet effectiveness",
+        "Collaborate with medical team for comprehensive care"
+      ]
+    },
+    "Peripheral Artery Disease Program": {
+      "description": "Peripheral Artery Disease Program helps patients quit addictive substances, develop healthy eating habits, and engage in regular supervised physical exercise."
+    },
+    "Dialysis Options Education": {
+      "description": "Dialysis Options Education (Dial Ops) helps patients learn about treatment options for kidney failure, working with physicians and educators to choose the best plan."
+    }
+  }
+}
