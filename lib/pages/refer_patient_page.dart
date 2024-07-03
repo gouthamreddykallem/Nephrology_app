@@ -48,7 +48,7 @@ class _ReferPageState extends State<ReferPage> {
 
     if (status.isGranted) {
       // Get the Downloads directory path
-      final directory = Directory('/storage/emulated/0/Downloads');
+      final directory = Directory('/storage/emulated/0/Download');
 
       if (directory.existsSync()) {
         final path = directory.path;
