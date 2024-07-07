@@ -22,7 +22,8 @@ class DrawCategories extends StatelessWidget {
   final List<List<Detail>> categories;
   final bool drawLinesOnRight;
 
-  const DrawCategories({super.key, required this.categories, required this.drawLinesOnRight});
+  const DrawCategories(
+      {super.key, required this.categories, required this.drawLinesOnRight});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,8 @@ class DrawCategories extends StatelessWidget {
         children: [
           // Add the CustomPaint widget as the first child in the stack
           CustomPaint(
-            size: Size(MediaQuery.of(context).size.width * 0.8, cardHeight * min(categories.length, 5)),
+            size: Size(MediaQuery.of(context).size.width * 0.8,
+                cardHeight * min(categories.length, 5)),
             painter: CardLinePainter(
               itemCount: min(categories.length, 5),
               cardHeight: cardHeight,
@@ -194,9 +196,11 @@ class CardLinePainter extends CustomPainter {
     for (int i = 0; i < itemCount; i++) {
       double cardY = (i * cardHeight) + cardHeight / 2;
       if (drawLinesOnRight) {
-        canvas.drawLine(Offset(mainLineX, cardY), Offset(mainLineX - 10, cardY), paint);
+        canvas.drawLine(
+            Offset(mainLineX, cardY), Offset(mainLineX - 10, cardY), paint);
       } else {
-        canvas.drawLine(Offset(mainLineX, cardY), Offset(mainLineX + 10, cardY), paint);
+        canvas.drawLine(
+            Offset(mainLineX, cardY), Offset(mainLineX + 10, cardY), paint);
       }
     }
   }

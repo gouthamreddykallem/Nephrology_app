@@ -54,35 +54,27 @@ class _HomeBodyState extends State<HomeBody> {
               ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Expanded(
-                  child: buildTile(
-                      context,
-                      Colors.blue,
-                      Colors.blue.shade300,
-                      "SERVICES",
-                      "assets/kidneyIcon.svg",
-                      () => _toggleExpand(ExpandState.expanded1),
-                      _expandState == ExpandState.expanded1,
-                      true),
-                ),
-                Expanded(
-                  child: buildTile(
-                      context,
-                      Colors.blue,
-                      Colors.blue.shade300,
-                      "ABOUT US",
-                      "assets/aboutus.svg",
-                      () => _toggleExpand(ExpandState.expanded2),
-                      _expandState == ExpandState.expanded2,
-                      true),
-                ),
-              ],
-            ),
+          Expanded(
+            child: buildTile(
+                context,
+                Colors.blue,
+                Colors.blue.shade300,
+                "SERVICES",
+                "assets/kidneyIcon.svg",
+                () => _toggleExpand(ExpandState.expanded1),
+                _expandState == ExpandState.expanded1,
+                true),
+          ),
+          Expanded(
+            child: buildTile(
+                context,
+                Colors.blue,
+                Colors.blue.shade300,
+                "ABOUT US",
+                "assets/aboutus.svg",
+                () => _toggleExpand(ExpandState.expanded2),
+                _expandState == ExpandState.expanded2,
+                true),
           ),
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 300),
@@ -122,51 +114,45 @@ class _HomeBodyState extends State<HomeBody> {
                     ),
                   ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Expanded(
-                  child: buildTile(
-                      context,
-                      Colors.green,
-                      Colors.green.shade300,
-                      "PAYMENTS",
-                      "assets/payment.svg",
-                      () => {Navigator.push(
+          Expanded(
+            child: buildTile(
+                context,
+                Colors.green,
+                Colors.green.shade300,
+                "PAYMENTS",
+                "assets/payment.svg",
+                () => {
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) {
                             return const PaymentsPage();
                           },
                         ),
-                      )},
-                      false,
-                      false),
-                ),
-                Expanded(
-                  child: buildTile(
-                      context,
-                      Colors.green,
-                      Colors.green.shade300,
-                      "EDUCATION",
-                      "assets/school.svg",
-                      () => {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return const EducationBody();
-                                },
-                              ),
-                            )
+                      )
+                    },
+                false,
+                false),
+          ),
+          Expanded(
+            child: buildTile(
+                context,
+                Colors.green,
+                Colors.green.shade300,
+                "EDUCATION",
+                "assets/school.svg",
+                () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const EducationBody();
                           },
-                      false,
-                      false),
-                ),
-              ],
-            ),
+                        ),
+                      )
+                    },
+                false,
+                false),
           ),
         ],
       ),
@@ -230,39 +216,40 @@ Widget buildTile(
     iconPath,
     width: 48,
     height: 48,
-    color: Colors.white.withOpacity(0.9),
+    colorFilter: ColorFilter.mode(
+      Colors.white.withOpacity(0.9),
+      BlendMode.srcIn,
+    ),
   );
   return Column(
     children: <Widget>[
       SizedBox(
-        height: isExpanded
-            ? MediaQuery.of(context).size.height * .22
-            : MediaQuery.of(context).size.height * .20,
-        child: InkWell(
-          onTap: onTap as void Function()?,
-          child: AspectRatio(
-            aspectRatio: 2 / 2,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: color,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      offset: const Offset(4, 4),
-                      blurRadius: 10,
-                      color: color.withOpacity(0.9),
-                    ),
-                  ],
-                ),
+        height: MediaQuery.of(context).size.height * .10,
+        child: AspectRatio(
+          aspectRatio: 4 / 1,
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    offset: const Offset(4, 4),
+                    blurRadius: 10,
+                    color: color.withOpacity(0.9),
+                  ),
+                ],
+              ),
+              child: InkWell(
+                onTap: onTap as void Function()?,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: Stack(
                     children: <Widget>[
                       Positioned(
                         top: -20,
-                        right: -20,
+                        left: -20,
                         child: CircleAvatar(
                           backgroundColor: lightColor,
                           radius: 60,
@@ -285,19 +272,21 @@ Widget buildTile(
                             ),
                           ),
                         ),
-                      const SizedBox(height: 10),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          Flexible(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Text(title, style: titleStyle),
+                      // const SizedBox(height: 10),
+                      Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Flexible(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Text(title, style: titleStyle),
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 20),
-                        ],
+                            const SizedBox(height: 20),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -350,14 +339,14 @@ Widget quickButtons(BuildContext context) {
               context,
               "REFER A PATIENT",
               () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const ReferPage();
-                    },
-                  ),
-                )
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const ReferPage();
+                        },
+                      ),
+                    )
                   }),
         ),
       ],
