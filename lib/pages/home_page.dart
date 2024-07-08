@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nephrology_app/components/draw_categories.dart';
+import 'package:nephrology_app/components/build_categories.dart';
+import 'package:nephrology_app/components/build_services.dart';
 import 'package:nephrology_app/components/header.dart';
 import 'package:nephrology_app/pages/education_page.dart';
 import 'package:nephrology_app/pages/payments_page.dart';
@@ -10,7 +11,7 @@ import 'package:nephrology_app/shared/data.dart';
 import 'package:nephrology_app/shared/style.dart';
 import 'package:nephrology_app/utilities/utils.dart';
 
-enum ExpandState { collapsed, expanded1, expanded2 }
+var expandWidgets = <bool>[false, false];
 
 class HomeBody extends StatefulWidget {
   const HomeBody({super.key});
@@ -20,15 +21,9 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State<HomeBody> {
-  ExpandState _expandState = ExpandState.collapsed;
-
-  void _toggleExpand(ExpandState state) {
+  void _toggleExpand(int index) {
     setState(() {
-      if (_expandState == state) {
-        _expandState = ExpandState.collapsed;
-      } else {
-        _expandState = state;
-      }
+      expandWidgets[index] = !expandWidgets[index];
     });
   }
 
@@ -58,101 +53,84 @@ class _HomeBodyState extends State<HomeBody> {
             child: buildTile(
                 context,
                 Colors.blue,
-                Colors.blue.shade300,
-                "SERVICES",
-                "assets/kidneyIcon.svg",
-                () => _toggleExpand(ExpandState.expanded1),
-                _expandState == ExpandState.expanded1,
+                "ABOUT US",
+                "assets/aboutus.svg",
+                () => _toggleExpand(0),
+                expandWidgets[0],
                 true),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30.0),
+            child: AnimatedSize(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+              child: expandWidgets[0]
+                  ? BuildCategories(
+                      categories: aboutUs,
+                      drawLinesOnRight: false,
+                    )
+                  : const SizedBox.shrink(),
+            ),
           ),
           Expanded(
             child: buildTile(
                 context,
                 Colors.blue,
-                Colors.blue.shade300,
-                "ABOUT US",
-                "assets/aboutus.svg",
-                () => _toggleExpand(ExpandState.expanded2),
-                _expandState == ExpandState.expanded2,
+                "SERVICES",
+                "assets/kidneyIcon.svg",
+                () => _toggleExpand(1),
+                expandWidgets[1],
                 true),
           ),
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 300),
-            switchInCurve: Curves.easeInOut,
-            switchOutCurve: Curves.easeInOut,
-            child: _expandState == ExpandState.collapsed
-                ? const SizedBox.shrink()
-                : AnimatedSize(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                    child: ClipRect(
-                      child: _expandState == ExpandState.expanded1
-                          ? Container(
-                              key: const ValueKey(ExpandState.expanded1),
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0),
-                                child: DrawCategories(
-                                  categories: kidneyServices,
-                                  drawLinesOnRight: false,
-                                ),
-                              ),
-                            )
-                          : Container(
-                              key: const ValueKey(ExpandState.expanded2),
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0),
-                                child: DrawCategories(
-                                  categories: aboutUs,
-                                  drawLinesOnRight: true,
-                                ),
-                              ),
-                            ),
-                    ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30.0),
+            child: AnimatedSize(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+              child: expandWidgets[1]
+                  ? const BuildServices()
+                  : const SizedBox.shrink(),
+            ),
+          ),
+          Expanded(
+            child: buildTile(
+              context,
+              Colors.green,
+              "MAKE A PAYMENT",
+              "assets/payment.svg",
+              () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const PaymentsPage();
+                    },
                   ),
+                )
+              },
+              false,
+              false,
+            ),
           ),
           Expanded(
             child: buildTile(
-                context,
-                Colors.green,
-                Colors.green.shade300,
-                "PAYMENTS",
-                "assets/payment.svg",
-                () => {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return const PaymentsPage();
-                          },
-                        ),
-                      )
+              context,
+              Colors.green,
+              "CONTACT US",
+              "assets/school.svg",
+              () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const EducationBody();
                     },
-                false,
-                false),
-          ),
-          Expanded(
-            child: buildTile(
-                context,
-                Colors.green,
-                Colors.green.shade300,
-                "EDUCATION",
-                "assets/school.svg",
-                () => {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return const EducationBody();
-                          },
-                        ),
-                      )
-                    },
-                false,
-                false),
+                  ),
+                )
+              },
+              false,
+              false,
+            ),
           ),
         ],
       ),
@@ -205,7 +183,6 @@ Widget searchBar(BuildContext context) {
 Widget buildTile(
   BuildContext context,
   Color color,
-  Color lightColor,
   String title,
   String iconPath,
   Function onTap,
@@ -225,71 +202,54 @@ Widget buildTile(
     children: <Widget>[
       SizedBox(
         height: MediaQuery.of(context).size.height * .10,
-        child: AspectRatio(
-          aspectRatio: 4 / 1,
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: color,
+        width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  offset: const Offset(4, 4),
+                  blurRadius: 10,
+                  color: color.withOpacity(0.9),
+                ),
+              ],
+            ),
+            child: InkWell(
+              onTap: onTap as void Function()?,
+              child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    offset: const Offset(4, 4),
-                    blurRadius: 10,
-                    color: color.withOpacity(0.9),
-                  ),
-                ],
-              ),
-              child: InkWell(
-                onTap: onTap as void Function()?,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned(
-                        top: -20,
-                        left: -20,
-                        child: CircleAvatar(
-                          backgroundColor: lightColor,
-                          radius: 60,
-                          child: iconWidget,
-                        ),
+                child: Stack(
+                  children: <Widget>[
+                    Positioned(
+                      top: -20,
+                      left: -20,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.white.withOpacity(0.25),
+                        radius: 60,
+                        child: iconWidget,
                       ),
-                      if (canExpand)
-                        Positioned(
-                          bottom: 5,
-                          right: 5,
-                          child: CircleAvatar(
-                            backgroundColor: lightColor,
-                            radius: 20,
-                            child: Icon(
-                              size: 40.0,
-                              isExpanded
-                                  ? Icons.expand_less
-                                  : Icons.expand_more,
-                              color: Colors.white,
-                            ),
+                    ),
+                    if (canExpand)
+                      Positioned(
+                        bottom: 5,
+                        right: 5,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.white.withOpacity(0.25),
+                          radius: 20,
+                          child: Icon(
+                            size: 40.0,
+                            isExpanded ? Icons.expand_less : Icons.expand_more,
+                            color: Colors.white,
                           ),
                         ),
-                      // const SizedBox(height: 10),
-                      Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            Flexible(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text(title, style: titleStyle),
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                          ],
-                        ),
                       ),
-                    ],
-                  ),
+                    Center(
+                      child: Text(title, style: titleStyle),
+                    ),
+                  ],
                 ),
               ),
             ),

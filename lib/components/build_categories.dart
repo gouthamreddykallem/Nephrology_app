@@ -3,33 +3,21 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nephrology_app/pages/details_page.dart';
+import 'package:nephrology_app/shared/color.dart';
 import 'package:nephrology_app/shared/detail.dart';
 import 'package:nephrology_app/shared/style.dart';
 
-List<String> colors = [
-  "0xFF3F51B5", // Indigo
-  "0xFFFFA000", // Amber
-  "0xFFFF7043" // Coral
-];
 
-List<String> lightColors = [
-  "0xFF9FA8DA", // Lighter Indigo
-  "0xFFFFE082", // Lighter Amber
-  "0xFFFFAB91" // Lighter Coral
-];
-
-class DrawCategories extends StatelessWidget {
+class BuildCategories extends StatelessWidget {
   final List<List<Detail>> categories;
   final bool drawLinesOnRight;
 
-  const DrawCategories(
+  const BuildCategories(
       {super.key, required this.categories, required this.drawLinesOnRight});
 
   @override
   Widget build(BuildContext context) {
-    double cardHeight =
-        90; // Adjust this based on the actual height of your cards
-
+    double cardHeight = MediaQuery.of(context).size.height * .08;
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.8,
       child: Stack(
@@ -53,8 +41,6 @@ class DrawCategories extends StatelessWidget {
               var category = categories[index];
               return DrawCard(
                 details: category,
-                color: Color(int.parse(colors[index % 3])),
-                lightColor: Color(int.parse(lightColors[index % 3])),
               );
             },
           ),
@@ -66,13 +52,9 @@ class DrawCategories extends StatelessWidget {
 
 class DrawCard extends StatelessWidget {
   final List<Detail> details;
-  final Color color;
-  final Color lightColor;
 
   const DrawCard({
     super.key,
-    required this.color,
-    required this.lightColor,
     required this.details,
   });
 
@@ -100,25 +82,29 @@ class DrawCard extends StatelessWidget {
     if (iconPath != null && iconPath.isNotEmpty) {
       iconWidget = SvgPicture.asset(
         iconPath, // Ensure this path matches your asset
-        width: 48,
-        height: 48,
-        color: Colors.white.withOpacity(0.9),
+        width: 40,
+        height: 40,
+        colorFilter: ColorFilter.mode(
+          Colors.white.withOpacity(0.9),
+          BlendMode.srcIn,
+        ),
       );
     }
 
     return SizedBox(
-      height: 90, // Adjust this based on your card height
+      height: MediaQuery.of(context).size.height *
+          .08, // Adjust this based on your card height
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(
           decoration: BoxDecoration(
-            color: color,
+            color: primaryColor,
             borderRadius: const BorderRadius.all(Radius.circular(26)),
             boxShadow: [
               BoxShadow(
                 offset: const Offset(4, 4),
                 blurRadius: 10,
-                color: color.withOpacity(0.8),
+                color: Colors.white.withOpacity(0.8),
               ),
             ],
           ),
@@ -138,24 +124,29 @@ class DrawCard extends StatelessWidget {
                 children: <Widget>[
                   Positioned(
                     top: -20,
-                    right: -20,
+                    right: -12,
                     child: CircleAvatar(
-                      backgroundColor: lightColor,
-                      radius: 60,
+                      backgroundColor: Colors.white.withOpacity(0.25),
+                      radius: 50,
                       child: iconWidget,
                     ),
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      Flexible(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text(title!, style: titleStyle),
+                  Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        const SizedBox(
+                          width: 5.0,
                         ),
-                      ),
-                      const SizedBox(height: 20),
-                    ],
+                        Flexible(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Text(title!, style: titleStyle),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

@@ -14,7 +14,7 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 152.0, bottom: 4.0),
+      padding: const EdgeInsets.only(top: 157.0, bottom: 4.0),
       alignment: Alignment.center,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -58,7 +58,7 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
             ),
           ),
           Positioned(
-            top: 400,
+            top: 350,
             left: -80,
             child: CircleAvatar(
               radius: 150,
@@ -66,7 +66,7 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
             ),
           ),
           Positioned(
-            top: 300,
+            top: 280,
             right: -80,
             child: CircleAvatar(
               radius: 100,
@@ -82,11 +82,11 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
                 children: [
                   if (isExpanded) ...[
                     const Text(
-                      "WELCOME\nTO TNG",
+                      "Welcome to \nThe Nephrology Group",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 40.0,
+                        fontSize: 22.0,
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w700,
                       ),
@@ -100,16 +100,13 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
                         duration: const Duration(milliseconds: 300),
                         curve: Curves.easeInOut,
                         width: isExpanded
-                            ? MediaQuery.of(context).size.height * .24
+                            ? MediaQuery.of(context).size.height * .18
                             : MediaQuery.of(context).size.height * .12,
                         height: isExpanded
-                            ? MediaQuery.of(context).size.height * .24
+                            ? MediaQuery.of(context).size.height * .18
                             : MediaQuery.of(context).size.height * .12,
                         child: CircleAvatar(
                           backgroundColor: Colors.white,
-                          radius: isExpanded
-                              ? MediaQuery.of(context).size.height * .12
-                              : MediaQuery.of(context).size.height * .06,
                           child: Padding(
                             padding: const EdgeInsets.all(4.0),
                             child: ClipOval(
@@ -130,7 +127,7 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 18.0,
+                        fontSize: 15.0,
                         fontWeight: FontWeight.normal,
                       ),
                     ),

@@ -24,7 +24,7 @@ class _LayOutState extends State<LayOut> {
           child: Text(
             "THE NEPHROLOGY GROUP, INC",
             style: TextStyle(
-              fontSize: 20.0,
+              fontSize: 18.0,
               color: Colors.black,
               fontFamily: 'Poppins',
               fontWeight: FontWeight.w700,
