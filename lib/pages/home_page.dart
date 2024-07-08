@@ -11,7 +11,7 @@ import 'package:nephrology_app/shared/data.dart';
 import 'package:nephrology_app/shared/style.dart';
 import 'package:nephrology_app/utilities/utils.dart';
 
-var expandWidgets = <bool>[false, false];
+var expandWidgetsHome = <bool>[false, false];
 
 class HomeBody extends StatefulWidget {
   const HomeBody({super.key});
@@ -23,7 +23,7 @@ class HomeBody extends StatefulWidget {
 class _HomeBodyState extends State<HomeBody> {
   void _toggleExpand(int index) {
     setState(() {
-      expandWidgets[index] = !expandWidgets[index];
+      expandWidgetsHome[index] = !expandWidgetsHome[index];
     });
   }
 
@@ -49,22 +49,14 @@ class _HomeBodyState extends State<HomeBody> {
               ),
             ],
           ),
-          Expanded(
-            child: buildTile(
-                context,
-                Colors.blue,
-                "ABOUT US",
-                "assets/aboutus.svg",
-                () => _toggleExpand(0),
-                expandWidgets[0],
-                true),
-          ),
+          buildTile(context, Colors.blue, "ABOUT US", "assets/aboutus.svg",
+              () => _toggleExpand(0), expandWidgetsHome[0], true),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: AnimatedSize(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
-              child: expandWidgets[0]
+              child: expandWidgetsHome[0]
                   ? BuildCategories(
                       categories: aboutUs,
                       drawLinesOnRight: false,
@@ -72,65 +64,53 @@ class _HomeBodyState extends State<HomeBody> {
                   : const SizedBox.shrink(),
             ),
           ),
-          Expanded(
-            child: buildTile(
-                context,
-                Colors.blue,
-                "SERVICES",
-                "assets/kidneyIcon.svg",
-                () => _toggleExpand(1),
-                expandWidgets[1],
-                true),
-          ),
+          buildTile(context, Colors.blue, "SERVICES", "assets/kidneyIcon.svg",
+              () => {_toggleExpand(1)}, expandWidgetsHome[1], true),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: AnimatedSize(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
-              child: expandWidgets[1]
+              child: expandWidgetsHome[1]
                   ? const BuildServices()
                   : const SizedBox.shrink(),
             ),
           ),
-          Expanded(
-            child: buildTile(
-              context,
-              Colors.green,
-              "MAKE A PAYMENT",
-              "assets/payment.svg",
-              () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const PaymentsPage();
-                    },
-                  ),
-                )
-              },
-              false,
-              false,
-            ),
+          buildTile(
+            context,
+            Colors.green,
+            "MAKE A PAYMENT",
+            "assets/payment.svg",
+            () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const PaymentsPage();
+                  },
+                ),
+              )
+            },
+            false,
+            false,
           ),
-          Expanded(
-            child: buildTile(
-              context,
-              Colors.green,
-              "CONTACT US",
-              "assets/school.svg",
-              () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const EducationBody();
-                    },
-                  ),
-                )
-              },
-              false,
-              false,
-            ),
+          buildTile(
+            context,
+            Colors.green,
+            "CONTACT US",
+            "assets/school.svg",
+            () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const EducationBody();
+                  },
+                ),
+              )
+            },
+            false,
+            false,
           ),
         ],
       ),

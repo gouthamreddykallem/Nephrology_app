@@ -1,6 +1,6 @@
 import 'detail.dart';
 
-List<List<Detail>> kidneyServices = [
+List<List<Detail>> kidneyCare = [
   [
     Detail("title", "Chronic Kidney Disease"),
     Detail("icon", "assets/kidneyIcon.svg"),
@@ -18,17 +18,16 @@ List<List<Detail>> kidneyServices = [
         "Conducting regular hemodialysis\nWe offer these services at home or in the hospital, depending on the patient's convenience\nPeritoneal Dialysis\nWe offer manual and automated dialysis services depending on the severity of the case\nKidney Transplant Management - Pre and Post- Transplant Care\nNocturnal Hemodialysis\nHome dialysis"),
   ],
   [
-    Detail("title", "Hypertension"),
-    Detail("icon", "assets/hypertension.svg"),
-    Detail("description",
-        "Hypertension is also known as High Blood Pressure. It is the second leading cause of ESRD and it is commonly known as a chronic medical condition. The high pressure can damage the blood vessels in the kidneys and eventually reduces the kidneys function. \n\nThe Hypertension center at The Nephrology Group received certification of comprehensive hypertension center from the American Heart Association. The hypertension center practices guideline based management of anti-hypertensive therapy in adults and to reduce the cardiovascular, cerebral, and renal morbidity and mortality. The therapy is patient specific, and encompasses life style changes and interventions. The goal is to develop a therapeutic, and non-therapeutic regimen, assess barriers in achieving goal blood pressure, and intervene as necessary to minimize and/or prevent HTN related complications.\n\nPatients with treatment resistant hypertension often have identifiable causes, which require coordinated care for diagnosis and therapy. This multidisciplinary center serves to integrate the referral system for better diagnosis and management and to institute protocols to provide uniform recommendations to referring physicians.\n\nThe protocols at the center includes screening and management of for secondary hypertension, hypertension management for specific comorbidities, 24-hour ambulatory blood pressure monitoring, Automated oscillometer blood pressure protocol, Captopril and Losartan suppression test protocol, selection and maintenance of the blood pressure monitoring equipment."),
-  ],
-  [
     Detail("title", "Kidney Stones"),
     Detail("icon", "assets/kidneyIcon.svg"),
     Detail("description",
         "Also known as a renal calculus (translates to kidney pebble) or renal lithiasis, is a solid concretion or crystal aggregation that forms in the kidneys created from dietary minerals in the urine. These hard deposits can increase in size and collect anywhere in the urinary system. The most common causes of kidney stones is dehydration. Other causes includes diets, metabolic conditions, other diseases like Crohn’s Disease, and in rare cases, a genetic disorder.\n\nKidney stones sometimes do not cause any symptoms and eventually leave the body through the urine stream. These kidney stones are relatively small, mostly less than 3mm in diameter. When kidney stones grow larger than 3mm, it can cause obstruction, leading to several symptoms, mostly pain.\n\nKidney stones do not normally cause permanent damage, however the pain can be excruciating. The common treatment for kidney stones involve hydration, pain medication, and time. This is to let the kidney stone pass through the urinary tract normally. In severe cases, other methods of treatment involves medication to speed the passage of urinary stones, ESWL (Extracorporeal Shock Wave Lithotripsy), and/or surgery.\n\nThe Nephrology Group will work with Urologist to offer you comprehensive care for kidney stones. We will also offer 24 hour urine collection to assess the risk factor for stone formation. "),
   ],
+  [
+    Detail("title", "Kidney Transplant"),
+  ],
+];
+List<List<Detail>> vascularHealth = [
   [
     Detail("title", "Vascular Access"),
     Detail("icon", "assets/vascular.svg"),
@@ -38,18 +37,16 @@ List<List<Detail>> kidneyServices = [
         "The Arteriovenous Fistula or AV fistula is a connection of an artery to a vein. The AV fistula is usually made in the forearm or upper arm. This causes the vein to grow large and strong from the extra pressure and extra blood flowing through it. This large vein allows easy access to blood vessels and allows for regular hemodialysis sessions. This type of vascular access is recommended by health care providers because it allows for good blood flow for dialysis, it lasts longer than other types of access, and is less likely to get infected or cause blood clots. Before an AV fistula is installed, the surgeon may perform a vessel mapping test to find the best blood vessels to use. The method requires an ultrasound to safely map the blood vessels of a patient and a radiologist will interpret the images created. AV fistulas require 2 to 3 months before a patient is able to use it for hemodialysis. If the AV fistula fails to develop, the surgeon will repeat the procedure. Once the patient has an AV fistula, the patient must learn to take care of the needle insertion area to prevent infections. In most circumstances, after AV fistula procedures, a patient may need to stay in a hospital overnight. \nThe Arteriovenous Graft or AV Graft is a looped plastic tube that connects an artery to a vein. An AV Graft is performed like a AV Fistula by a vascular surgeon. A patient may need to stay overnight after the procedure and the patient will be provided a local anesthesia to numb the area where the surgeon creates the AV graft. The AV graft is usually ready to be used 2 to 3 weeks after the surgery. AV grafts usually has more problems with infection and clotting than AV fistulas. Repeated blood clots can block the flow of blood through the graft, however with care, the graft can last for several years.\nThe Venous Catheter is a tube inserted into a vein in the neck, chest, or leg near the groin. This is normally for short-term hemodialysis. If a kidney disease has progressed quickly, a patient may not have time for a placement of an AV fistula or AV graft before starting hemodialysis treatments. Patients with venous catheters are more susceptible to blood clots, infections, or a scarred vein. The Venous Catheter will work for several weeks or even months until a surgeon can perform a long-term access. Sometimes this type of access is used to treat a patient quickly while an AV fistula or AV graft is made ready. In rare cases where a fistula or a graft is unsuccessful, the surgeon will make a more long-term venous catheter access. The Nephrology Group, Inc.  has a Vascular Access Center located on the first floor of the building. Our nephrologist will refer you to the VAC if a vascular access is required."),
   ],
   [
-    Detail("title", "Ultrasound"),
+    Detail("title", "Hypertension"),
+    Detail("icon", "assets/hypertension.svg"),
     Detail("description",
-        "Ultrasonography for a nephrology practice allows the evaluation of the kidneys and urinary tract. It provides guidance to hemodialysis access and kidney functions.  The Nephrology Group offers in house ultrasound services which will help us to visualize your kidney, bladder and ureters. The reports are read by qualified Radiologist. The vascular access center offers the ultrasound for assessment of dialysis related access in a comprehensive way. Ultrasound services offered are also used to find peritoneal diseases."),
+        "Hypertension is also known as High Blood Pressure. It is the second leading cause of ESRD and it is commonly known as a chronic medical condition. The high pressure can damage the blood vessels in the kidneys and eventually reduces the kidneys function. \n\nThe Hypertension center at The Nephrology Group received certification of comprehensive hypertension center from the American Heart Association. The hypertension center practices guideline based management of anti-hypertensive therapy in adults and to reduce the cardiovascular, cerebral, and renal morbidity and mortality. The therapy is patient specific, and encompasses life style changes and interventions. The goal is to develop a therapeutic, and non-therapeutic regimen, assess barriers in achieving goal blood pressure, and intervene as necessary to minimize and/or prevent HTN related complications.\n\nPatients with treatment resistant hypertension often have identifiable causes, which require coordinated care for diagnosis and therapy. This multidisciplinary center serves to integrate the referral system for better diagnosis and management and to institute protocols to provide uniform recommendations to referring physicians.\n\nThe protocols at the center includes screening and management of for secondary hypertension, hypertension management for specific comorbidities, 24-hour ambulatory blood pressure monitoring, Automated oscillometer blood pressure protocol, Captopril and Losartan suppression test protocol, selection and maintenance of the blood pressure monitoring equipment."),
   ],
   [
-    Detail("title", "Laboratory"),
-    Detail("description",
-        "The Nephrology Group is proud to announce the in house laboratory services. It offers all the blood and urine tests which your Nephrologist will need to evaluate your disease.\n\nLaboratory Services are open Monday - Friday 7:30am to 5:00pm , downstairs in suite 104."),
+    Detail("title", "Peripheral Artery Disease Program"),
   ],
-  [
-    Detail("title", "Anemia Management Clinic"),
-  ],
+];
+List<List<Detail>> dialysisServices = [
   [
     Detail("title", "Home Dialysis Program"),
   ],
@@ -57,16 +54,25 @@ List<List<Detail>> kidneyServices = [
     Detail("title", "Dialysis Center"),
   ],
   [
-    Detail("title", "Kidney Transplant"),
+    Detail("title", "Dialysis Options Education"),
+  ],
+];
+List<List<Detail>> clinicalServices = [
+  [
+    Detail("title", "Laboratory"),
+    Detail("description",
+        "The Nephrology Group is proud to announce the in house laboratory services. It offers all the blood and urine tests which your Nephrologist will need to evaluate your disease.\n\nLaboratory Services are open Monday - Friday 7:30am to 5:00pm , downstairs in suite 104."),
+  ],
+  [
+    Detail("title", "Ultrasound"),
+    Detail("description",
+        "Ultrasonography for a nephrology practice allows the evaluation of the kidneys and urinary tract. It provides guidance to hemodialysis access and kidney functions.  The Nephrology Group offers in house ultrasound services which will help us to visualize your kidney, bladder and ureters. The reports are read by qualified Radiologist. The vascular access center offers the ultrasound for assessment of dialysis related access in a comprehensive way. Ultrasound services offered are also used to find peritoneal diseases."),
+  ],
+  [
+    Detail("title", "Anemia Management Clinic"),
   ],
   [
     Detail("title", "Dietary Services"),
-  ],
-  [
-    Detail("title", "Peripheral Artery Disease Program"),
-  ],
-  [
-    Detail("title", "Dialysis Options Education"),
   ],
 ];
 
@@ -124,12 +130,16 @@ List<List<Detail>> aboutUs = [
         "Board Certified in Nephrology\nBoard Certified in Internal Medicine"),
     Detail("description",
         "Our physicians have additional education and associated credentials and are the highest caliber individuals.\n\nOur team of physicians and associated care givers are compassionate, understanding and thorough in their analysis and treatment."),
-    Detail("providerList",
-        [Detail("title", "Fresno, Madera, Selma, and Sanger Providers"), providers1]),
-    Detail("providerList",
-        [Detail("title", "Nephro-Hospitalists"), providers2]),
-    Detail("providerList",
-        [Detail("title", "Visalia, Hanford, and Tulare Providers"), providers3]),
+    Detail("providerList", [
+      Detail("title", "Fresno, Madera, Selma, and Sanger Providers"),
+      providers1
+    ]),
+    Detail(
+        "providerList", [Detail("title", "Nephro-Hospitalists"), providers2]),
+    Detail("providerList", [
+      Detail("title", "Visalia, Hanford, and Tulare Providers"),
+      providers3
+    ]),
     Detail("providerList",
         [Detail("title", "Bakersfield And Kern County Providers"), providers4]),
     Detail("providerList",

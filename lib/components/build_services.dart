@@ -7,7 +7,14 @@ import 'package:nephrology_app/shared/data.dart';
 import 'package:nephrology_app/shared/detail.dart';
 import 'package:nephrology_app/shared/style.dart';
 
-List<bool> expandWidgets = [false, false, false, false];
+var expandWidgetsServices = <bool>[false, false, false, false];
+
+List<List<List<Detail>>> services = [
+  kidneyCare,
+  vascularHealth,
+  dialysisServices,
+  clinicalServices
+];
 
 class BuildServices extends StatefulWidget {
   const BuildServices({super.key});
@@ -16,113 +23,126 @@ class BuildServices extends StatefulWidget {
   State<BuildServices> createState() => _BuildServicesState();
 }
 
-class _BuildServicesState extends State<BuildServices> {
-  void _toggleExpand(int index) {
-    setState(() {
-      expandWidgets[index] = !expandWidgets[index];
+class _BuildServicesState extends State<BuildServices> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _heightAnimation;
+
+  final List<String> serviceTitles = [
+    "Kidney Care",
+    "Vascular Health",
+    "Dialysis Services",
+    "Clinical Services",
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    );
+
+    // Initialize with placeholder values
+    _heightAnimation = Tween<double>(
+      begin: 0,
+      end: 0,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+
+    _controller.addListener(() {
+      setState(() {});
     });
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _toggleExpand(int index, double cardHeight) {
+    setState(() {
+      expandWidgetsServices[index] = !expandWidgetsServices[index];
+      final newHeight = _calculateTotalHeight(cardHeight);
+      _heightAnimation = Tween<double>(
+        begin: _heightAnimation.value,
+        end: newHeight,
+      ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+      _controller.forward(from: 0);
+    });
+  }
+
+  double _calculateTotalHeight(double cardHeight) {
+    double totalHeight = cardHeight * expandWidgetsServices.length;
+    for (int i = 0; i < expandWidgetsServices.length - 1; i++) {
+      if (expandWidgetsServices[i]) {
+        totalHeight += cardHeight * services[i].length;
+      }
+    }
+    return totalHeight;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    double cardHeight = MediaQuery.of(context).size.height * .08;
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.8,
-      child: Stack(
-        children: [
-          // Add the CustomPaint widget as the first child in the stack
-          CustomPaint(
-            size: Size(MediaQuery.of(context).size.width * 0.8, cardHeight * 4),
-            painter: CardLinePainter(
-              itemCount: 4,
-              cardHeight: cardHeight,
-              drawLinesOnRight: false,
-            ),
-          ),
-          ListView(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            scrollDirection: Axis.vertical,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final cardHeight = MediaQuery.of(context).size.height * .08;
+        if (_heightAnimation.value == 0) {
+          // Initialize the height animation with the correct base height
+          _heightAnimation = Tween<double>(
+            begin: _calculateTotalHeight(cardHeight),
+            end: _calculateTotalHeight(cardHeight),
+          ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+        }
+        return SizedBox(
+          width: constraints.maxWidth * 0.8,
+          child: Stack(
             children: [
-              Card(
-                title: "Kidney Care",
-                onTap: () => _toggleExpand(0),
-                isExpanded: expandWidgets[0],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                child: AnimatedSize(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                  child: expandWidgets[0]
-                      ? BuildCategories(
-                          categories: kidneyServices,
-                          drawLinesOnRight: false,
-                        )
-                      : const SizedBox.shrink(),
+              CustomPaint(
+                size: Size(constraints.maxWidth * 0.8, _heightAnimation.value),
+                painter: CardLinePainter(
+                  itemCount: expandWidgetsServices.length,
+                  cardHeight: cardHeight,
+                  drawLinesOnRight: false,
                 ),
               ),
-              Card(
-                title: "Vascular Health",
-                onTap: () => _toggleExpand(1),
-                isExpanded: expandWidgets[1],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                child: AnimatedSize(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                  child: expandWidgets[1]
-                      ? BuildCategories(
-                          categories: kidneyServices,
-                          drawLinesOnRight: false,
-                        )
-                      : const SizedBox.shrink(),
-                ),
-              ),
-              Card(
-                title: "Dialysis Services",
-                onTap: () => _toggleExpand(2),
-                isExpanded: expandWidgets[2],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                child: AnimatedSize(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                  child: expandWidgets[2]
-                      ? BuildCategories(
-                          categories: kidneyServices,
-                          drawLinesOnRight: false,
-                        )
-                      : const SizedBox.shrink(),
-                ),
-              ),
-              Card(
-                title: "Clinical Services",
-                onTap: () => _toggleExpand(3),
-                isExpanded: expandWidgets[3],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                child: AnimatedSize(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                  child: expandWidgets[3]
-                      ? BuildCategories(
-                          categories: kidneyServices,
-                          drawLinesOnRight: false,
-                        )
-                      : const SizedBox.shrink(),
-                ),
+              ListView(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                children: [
+                  for (int i = 0; i < expandWidgetsServices.length; i++)
+                    Column(
+                      children: [
+                        Card(
+                          title: serviceTitles[i],
+                          onTap: () => _toggleExpand(i, cardHeight),
+                          isExpanded: expandWidgetsServices[i],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                          child: AnimatedSize(
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeInOut,
+                            child: expandWidgetsServices[i]
+                                ? BuildCategories(
+                              categories: services[i],
+                              drawLinesOnRight: false,
+                            )
+                                : const SizedBox.shrink(),
+                          ),
+                        ),
+                      ],
+                    ),
+                ],
               ),
             ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
+
 
 class Card extends StatelessWidget {
   final String title;
@@ -220,6 +240,7 @@ class CardLinePainter extends CustomPainter {
       ..strokeWidth = 4;
 
     double mainLineX = drawLinesOnRight ? size.width : 0;
+    double totalHeight = 0;
 
     // Draw the main vertical line
     canvas.drawLine(
@@ -230,12 +251,28 @@ class CardLinePainter extends CustomPainter {
 
     for (int i = 0; i < itemCount; i++) {
       double cardY = (i * cardHeight) + cardHeight / 2;
+
+      // Adjust cardY based on expanded widgets above
+      for (int j = 0; j < i; j++) {
+        if (expandWidgetsServices[j]) {
+          totalHeight += cardHeight * services[j].length;
+        }
+      }
+
+      cardY += totalHeight;
+
       if (drawLinesOnRight) {
         canvas.drawLine(
-            Offset(mainLineX, cardY), Offset(mainLineX - 10, cardY), paint);
+          Offset(mainLineX, cardY),
+          Offset(mainLineX - 10, cardY),
+          paint,
+        );
       } else {
         canvas.drawLine(
-            Offset(mainLineX, cardY), Offset(mainLineX + 10, cardY), paint);
+          Offset(mainLineX, cardY),
+          Offset(mainLineX + 10, cardY),
+          paint,
+        );
       }
     }
   }
