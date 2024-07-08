@@ -236,11 +236,10 @@ class CardLinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.grey
-      ..strokeWidth = 4;
+      ..color = Colors.black45
+      ..strokeWidth = 5;
 
     double mainLineX = drawLinesOnRight ? size.width : 0;
-    double totalHeight = 0;
 
     // Draw the main vertical line
     canvas.drawLine(
@@ -255,11 +254,9 @@ class CardLinePainter extends CustomPainter {
       // Adjust cardY based on expanded widgets above
       for (int j = 0; j < i; j++) {
         if (expandWidgetsServices[j]) {
-          totalHeight += cardHeight * services[j].length;
+          cardY += cardHeight * services[j].length;
         }
       }
-
-      cardY += totalHeight;
 
       if (drawLinesOnRight) {
         canvas.drawLine(
