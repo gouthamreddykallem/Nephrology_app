@@ -181,7 +181,7 @@ Widget buildTile(
   return Column(
     children: <Widget>[
       SizedBox(
-        height: MediaQuery.of(context).size.height * .10,
+        height: MediaQuery.of(context).size.height * .09,
         width: double.infinity,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
@@ -205,6 +205,7 @@ Widget buildTile(
                   children: <Widget>[
                     Positioned(
                       top: -20,
+                      bottom: -20,
                       left: -20,
                       child: CircleAvatar(
                         backgroundColor: Colors.white.withOpacity(0.25),
@@ -214,7 +215,8 @@ Widget buildTile(
                     ),
                     if (canExpand)
                       Positioned(
-                        bottom: 5,
+                        bottom: 0,
+                        top: 0,
                         right: 5,
                         child: CircleAvatar(
                           backgroundColor: Colors.white.withOpacity(0.25),

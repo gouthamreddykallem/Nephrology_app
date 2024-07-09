@@ -162,7 +162,7 @@ class Card extends StatelessWidget {
       height: MediaQuery.of(context).size.height *
           .08, // Adjust this based on your card height
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(8.0),
         child: Container(
           decoration: BoxDecoration(
             color: primaryColor,
@@ -183,7 +183,8 @@ class Card extends StatelessWidget {
               child: Stack(
                 children: <Widget>[
                   Positioned(
-                    bottom: 10,
+                    bottom: 0,
+                    top: 0,
                     right: 10,
                     child: CircleAvatar(
                       backgroundColor: Colors.white.withOpacity(0.25),

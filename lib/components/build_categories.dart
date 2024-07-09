@@ -95,7 +95,7 @@ class DrawCard extends StatelessWidget {
       height: MediaQuery.of(context).size.height *
           .08, // Adjust this based on your card height
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(8.0),
         child: Container(
           decoration: BoxDecoration(
             color: primaryColor,
@@ -122,15 +122,17 @@ class DrawCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               child: Stack(
                 children: <Widget>[
-                  Positioned(
-                    top: -20,
-                    right: -12,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.white.withOpacity(0.25),
-                      radius: 50,
-                      child: iconWidget,
+                  if (iconPath != null )
+                    Positioned(
+                      top: -20,
+                      bottom: -20,
+                      right: -12,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.white.withOpacity(0.25),
+                        radius: 50,
+                        child: iconWidget,
+                      ),
                     ),
-                  ),
                   Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,

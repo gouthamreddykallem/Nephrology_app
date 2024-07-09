@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:nephrology_app/components/floating_buttons.dart';
 import 'package:nephrology_app/components/side_drawer.dart';
 import 'package:nephrology_app/shared/color.dart';
@@ -13,6 +14,11 @@ class LayOut extends StatefulWidget {
 }
 
 class _LayOutState extends State<LayOut> {
+  @override
+  void initState() {
+    super.initState();
+    FlutterNativeSplash.remove();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
