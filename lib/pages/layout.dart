@@ -17,7 +17,7 @@ class _LayOutState extends State<LayOut> {
   @override
   void initState() {
     super.initState();
-    FlutterNativeSplash.remove();
+    // FlutterNativeSplash.remove();
   }
   @override
   Widget build(BuildContext context) {

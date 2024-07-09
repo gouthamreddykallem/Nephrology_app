@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:nephrology_app/components/build_categories.dart';
-import 'package:nephrology_app/pages/details_page.dart';
 import 'package:nephrology_app/shared/color.dart';
 import 'package:nephrology_app/shared/data.dart';
 import 'package:nephrology_app/shared/detail.dart';
@@ -97,13 +95,20 @@ class _BuildServicesState extends State<BuildServices> with SingleTickerProvider
           width: constraints.maxWidth * 0.8,
           child: Stack(
             children: [
-              CustomPaint(
-                size: Size(constraints.maxWidth * 0.8, _heightAnimation.value),
-                painter: CardLinePainter(
-                  itemCount: expandWidgetsServices.length,
-                  cardHeight: cardHeight,
-                  drawLinesOnRight: false,
-                ),
+              AnimatedBuilder(
+                animation: _heightAnimation,
+                builder: (context, child) {
+                  return CustomPaint(
+                    size: Size(constraints.maxWidth * 0.8, _heightAnimation.value),
+                    painter: CardLinePainter(
+                      itemCount: expandWidgetsServices.length,
+                      cardHeight: cardHeight,
+                      drawLinesOnRight: false,
+                      animationValue: _heightAnimation.value,
+                      totalHeight: _calculateTotalHeight(cardHeight),
+                    ),
+                  );
+                },
               ),
               ListView(
                 shrinkWrap: true,
@@ -142,6 +147,9 @@ class _BuildServicesState extends State<BuildServices> with SingleTickerProvider
     );
   }
 }
+
+
+
 
 
 class Card extends StatelessWidget {
@@ -206,7 +214,7 @@ class Card extends StatelessWidget {
                         Flexible(
                           child: Padding(
                             padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            const EdgeInsets.symmetric(horizontal: 8.0),
                             child: Text(title, style: titleStyle),
                           ),
                         ),
@@ -227,18 +235,23 @@ class CardLinePainter extends CustomPainter {
   final int itemCount;
   final double cardHeight;
   final bool drawLinesOnRight;
+  final double animationValue;
+  final double totalHeight;
 
   CardLinePainter({
     required this.itemCount,
     required this.cardHeight,
     required this.drawLinesOnRight,
+    required this.animationValue,
+    required this.totalHeight,
   });
 
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.black45
-      ..strokeWidth = 5;
+      ..color = Colors.grey
+      ..strokeWidth = 4
+      ..strokeCap = StrokeCap.round;
 
     double mainLineX = drawLinesOnRight ? size.width : 0;
 
@@ -249,34 +262,37 @@ class CardLinePainter extends CustomPainter {
       paint,
     );
 
-    for (int i = 0; i < itemCount; i++) {
-      double cardY = (i * cardHeight) + cardHeight / 2;
+    // Draw horizontal lines only after the animation is complete
+    if (animationValue == totalHeight) {
+      for (int i = 0; i < itemCount; i++) {
+        double cardY = (i * cardHeight) + cardHeight / 2;
 
-      // Adjust cardY based on expanded widgets above
-      for (int j = 0; j < i; j++) {
-        if (expandWidgetsServices[j]) {
-          cardY += cardHeight * services[j].length;
+        // Adjust cardY based on expanded widgets above
+        for (int j = 0; j < i; j++) {
+          if (expandWidgetsServices[j]) {
+            cardY += cardHeight * services[j].length;
+          }
         }
-      }
 
-      if (drawLinesOnRight) {
-        canvas.drawLine(
-          Offset(mainLineX, cardY),
-          Offset(mainLineX - 10, cardY),
-          paint,
-        );
-      } else {
-        canvas.drawLine(
-          Offset(mainLineX, cardY),
-          Offset(mainLineX + 10, cardY),
-          paint,
-        );
+        if (drawLinesOnRight) {
+          canvas.drawLine(
+            Offset(mainLineX, cardY),
+            Offset(mainLineX - 10, cardY),
+            paint,
+          );
+        } else {
+          canvas.drawLine(
+            Offset(mainLineX, cardY),
+            Offset(mainLineX + 10, cardY),
+            paint,
+          );
+        }
       }
     }
   }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
+    return animationValue != (oldDelegate as CardLinePainter).animationValue;
   }
 }

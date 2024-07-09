@@ -175,7 +175,8 @@ class CardLinePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
       ..color = Colors.grey
-      ..strokeWidth = 4;
+      ..strokeWidth = 4
+      ..strokeCap = StrokeCap.round;
 
     double mainLineX = drawLinesOnRight ? size.width : 0;
 
