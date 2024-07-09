@@ -72,6 +72,17 @@ class _DetailsPageState extends State<DetailsPage> {
     );
   }
 
+  Widget buildImageTitle(String imgTitile) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: Text(
+        textAlign: TextAlign.center,
+        imgTitile,
+        style: headingStyle,
+      ),
+    );
+  }
+
   Widget buildProviders(value) {
     String title = value[0].value;
     List<List<Detail>> providers = value[1];
@@ -84,6 +95,7 @@ class _DetailsPageState extends State<DetailsPage> {
       'description': (value) => buildDescription(value as String),
       'heading': (value) => buildHeading(value as String),
       'image': (value) => buildImage(value as String),
+      'imgtitle': (value) => buildImageTitle(value as String),
       'points': (value) => buildPoints(value as String),
       'providerList': (value) => buildProviders(value),
     };
@@ -124,6 +136,8 @@ class _DetailsPageState extends State<DetailsPage> {
         title: Text(
           title!,
           style: const TextStyle(fontWeight: FontWeight.bold),
+          maxLines: 2, // Allow the text to span up to 2 lines
+          overflow: TextOverflow.ellipsis, // Handle overflow with an ellipsis
         ),
       ),
       backgroundColor: bgColor,

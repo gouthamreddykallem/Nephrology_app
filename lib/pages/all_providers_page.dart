@@ -6,7 +6,9 @@ import 'package:nephrology_app/shared/detail.dart';
 class AllProvidersPage extends StatefulWidget {
   final String title;
   final List<List<Detail>> details;
-  const AllProvidersPage({super.key, required this.details, required this.title});
+
+  const AllProvidersPage(
+      {super.key, required this.details, required this.title});
 
   @override
   State<AllProvidersPage> createState() => _AllProvidersPageState();
@@ -15,7 +17,6 @@ class AllProvidersPage extends StatefulWidget {
 class _AllProvidersPageState extends State<AllProvidersPage> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: bgColor,
@@ -23,13 +24,11 @@ class _AllProvidersPageState extends State<AllProvidersPage> {
         leading: const BackButton(
           color: Colors.black,
         ),
-        title: Flexible(
-          child: Text(
-            widget.title,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-            maxLines: 2, // Allow the text to span up to 2 lines
-            overflow: TextOverflow.ellipsis, // Handle overflow with an ellipsis
-          ),
+        title: Text(
+          widget.title,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+          maxLines: 2, // Allow the text to span up to 2 lines
+          overflow: TextOverflow.ellipsis, // Handle overflow with an ellipsis
         ),
       ),
       backgroundColor: bgColor,

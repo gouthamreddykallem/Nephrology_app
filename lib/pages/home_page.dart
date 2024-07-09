@@ -78,7 +78,7 @@ class _HomeBodyState extends State<HomeBody> {
           ),
           buildTile(
             context,
-            Colors.green,
+            Colors.blue,
             "MAKE A PAYMENT",
             "assets/payment.svg",
             () => {
@@ -96,7 +96,7 @@ class _HomeBodyState extends State<HomeBody> {
           ),
           buildTile(
             context,
-            Colors.green,
+            Colors.blue,
             "CONTACT US",
             "assets/school.svg",
             () => {
