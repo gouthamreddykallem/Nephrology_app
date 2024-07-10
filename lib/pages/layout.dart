@@ -53,7 +53,7 @@ class _LayOutState extends State<LayOut> {
           builder: (context) {
             return IconButton(
               icon: const Icon(
-                Icons.menu,
+                Icons.menu_rounded,
                 color: Colors.black,
               ),
               onPressed: () {
@@ -66,7 +66,7 @@ class _LayOutState extends State<LayOut> {
           Builder(
             builder: (context) {
               return IconButton(
-                icon: const Icon(Icons.account_circle_outlined),
+                icon: const Icon(Icons.help_outline),
                 color: Colors.black,
                 onPressed: () {
                   Scaffold.of(context).openEndDrawer();
