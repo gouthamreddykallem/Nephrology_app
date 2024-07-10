@@ -174,13 +174,13 @@ class Card extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Container(
           decoration: BoxDecoration(
-            color: primaryColor,
+            color: secondaryColor,
             borderRadius: const BorderRadius.all(Radius.circular(26)),
             boxShadow: [
               BoxShadow(
                 offset: const Offset(4, 4),
                 blurRadius: 10,
-                color: primaryColor.withOpacity(0.4),
+                color: secondaryColor.withOpacity(0.4),
               ),
             ],
           ),

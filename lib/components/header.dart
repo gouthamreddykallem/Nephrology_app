@@ -82,7 +82,7 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
                 children: [
                   if (isExpanded) ...[
                     const Text(
-                      "Welcome to \nThe Nephrology Group",
+                      "Welcome to \nThe Nephrology Group, Inc",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,

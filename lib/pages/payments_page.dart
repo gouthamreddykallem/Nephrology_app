@@ -62,7 +62,7 @@ class PaymentsPage extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
               decoration: BoxDecoration(
-                color: Colors.blueAccent,
+                color:primaryColor,
                 borderRadius: BorderRadius.circular(30),
               ),
               child: const Row(

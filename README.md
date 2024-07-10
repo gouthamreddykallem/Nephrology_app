@@ -16,3 +16,7 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 docker-compose up --build
+
+docker build -t my-chatbot .
+docker run -p 5000:5000 my-chatbot
+

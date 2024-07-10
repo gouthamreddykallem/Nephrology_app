@@ -52,7 +52,7 @@ class _HomeBodyState extends State<HomeBody> {
           const SizedBox(
             height: 8.0,
           ),
-          buildTile(context, Colors.blue, "ABOUT US", "assets/aboutus.svg", 48,
+          buildTile(context, primaryColor, "ABOUT US", "assets/aboutus.svg", 48,
               () => _toggleExpand(0), expandWidgetsHome[0], true),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -63,12 +63,12 @@ class _HomeBodyState extends State<HomeBody> {
                   ? BuildCategories(
                       categories: aboutUs,
                       drawLinesOnRight: false,
-                      cardColor: primaryColor,
+                      cardColor: secondaryColor,
                     )
                   : const SizedBox.shrink(),
             ),
           ),
-          buildTile(context, Colors.blue, "SERVICES", "assets/kidneyIcon.svg",
+          buildTile(context, primaryColor, "SERVICES", "assets/kidneyIcon.svg",
               48, () => {_toggleExpand(1)}, expandWidgetsHome[1], true),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -82,7 +82,7 @@ class _HomeBodyState extends State<HomeBody> {
           ),
           buildTile(
             context,
-            Colors.blue,
+            primaryColor,
             "MAKE A PAYMENT",
             "assets/payment.svg",
             42,
@@ -101,7 +101,7 @@ class _HomeBodyState extends State<HomeBody> {
           ),
           buildTile(
             context,
-            Colors.blue,
+           primaryColor,
             "CONTACT US",
             "assets/contact_us.svg",
             30,

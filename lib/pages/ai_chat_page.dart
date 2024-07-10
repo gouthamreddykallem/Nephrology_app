@@ -38,7 +38,7 @@ class _ChatScreenState extends State<ChatScreen> {
     });
 
     final response = await http.post(
-      Uri.parse('http://10.0.0.173:5000/chat'),
+      Uri.parse('http://129.8.224.248:5000/chat'),
       // Uri.parse('http://127.0.0.1:5000/chat'),  // For iOS simulator or web
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({'message': message.text}),

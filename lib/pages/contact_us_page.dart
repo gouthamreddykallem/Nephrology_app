@@ -88,14 +88,14 @@ class ContactUsPage extends StatelessWidget {
           _buildContactButton(
             icon: Icons.phone,
             label: "Call: 559-228-6600",
-            color: Colors.blueAccent,
+            color: primaryColor,
             onTap: () => _launchPhone('+1-559-228-6600'),
           ),
           const SizedBox(height: 20),
           _buildContactButton(
             icon: Icons.email,
             label: "Email Us",
-            color: Colors.green,
+            color: primaryColor,
             onTap: () => _launchEmail('info@thenephrologygroupinc.com'),
           ),
           const SizedBox(height: 20),

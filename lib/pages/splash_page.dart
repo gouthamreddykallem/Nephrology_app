@@ -16,7 +16,6 @@ class _SplashPageState extends State<SplashPage>
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (context) => const LayOut(),
@@ -38,15 +37,18 @@ class _SplashPageState extends State<SplashPage>
         width: double.infinity,
         decoration: const BoxDecoration(color: bgColor),
         child: Center(
-          child: CircleAvatar(
-            radius: 40.0,
-            backgroundColor: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: ClipOval(
-                child: Image.asset(
-                  "assets/logo_2.jpg",
-                  fit: BoxFit.cover,
+          child: SizedBox(
+            width: MediaQuery.of(context).size.height * 0.18,
+            height: MediaQuery.of(context).size.height * 0.18,
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: ClipOval(
+                  child: Image.asset(
+                    "assets/logo_2.jpg",
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),

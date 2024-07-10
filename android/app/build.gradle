@@ -25,26 +25,23 @@ if (flutterVersionName == null) {
 
 android {
     namespace = "com.example.nephrology_app"
-    compileSdk = localProperties.getProperty("flutter.compileSdkVersion").toInteger()
-    ndkVersion = localProperties.getProperty("flutter.ndkVersion")
-
+    compileSdk = (localProperties.getProperty('flutter.compileSdkVersion') ?: '33').toInteger()
+    ndkVersion = localProperties.getProperty('flutter.ndkVersion') ?: '25.1.8937393'
+    compileSdkVersion 34
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
     defaultConfig {
         applicationId = "com.example.nephrology_app"
-        minSdk = localProperties.getProperty("flutter.minSdkVersion").toInteger()
-        targetSdk = localProperties.getProperty("flutter.targetSdkVersion").toInteger()
+        minSdk = (localProperties.getProperty('flutter.minSdkVersion') ?: '21').toInteger()
+        targetSdk = (localProperties.getProperty('flutter.targetSdkVersion') ?: '33').toInteger()
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
-
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
         }
     }
-
     buildTypes {
         release {
             signingConfig = signingConfigs.debug
