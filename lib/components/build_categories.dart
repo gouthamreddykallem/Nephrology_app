@@ -7,13 +7,16 @@ import 'package:nephrology_app/shared/color.dart';
 import 'package:nephrology_app/shared/detail.dart';
 import 'package:nephrology_app/shared/style.dart';
 
-
 class BuildCategories extends StatelessWidget {
   final List<List<Detail>> categories;
   final bool drawLinesOnRight;
+  final Color cardColor;
 
   const BuildCategories(
-      {super.key, required this.categories, required this.drawLinesOnRight});
+      {super.key,
+      required this.categories,
+      required this.drawLinesOnRight,
+      required this.cardColor});
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +44,7 @@ class BuildCategories extends StatelessWidget {
               var category = categories[index];
               return DrawCard(
                 details: category,
+                cardColor: cardColor,
               );
             },
           ),
@@ -52,10 +56,12 @@ class BuildCategories extends StatelessWidget {
 
 class DrawCard extends StatelessWidget {
   final List<Detail> details;
+  final Color cardColor;
 
   const DrawCard({
     super.key,
     required this.details,
+    required this.cardColor,
   });
 
   @override
@@ -98,13 +104,15 @@ class DrawCard extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Container(
           decoration: BoxDecoration(
-            color: primaryColor,
+            color: cardColor,
             borderRadius: const BorderRadius.all(Radius.circular(26)),
             boxShadow: [
               BoxShadow(
                 offset: const Offset(4, 4),
                 blurRadius: 10,
-                color: Colors.white.withOpacity(0.8),
+                color: (cardColor == Colors.transparent)
+                    ? cardColor
+                    : cardColor.withOpacity(0.4),
               ),
             ],
           ),
@@ -122,7 +130,7 @@ class DrawCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               child: Stack(
                 children: <Widget>[
-                  if (iconPath != null )
+                  if (iconPath != null)
                     Positioned(
                       top: -20,
                       bottom: -20,
@@ -144,7 +152,10 @@ class DrawCard extends StatelessWidget {
                           child: Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Text(title!, style: titleStyle),
+                            child: Text(title!,
+                                style: cardColor == Colors.transparent
+                                    ? titleStyleBlack
+                                    : titleStyle),
                           ),
                         ),
                       ],

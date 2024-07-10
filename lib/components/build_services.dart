@@ -132,6 +132,7 @@ class _BuildServicesState extends State<BuildServices> with SingleTickerProvider
                                 ? BuildCategories(
                               categories: services[i],
                               drawLinesOnRight: false,
+                              cardColor: Colors.transparent,
                             )
                                 : const SizedBox.shrink(),
                           ),
@@ -179,7 +180,7 @@ class Card extends StatelessWidget {
               BoxShadow(
                 offset: const Offset(4, 4),
                 blurRadius: 10,
-                color: Colors.white.withOpacity(0.8),
+                color: primaryColor.withOpacity(0.4),
               ),
             ],
           ),

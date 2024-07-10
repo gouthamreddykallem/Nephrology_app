@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:nephrology_app/shared/color.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:permission_handler/permission_handler.dart';
 
-class ReferPage extends StatefulWidget {
-  const ReferPage({Key? key}) : super(key: key);
+class LoadPdfPage extends StatefulWidget {
+  final String url;
+  final String title;
+  const LoadPdfPage({super.key, required this.url, required this.title});
 
   @override
-  _ReferPageState createState() => _ReferPageState();
+  _LoadPdfPageState createState() => _LoadPdfPageState();
 }
 
-class _ReferPageState extends State<ReferPage> {
+class _LoadPdfPageState extends State<LoadPdfPage> {
   final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
   late PdfDocument _document;
   bool _isDocumentLoaded = false;
@@ -27,8 +28,7 @@ class _ReferPageState extends State<ReferPage> {
   }
 
   Future<void> _loadPdf() async {
-    final response = await http.get(Uri.parse(
-        'https://www.thenephrologygroupinc.com/Portals/0/Online%20Forms/Forms%202-12-2018/NewPatientRF.pdf'));
+    final response = await http.get(Uri.parse(widget.url));
     if (response.statusCode == 200) {
       _document = PdfDocument(inputBytes: response.bodyBytes);
       setState(() {
@@ -52,7 +52,8 @@ class _ReferPageState extends State<ReferPage> {
 
       if (directory.existsSync()) {
         final path = directory.path;
-        final file = File('$path/FilledNewPatientRF.pdf');
+        final filename = "Filled${widget.title.replaceAll(' ', '_')}";
+        final file = File('$path/$filename.pdf');
         await file.writeAsBytes(_document.saveSync());
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('PDF saved to ${file.path}')),
@@ -88,14 +89,31 @@ class _ReferPageState extends State<ReferPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: bgColor,
+        backgroundColor: primaryColor,
         elevation: 0,
-        leading: const BackButton(
-          color: Colors.black,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: Colors.white,
+            ),
+          ),
         ),
-        title: const Text(
-          "Refer a Patient",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Text(
+          widget.title,
+          style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        ),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(20),
+          ),
         ),
         actions: <Widget>[
           IconButton(

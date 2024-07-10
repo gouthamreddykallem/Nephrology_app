@@ -8,6 +8,13 @@ TextStyle titleStyle = const TextStyle(
   letterSpacing: 1.5,
 );
 
+TextStyle titleStyleBlack = const TextStyle(
+  color: Colors.black,
+  fontSize: 16,
+  fontWeight: FontWeight.bold,
+  letterSpacing: 1.5,
+);
+
 TextStyle subtitleStyle = const TextStyle(
     fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white);
 

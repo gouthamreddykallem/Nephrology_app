@@ -3,9 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nephrology_app/components/build_categories.dart';
 import 'package:nephrology_app/components/build_services.dart';
 import 'package:nephrology_app/components/header.dart';
-import 'package:nephrology_app/pages/education_page.dart';
+import 'package:nephrology_app/pages/contact_us_page.dart';
 import 'package:nephrology_app/pages/payments_page.dart';
-import 'package:nephrology_app/pages/refer_patient_page.dart';
+import 'package:nephrology_app/pages/load_pdf_page.dart';
 import 'package:nephrology_app/shared/color.dart';
 import 'package:nephrology_app/shared/data.dart';
 import 'package:nephrology_app/shared/style.dart';
@@ -49,7 +49,10 @@ class _HomeBodyState extends State<HomeBody> {
               ),
             ],
           ),
-          buildTile(context, Colors.blue, "ABOUT US", "assets/aboutus.svg",
+          const SizedBox(
+            height: 8.0,
+          ),
+          buildTile(context, Colors.blue, "ABOUT US", "assets/aboutus.svg", 48,
               () => _toggleExpand(0), expandWidgetsHome[0], true),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -60,12 +63,13 @@ class _HomeBodyState extends State<HomeBody> {
                   ? BuildCategories(
                       categories: aboutUs,
                       drawLinesOnRight: false,
+                      cardColor: primaryColor,
                     )
                   : const SizedBox.shrink(),
             ),
           ),
           buildTile(context, Colors.blue, "SERVICES", "assets/kidneyIcon.svg",
-              () => {_toggleExpand(1)}, expandWidgetsHome[1], true),
+              48, () => {_toggleExpand(1)}, expandWidgetsHome[1], true),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: AnimatedSize(
@@ -81,6 +85,7 @@ class _HomeBodyState extends State<HomeBody> {
             Colors.blue,
             "MAKE A PAYMENT",
             "assets/payment.svg",
+            42,
             () => {
               Navigator.push(
                 context,
@@ -98,19 +103,23 @@ class _HomeBodyState extends State<HomeBody> {
             context,
             Colors.blue,
             "CONTACT US",
-            "assets/school.svg",
+            "assets/contact_us.svg",
+            30,
             () => {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return const EducationBody();
+                    return const ContactUsPage();
                   },
                 ),
               )
             },
             false,
             false,
+          ),
+          const SizedBox(
+            height: 50.0,
           ),
         ],
       ),
@@ -165,14 +174,15 @@ Widget buildTile(
   Color color,
   String title,
   String iconPath,
+  double iconSize,
   Function onTap,
   bool isExpanded,
   bool canExpand,
 ) {
   Widget iconWidget = SvgPicture.asset(
     iconPath,
-    width: 48,
-    height: 48,
+    width: iconSize,
+    height: iconSize,
     colorFilter: ColorFilter.mode(
       Colors.white.withOpacity(0.9),
       BlendMode.srcIn,
@@ -184,7 +194,7 @@ Widget buildTile(
         height: MediaQuery.of(context).size.height * .09,
         width: double.infinity,
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
           child: Container(
             decoration: BoxDecoration(
               color: color,
@@ -285,7 +295,11 @@ Widget quickButtons(BuildContext context) {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return const ReferPage();
+                          return const LoadPdfPage(
+                            url:
+                                "https://www.thenephrologygroupinc.com/Portals/0/Online%20Forms/Forms%202-12-2018/NewPatientRF.pdf",
+                            title: "Refer a Patient",
+                          );
                         },
                       ),
                     )

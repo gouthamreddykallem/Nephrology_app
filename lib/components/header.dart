@@ -14,7 +14,7 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 157.0, bottom: 4.0),
+      padding: const EdgeInsets.only(top: 150.0),
       alignment: Alignment.center,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -77,7 +77,7 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
             duration: const Duration(milliseconds: 300),
             curve: Curves.easeInOut,
             child: Padding(
-              padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
+              padding: const EdgeInsets.only(top: 28.0, left: 16.0, right: 16.0),
               child: Column(
                 children: [
                   if (isExpanded) ...[
@@ -94,7 +94,7 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
                   ],
                   Padding(
                     padding: const EdgeInsets.only(
-                        left: 8.0, right: 8.0, bottom: 8.0, top: 16.0),
+                        left: 8.0, right: 8.0, bottom: 4.0, top: 8.0),
                     child: Center(
                       child: AnimatedContainer(
                         duration: const Duration(milliseconds: 300),
@@ -121,7 +121,7 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
                     ),
                   ),
                   if (isExpanded) ...[
-                    const SizedBox(height: 8.0),
+                    const SizedBox(height: 4.0),
                     const Text(
                       "The Nephrology Group, Inc. (TNG) is Central California’s largest Nephrology Practice. Since founded in 1975, our physicians are committed to providing quality care to patients with acute kidney",
                       textAlign: TextAlign.center,
@@ -131,7 +131,7 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
                         fontWeight: FontWeight.normal,
                       ),
                     ),
-                    const SizedBox(height: 8.0),
+                    const SizedBox(height: 4.0),
                   ],
                   InkWell(
                     onTap: () {

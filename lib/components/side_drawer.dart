@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nephrology_app/pages/online_forms_page.dart';
 import 'package:nephrology_app/shared/color.dart';
 import 'package:nephrology_app/utilities/utils.dart';
 
@@ -32,7 +33,14 @@ class SideDrawer extends StatelessWidget {
         ListTile(
           title: const Text('Online Forms'),
           onTap: () {
-            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return const OnlineFormsPage();
+                },
+              ),
+            );
           },
         ),
         ListTile(
