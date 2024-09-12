@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:nephrology_app/components/floating_buttons.dart';
 import 'package:nephrology_app/components/side_drawer.dart';
 import 'package:nephrology_app/shared/color.dart';
@@ -14,6 +15,11 @@ class LayOut extends StatefulWidget {
 
 class _LayOutState extends State<LayOut> {
   @override
+  void initState() {
+    super.initState();
+    // FlutterNativeSplash.remove();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -24,7 +30,7 @@ class _LayOutState extends State<LayOut> {
           child: Text(
             "THE NEPHROLOGY GROUP, INC",
             style: TextStyle(
-              fontSize: 20.0,
+              fontSize: 18.0,
               color: Colors.black,
               fontFamily: 'Poppins',
               fontWeight: FontWeight.w700,
@@ -47,7 +53,7 @@ class _LayOutState extends State<LayOut> {
           builder: (context) {
             return IconButton(
               icon: const Icon(
-                Icons.menu,
+                Icons.menu_rounded,
                 color: Colors.black,
               ),
               onPressed: () {
@@ -60,7 +66,7 @@ class _LayOutState extends State<LayOut> {
           Builder(
             builder: (context) {
               return IconButton(
-                icon: const Icon(Icons.account_circle_outlined),
+                icon: const Icon(Icons.help_outline),
                 color: Colors.black,
                 onPressed: () {
                   Scaffold.of(context).openEndDrawer();

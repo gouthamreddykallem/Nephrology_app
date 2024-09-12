@@ -1,0 +1,258 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: ask_information
+  examples: |
+    - Tell me about [who we are](information_type)
+    - What can you tell me about [mission](information_type)?
+    - I need information on [services](information_type)
+    - Can you explain [high blood pressure](service_name)
+    - Can you explain [hypertension](service_name)?
+    - Give me details about [dietary services](service_name)
+    - I want to know about [kidney stones](service_name)
+    - Can you tell me about [who we are](information_type)?
+    - What's the [mission](information_type) of your organization?
+    - I'd like to know about your [services](information_type).
+    - Explain your [medical providers](information_type) to me.
+    - What is [hypertension](service_name)?
+    - Give me the details on [end stage renal disease](service_name).
+    - Describe [kidney stones](service_name) and their treatment.
+    - What can you tell me about [vascular access](service_name)?
+    - How does your [home dialysis program](service_name) work?
+    - Tell me about the [dietary services](service_name) you offer.
+    - What are the [clinic information](information_type) specifics?
+    - Provide details on [prescription refills](information_type).  
+
+- synonym: who we are
+  examples: |
+    - about us
+    - our identity
+    - overview
+    - introduction
+    - company background
+
+- synonym: mission
+  examples: |
+    - goal
+    - purpose
+    - vision
+    - objectives
+    - aims
+
+- synonym: medical providers
+  examples: |
+    - doctors
+    - physicians
+    - medical team
+    - healthcare providers
+    - clinical staff
+
+- synonym: clinic information
+  examples: |
+    - clinic details
+    - clinic overview
+    - clinic services
+    - clinic policies
+    - patient information
+
+- synonym: dietary services
+  examples: |
+    - nutrition services
+    - food services
+    - dietary support
+    - nutrition counseling
+    - dietitian services
+
+- synonym: services
+  examples: |
+    - offerings
+    - treatments
+    - procedures
+    - care options
+    - medical services
+
+- synonym: insurance information
+  examples: |
+    - insurance details
+    - insurance policies
+    - insurance coverage
+    - health insurance
+    - insurance plan
+
+- synonym: prescription refills
+  examples: |
+    - medication refills
+    - drug refills
+    - prescription renewals
+    - medicine refills
+    - refill requests
+
+- synonym: return visit labs
+  examples: |
+    - follow-up labs
+    - follow-up tests
+    - return visit tests
+    - lab follow-up
+    - test follow-up
+
+- synonym: after hours
+  examples: |
+    - emergency hours
+    - out-of-hours
+    - off-hours
+    - after-hours service
+    - emergency contact
+
+- synonym: patient portal
+  examples: |
+    - online portal
+    - health portal
+    - patient login
+    - health record access
+    - online health access
+
+- synonym: dietary services
+  examples: |
+    - nutrition services
+    - food services
+    - dietary support
+    - nutrition counseling
+    - dietitian services
+
+- synonym: kidney stones
+  examples: |
+    - renal calculi
+    - nephrolithiasis
+    - kidney calculi
+    - kidney lithiasis
+    - renal stones
+
+- synonym: hypertension
+  examples: |
+    - high blood pressure
+    - HBP
+    - elevated blood pressure
+    - arterial hypertension
+    - blood pressure issues
+
+- synonym: ultrasound
+  examples: |
+    - Ultra Sound
+    - ultra-sound
+    - sonogram
+    - imaging test
+    - ultrasonography
+
+- regex: information_type
+  examples: |
+    - who we are
+    - mission
+    - services
+    - medical providers
+    - clinic information
+    - dietary services
+    - insurance information
+    - prescription refills
+    - return visit labs
+    - after hours
+    - patient portal
+
+- regex: service_name
+  examples: |
+    - hypertension
+    - end stage renal disease
+    - chronic kidney disease
+    - dietary services
+    - kidney stones
+    - vascular access
+    - home dialysis program
+    - ultrasound
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?

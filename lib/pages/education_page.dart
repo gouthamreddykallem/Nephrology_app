@@ -10,14 +10,31 @@ class EducationBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: bgColor,
+          backgroundColor: primaryColor,
           elevation: 0,
-          leading: const BackButton(
-            color: Colors.black,
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: Colors.white,
+              ),
+            ),
           ),
           title: const Text(
             "Education",
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
+            ),
           ),
         ),
         backgroundColor: bgColor,

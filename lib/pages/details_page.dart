@@ -13,6 +13,19 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+  // Widget buildTitle(String title) {
+  //   return Padding(
+  //     padding: const EdgeInsets.only(bottom: 16.0),
+  //     child: Text(
+  //       title,
+  //       textAlign: TextAlign.center,
+  //       style: headingStyle,
+  //       maxLines: 2, // Allow the text to span up to 2 lines
+  //       overflow: TextOverflow.ellipsis, // Handle overflow with an ellipsis
+  //     ),
+  //   );
+  // }
+
   Widget buildDescription(String description) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
@@ -72,6 +85,17 @@ class _DetailsPageState extends State<DetailsPage> {
     );
   }
 
+  Widget buildImageTitle(String imgTitile) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: Text(
+        textAlign: TextAlign.center,
+        imgTitile,
+        style: headingStyle,
+      ),
+    );
+  }
+
   Widget buildProviders(value) {
     String title = value[0].value;
     List<List<Detail>> providers = value[1];
@@ -81,9 +105,11 @@ class _DetailsPageState extends State<DetailsPage> {
 
   List<Widget> buildChildren() {
     final Map<String, Widget Function(dynamic)> builders = {
+      // 'title': (value) => buildTitle(value as String),
       'description': (value) => buildDescription(value as String),
       'heading': (value) => buildHeading(value as String),
       'image': (value) => buildImage(value as String),
+      'imgtitle': (value) => buildImageTitle(value as String),
       'points': (value) => buildPoints(value as String),
       'providerList': (value) => buildProviders(value),
     };
@@ -116,22 +142,37 @@ class _DetailsPageState extends State<DetailsPage> {
     }
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: bgColor,
+        backgroundColor: primaryColor,
         elevation: 0,
-        leading: const BackButton(
-          color: Colors.black,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: Colors.white,
+            ),
+          ),
         ),
         title: Text(
           title!,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        ),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(20),
+          ),
         ),
       ),
       backgroundColor: bgColor,
-      body: Padding(
+      body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
-        child: ListView(
-          children: buildChildren(),
-        ),
+        children: buildChildren(),
       ),
     );
   }

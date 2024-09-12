@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:nephrology_app/pages/layout.dart';
+import 'package:nephrology_app/pages/splash_page.dart';
 import 'package:nephrology_app/shared/color.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+
 
 
 void main() {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
 }
 
@@ -22,6 +27,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/LayOutScreen",
       routes: {
         "/LayOutScreen": (context) => const LayOut(),
+        "/SplashPage": (context) => const SplashPage(),
       },
     );
   }

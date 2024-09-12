@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nephrology_app/pages/ai_chat_page.dart';
+import 'package:nephrology_app/shared/color.dart';
 import 'package:nephrology_app/utilities/utils.dart';
 
 class FloatingButtons extends StatelessWidget {
@@ -27,16 +28,11 @@ class FloatingButtons extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Dialog(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: const ChatDialog(),
+                  return Dialog(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
                     ),
+                    child: const ChatDialog(),
                   );
                 },
               );
@@ -60,12 +56,21 @@ class ChatDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.8,
-      width: MediaQuery.of(context).size.width * 0.8,
-      padding: const EdgeInsets.all(0.0),
-      child: const AiChatBody(),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20.0),
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: bgColor,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          title: const Text('Chatbot'),
+        ),
+        body: const ChatScreen(),
+      ),
     );
   }
 }
-
