@@ -123,7 +123,7 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
                   if (isExpanded) ...[
                     const SizedBox(height: 4.0),
                     const Text(
-                      "The Nephrology Group, Inc. (TNG) is Central California’s largest Nephrology Practice. Since founded in 1975, our physicians are committed to providing quality care to patients with acute kidney",
+                      "The Nephrology Group, Inc. (TNG) is Central California’s largest nephrology practice, offering 24/7 quality care for various kidney conditions. We also provide services through multiple office locations and our Ambulatory Surgery Center.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,

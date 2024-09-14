@@ -182,10 +182,13 @@ List<List<Detail>> aboutUs = [
   [
     Detail("title", "Administration"),
     Detail("icon", "assets/aboutus.svg"),
+    Detail("providerList",[Detail("title", "Administration"), administration1]),
+    Detail("providerList",[Detail("title", "Clinical & Ancillary Team"), administration2]),
   ],
   [
     Detail("title", "Executive Board"),
     Detail("icon", "assets/aboutus.svg"),
+    Detail("providerList",[Detail("title", "Executive Board"), executive]),
   ],
   [
     Detail("title", "Clinic Information"),
@@ -430,6 +433,75 @@ List<List<Detail>> providers9 = [
   [
     Detail("name", "Mohamad Amin, CLS"),
     Detail("picture", "assets/providers/placeholder.jpg"),
+  ],
+];
+
+List<List<Detail>> administration1 = [
+  [
+    Detail("name", "Hemant Dhingra, M.D.\nPresident and CEO"),
+    Detail("picture", "assets/providers/p1_8.jpg"),
+  ],
+  [
+    Detail("name", "Stephanie Garza\nOperations Manager"),
+    Detail("picture", "assets/administration/A12.jpg"),
+  ],
+  [
+    Detail("name", "May Cha\nAmbulatory Surgical Center Manager"),
+    Detail("picture", "assets/administration/A13.jpg"),
+  ],
+  [
+    Detail("name", "Jessica Martinez\nClinical Manager / South Valley"),
+    Detail("picture", "assets/administration/A14.jpg"),
+  ],
+  [
+    Detail("name", "Tara Satragni\nAdministrative Assistant III"),
+    Detail("picture", "assets/administration/A15.jpg"),
+  ],
+  [
+    Detail("name", "Erica Vega\nAdministrative Assistant I"),
+    Detail("picture", "assets/administration/A16.jpg"),
+  ],
+];
+
+List<List<Detail>> administration2 = [
+  [
+    Detail("name", "Paula Meza, MA\nMCP Lead"),
+    Detail("picture", "assets/administration/A21.jpg"),
+  ],
+  [
+    Detail("name", "Jenny Vue, MA\nInjection Clinic Lead"),
+    Detail("picture", "assets/administration/A22.jpg"),
+  ],
+  [
+    Detail("name", "Cynthia Ochoa, MA\nFront Desk Lead"),
+    Detail("picture", "assets/administration/A23.jpg"),
+  ],
+  [
+    Detail("name", "Diana Dartas\nReferrals Lead"),
+    Detail("picture", "assets/administration/A24.jpg"),
+  ],
+  [
+    Detail("name", "Angelina Gonzalez\nNew Patient Lead"),
+    Detail("picture", "assets/administration/A25.jpg"),
+  ],
+];
+
+List<List<Detail>> executive = [
+  [
+    Detail("name", "Hemant Dhingra, M.D.\nCEO and President"),
+    Detail("picture", "assets/executive/E1.jpg"),
+  ],
+  [
+    Detail("name", "Joseph C. Duflot, M.D.\nExecutive Vice President"),
+    Detail("picture", "assets/executive/E2.jpg"),
+  ],
+  [
+    Detail("name", "Sukhvir Atwal, M.D.\nTreasurer"),
+    Detail("picture", "assets/executive/E3.jpg"),
+  ],
+  [
+    Detail("name", "Yangming Cao, M.D.\nSecretary"),
+    Detail("picture", "assets/executive/E4.jpg"),
   ],
 ];
 
