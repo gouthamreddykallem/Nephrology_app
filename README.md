@@ -20,3 +20,8 @@ docker-compose up --build
 docker build -t my-chatbot .
 docker run -p 5000:5000 my-chatbot
 
+
+docker-compose down
+docker-compose up -d
+
+flutter build apk --release
