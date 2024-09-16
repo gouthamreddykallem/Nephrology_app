@@ -14,7 +14,6 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 150.0),
       alignment: Alignment.center,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -42,10 +41,10 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
         children: [
           // Positioned arcs
           Positioned(
-            top: -50,
+            top: 0,
             left: -80,
             child: CircleAvatar(
-              radius: 100,
+              radius: 80,
               backgroundColor: Colors.white.withOpacity(0.1),
             ),
           ),
@@ -61,7 +60,7 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
             top: 350,
             left: -80,
             child: CircleAvatar(
-              radius: 150,
+              radius: 120,
               backgroundColor: Colors.white.withOpacity(0.1),
             ),
           ),
@@ -77,7 +76,7 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
             duration: const Duration(milliseconds: 300),
             curve: Curves.easeInOut,
             child: Padding(
-              padding: const EdgeInsets.only(top: 28.0, left: 16.0, right: 16.0),
+              padding: const EdgeInsets.only(top: 66.0, left: 16.0, right: 16.0),
               child: Column(
                 children: [
                   if (isExpanded) ...[

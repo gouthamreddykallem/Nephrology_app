@@ -30,143 +30,113 @@ class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: ListView(
-        children: [
-          Stack(
-            children: [
-              const Header(),
-              Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                child: quickButtons(context),
-              ),
-              Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                child: searchBar(context),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 8.0,
-          ),
-          buildTile(context, primaryColor, "ABOUT US", "assets/aboutus.svg", 48,
-              () => _toggleExpand(0), expandWidgetsHome[0], true),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0),
-            child: AnimatedSize(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-              child: expandWidgetsHome[0]
-                  ? BuildCategories(
-                      categories: aboutUs,
-                      drawLinesOnRight: false,
-                      cardColor: secondaryColor,
-                    )
-                  : const SizedBox.shrink(),
+      child: Container(
+        color: bgColor,
+        child: ListView(
+          children: [
+            const Header(),
+            // Stack(
+            //   children: [
+            //
+            //     Positioned(
+            //       top: 0,
+            //       left: 0,
+            //       right: 0,
+            //       child: quickButtons(context),
+            //     ),
+            //     Positioned(
+            //       top: 0,
+            //       left: 0,
+            //       right: 0,
+            //       child: searchBar(context),
+            //     ),
+            //   ],
+            // ),
+            const SizedBox(
+              height: 8.0,
             ),
-          ),
-          buildTile(context, primaryColor, "SERVICES", "assets/kidneyIcon.svg",
-              48, () => {_toggleExpand(1)}, expandWidgetsHome[1], true),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0),
-            child: AnimatedSize(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-              child: expandWidgetsHome[1]
-                  ? const BuildServices()
-                  : const SizedBox.shrink(),
+            quickButtons(context),
+            buildTile(context, primaryColor, "ABOUT US", "assets/aboutus.svg",
+                48, () => _toggleExpand(0), expandWidgetsHome[0], true),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              child: AnimatedSize(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                child: expandWidgetsHome[0]
+                    ? BuildCategories(
+                        categories: aboutUs,
+                        drawLinesOnRight: false,
+                        cardColor: secondaryColor,
+                      )
+                    : const SizedBox.shrink(),
+              ),
             ),
-          ),
-          buildTile(
-            context,
-            primaryColor,
-            "MAKE A PAYMENT",
-            "assets/payment.svg",
-            42,
-            () => {
-              Navigator.push(
+            buildTile(
                 context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const PaymentsPage();
-                  },
-                ),
-              )
-            },
-            false,
-            false,
-          ),
-          buildTile(
-            context,
-           primaryColor,
-            "CONTACT US",
-            "assets/contact_us.svg",
-            30,
-            () => {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const ContactUsPage();
-                  },
-                ),
-              )
-            },
-            false,
-            false,
-          ),
-          const SizedBox(
-            height: 50.0,
-          ),
-        ],
+                primaryColor,
+                "SERVICES",
+                "assets/kidneyIcon.svg",
+                48,
+                () => {_toggleExpand(1)},
+                expandWidgetsHome[1],
+                true),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              child: AnimatedSize(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                child: expandWidgetsHome[1]
+                    ? const BuildServices()
+                    : const SizedBox.shrink(),
+              ),
+            ),
+            buildTile(
+              context,
+              primaryColor,
+              "MAKE A PAYMENT",
+              "assets/payment.svg",
+              42,
+              () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const PaymentsPage();
+                    },
+                  ),
+                )
+              },
+              false,
+              false,
+            ),
+            buildTile(
+              context,
+              primaryColor,
+              "CONTACT US",
+              "assets/contact_us.svg",
+              30,
+              () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const ContactUsPage();
+                    },
+                  ),
+                )
+              },
+              false,
+              false,
+            ),
+            const SizedBox(
+              height: 50.0,
+            ),
+          ],
+        ),
       ),
     );
   }
-}
-
-Widget searchBar(BuildContext context) {
-  return Container(
-    decoration: BoxDecoration(
-      color: lightCyan,
-      borderRadius: const BorderRadius.only(
-        bottomRight: Radius.circular(26),
-        bottomLeft: Radius.circular(26),
-      ),
-      boxShadow: [
-        BoxShadow(
-          offset: const Offset(4, 4),
-          blurRadius: 10,
-          color: primaryColorLight.withOpacity(0.8),
-        ),
-      ],
-    ),
-    child: Padding(
-      padding: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 10),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(26),
-        ),
-        child: ListTile(
-          leading: const Icon(
-            Icons.search_rounded,
-            color: secondaryColor,
-          ),
-          title: TextField(
-            textInputAction: TextInputAction.search,
-            onSubmitted: (pattern) {},
-            decoration: const InputDecoration(
-              hintText: "Search",
-              border: InputBorder.none,
-            ),
-          ),
-        ),
-      ),
-    ),
-  );
 }
 
 Widget buildTile(
@@ -254,24 +224,9 @@ Widget buildTile(
 
 Widget quickButtons(BuildContext context) {
   return Container(
-    padding:
-        const EdgeInsets.only(top: 98.0, bottom: 16.0, left: 16.0, right: 16.0),
+    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
     alignment: Alignment.center,
     width: double.infinity,
-    decoration: const BoxDecoration(
-      color: lightCyan,
-      borderRadius: BorderRadius.only(
-        bottomRight: Radius.circular(26),
-        bottomLeft: Radius.circular(26),
-      ),
-      boxShadow: [
-        BoxShadow(
-          offset: Offset(4, 4),
-          blurRadius: 10,
-          color: Colors.black38,
-        ),
-      ],
-    ),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -284,7 +239,6 @@ Widget quickButtons(BuildContext context) {
                         Uri.parse("https://www.myhealthrecord.com/Portal/SSO"))
                   }),
         ),
-
         const SizedBox(width: 16), // Adjust spacing as needed
         Expanded(
           child: buildButton(
@@ -315,7 +269,7 @@ Widget buildButton(BuildContext context, String title, Function onTap) {
     onPressed: onTap as void Function()?,
     style: ElevatedButton.styleFrom(
       foregroundColor: Colors.white,
-      backgroundColor: primaryColor, // Set the text color
+      backgroundColor: secondaryColorDark, // Set the text color
       textStyle: const TextStyle(
         fontSize: 20, // Set the font size
         fontWeight: FontWeight.bold, // Set the font weight
