@@ -18,7 +18,7 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
       width: double.infinity,
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [primaryColor, primaryColorLight],
+          colors: [primaryColor, primaryColor],
           begin: FractionalOffset(0.0, 0.0),
           end: FractionalOffset(0.0, 1.0),
           stops: [0.0, 1.0],
@@ -76,7 +76,7 @@ class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
             duration: const Duration(milliseconds: 300),
             curve: Curves.easeInOut,
             child: Padding(
-              padding: const EdgeInsets.only(top: 66.0, left: 16.0, right: 16.0),
+              padding: const EdgeInsets.only(top: 68.0, left: 16.0, right: 16.0),
               child: Column(
                 children: [
                   if (isExpanded) ...[

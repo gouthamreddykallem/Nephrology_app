@@ -12,12 +12,12 @@ class CustomFloatingAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 50.0, // Adjust this value to control the vertical position
+      top: 60.0, // Adjust this value to control the vertical position
       left: 16.0,
       right: 16.0,
       child: Container(
-        padding: const EdgeInsets.all(8.0),
-        height: 60.0, // Adjust the height of the AppBar
+        padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 6.0),
+        height: 50.0, // Adjust the height of the AppBar
         decoration: BoxDecoration(
           color: primaryColorLight, // Solid color background
           borderRadius: BorderRadius.circular(30.0), // Rounded corners
@@ -52,7 +52,7 @@ class CustomFloatingAppBar extends StatelessWidget {
                     fontSize: 18.0,
                     color: Colors.white,
                     fontFamily: 'Poppins',
-                    fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ],
@@ -61,7 +61,7 @@ class CustomFloatingAppBar extends StatelessWidget {
             Container(
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white, // Background color of the circle
+                color: bgColor, // Background color of the circle
               ),
               child: IconButton(
                 icon: const Icon(
