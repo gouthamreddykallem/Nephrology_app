@@ -144,6 +144,7 @@ class _DetailsPageState extends State<DetailsPage> {
       appBar: AppBar(
         backgroundColor: primaryColor,
         elevation: 0,
+        shadowColor: Colors.black.withOpacity(0.4),
         leading: GestureDetector(
           onTap: () {
             Navigator.of(context).pop();
@@ -158,7 +159,7 @@ class _DetailsPageState extends State<DetailsPage> {
         ),
         title: Text(
           title!,
-          style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          style: const TextStyle(fontWeight: FontWeight.w500, color: Colors.white),
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
         ),

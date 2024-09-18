@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nephrology_app/pages/layout.dart';
 import 'package:nephrology_app/pages/splash_page.dart';
 import 'package:nephrology_app/shared/color.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 
 

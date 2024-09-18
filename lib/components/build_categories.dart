@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nephrology_app/pages/details_page.dart';
-import 'package:nephrology_app/shared/color.dart';
 import 'package:nephrology_app/shared/detail.dart';
 import 'package:nephrology_app/shared/style.dart';
 

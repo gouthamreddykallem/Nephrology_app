@@ -99,6 +99,7 @@ flutter:
   - assets/
   - assets/providers/
   - assets/covers/
+  - assets/images/
   # /launch_image.jpg
   # - assets/background.jpg
   # - assets/background.jpg

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nephrology_app/pages/contact_us_page.dart';
 import 'package:nephrology_app/pages/details_page.dart';
-import 'package:nephrology_app/pages/education_page.dart';
 import 'package:nephrology_app/pages/online_forms_page.dart';
 import 'package:nephrology_app/shared/color.dart';
 import 'package:nephrology_app/shared/data.dart';
@@ -62,14 +61,14 @@ class SideDrawer extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        currentAccountPicture: const CircleAvatar(
-          backgroundColor: Colors.white,
-          child: Icon(
-            Icons.local_hospital_rounded,
-            size: 50.0,
-            color: primaryColor,
-          ),
-        ),
+        // currentAccountPicture: const CircleAvatar(
+        //   backgroundColor: Colors.white,
+        //   child: Icon(
+        //     Icons.local_hospital_rounded,
+        //     size: 50.0,
+        //     color: primaryColor,
+        //   ),
+        // ),
       ),
       ListTile(
         title: const Text('Home'),
