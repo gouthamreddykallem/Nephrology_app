@@ -32,7 +32,6 @@ class _LayOutState extends State<LayOut> {
             children: [
               // Main body content
               const Center(
-
                 child: HomeBody(),
               ),
               // Custom floating AppBar

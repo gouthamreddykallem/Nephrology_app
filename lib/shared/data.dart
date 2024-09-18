@@ -513,3 +513,4 @@ List<Detail> resources = [
   Detail("description", "Our goal is to assist patients with:"),
   Detail("points", "Consultation and management of renal disease and renal failure\nDialysis treatment and supervised care\nMonitoring, reviewing and recommending dietary services\nHemodialysis\nPeritoneal Dialysis "),
 ];
+

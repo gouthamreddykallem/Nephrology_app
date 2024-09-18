@@ -61,7 +61,7 @@ class CustomFloatingAppBar extends StatelessWidget {
             Container(
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                color: bgColor, // Background color of the circle
+                color: lightBlue, // Background color of the circle
               ),
               child: IconButton(
                 icon: const Icon(
