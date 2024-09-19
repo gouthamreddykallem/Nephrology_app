@@ -28,12 +28,12 @@ class _ServicesSectionState extends State<ServicesSection>
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(20.0),
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.only(left:20.0, right: 20.0, top: 20.0, bottom: 16.0),
       alignment: Alignment.center,
       width: double.infinity,
       decoration: BoxDecoration(
         color: primaryColor,
-        borderRadius: BorderRadius.circular(22.0),
+        borderRadius: BorderRadius.circular(24.0),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -92,7 +92,7 @@ class _ServicesSectionState extends State<ServicesSection>
             itemBuilder: (context, index) {
               final section = sections[index];
               return Container(
-                margin: const EdgeInsets.symmetric(vertical: 6.0),
+                margin: const EdgeInsets.symmetric(vertical: 4.0),
                 padding: const EdgeInsets.all(20.0),
                 decoration: BoxDecoration(
                   color: section.isExpanded ? grey : primaryColorLight,
@@ -228,7 +228,7 @@ class _ServicesSectionState extends State<ServicesSection>
             },
           ),
           Container(
-            margin: const EdgeInsets.symmetric(vertical: 6.0),
+            margin: const EdgeInsets.symmetric(vertical: 4.0),
             padding: const EdgeInsets.all(20.0),
             decoration: BoxDecoration(
               color: grey,

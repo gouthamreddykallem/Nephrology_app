@@ -45,12 +45,12 @@ class _AboutSectionState extends State<AboutSection>
 
     return Container(
       margin: const EdgeInsets.all(20.0),
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.only(left:20.0, right: 20.0, top: 20.0, bottom: 16.0),
       alignment: Alignment.center,
       width: double.infinity,
       decoration: BoxDecoration(
         color: primaryColor,
-        borderRadius: BorderRadius.circular(22.0),
+        borderRadius: BorderRadius.circular(24.0),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -58,6 +58,19 @@ class _AboutSectionState extends State<AboutSection>
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              const Text(
+                "About",
+                style: TextStyle(
+                  fontFamily: "Poppins",
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w500,
+                  fontStyle: FontStyle.italic,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(
+                width: 6.0,
+              ),
               Container(
                 padding: const EdgeInsets.all(6.0),
                 decoration: BoxDecoration(
@@ -73,17 +86,6 @@ class _AboutSectionState extends State<AboutSection>
                       color: primaryColor,
                     )),
               ),
-              const SizedBox(
-                width: 4.0,
-              ),
-              const Text("About",
-                  style: TextStyle(
-                    fontFamily: "Poppins",
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w500,
-                    fontStyle: FontStyle.italic,
-                    color: Colors.white,
-                  ))
             ],
           ),
           const SizedBox(
@@ -139,7 +141,7 @@ class _AboutSectionState extends State<AboutSection>
             itemBuilder: (context, index) {
               final section = sections[index];
               return Container(
-                margin: const EdgeInsets.symmetric(vertical: 6.0),
+                margin: const EdgeInsets.symmetric(vertical: 4.0),
                 padding: const EdgeInsets.all(20.0),
                 decoration: BoxDecoration(
                   color: section.isExpanded ? grey : primaryColorLight,
@@ -182,9 +184,10 @@ class _AboutSectionState extends State<AboutSection>
                             backgroundColor: lightBlue,
                             child: IconButton(
                               onPressed: () => _toggleExpand(index),
-                              icon: Icon(section.isExpanded
-                                  ? Icons.remove
-                                  : Icons.add, color: primaryColor,),
+                              icon: Icon(
+                                section.isExpanded ? Icons.remove : Icons.add,
+                                color: primaryColor,
+                              ),
                             ),
                           )
                       ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nephrology_app/components/about_section.dart';
+import 'package:nephrology_app/components/contact_section.dart';
 import 'package:nephrology_app/components/hero_section.dart';
 import 'package:nephrology_app/components/services_section.dart';
 import 'package:nephrology_app/shared/color.dart';
@@ -33,6 +34,7 @@ class _HomeBodyState extends State<HomeBody> {
             const SizedBox(height: 16.0,),
             const AboutSection(),
             const ServicesSection(),
+            const ContactUsSection(),
           ],
         ),
       ),

@@ -20,12 +20,6 @@ class _HeroSectionState extends State<HeroSection>
       width: double.infinity,
       decoration: const BoxDecoration(
         color: primaryColor,
-        border: Border(
-          bottom: BorderSide(
-            color: Colors.white, // Border color
-            width: 10.0, // Border thickness
-          ),
-        ),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center, // Center items vertically
