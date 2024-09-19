@@ -176,16 +176,17 @@ class _AboutSectionState extends State<AboutSection>
                             )
                           ],
                         ),
-                        if(!section.isExpanded)
-                        CircleAvatar(
-                          radius: 30.0,
-                          backgroundColor: lightBlue,
-                          child: IconButton(
-                            onPressed: () => _toggleExpand(index),
-                            icon: Icon(
-                                section.isExpanded ? Icons.remove : Icons.add),
-                          ),
-                        )
+                        if (!section.isExpanded)
+                          CircleAvatar(
+                            radius: 30.0,
+                            backgroundColor: lightBlue,
+                            child: IconButton(
+                              onPressed: () => _toggleExpand(index),
+                              icon: Icon(section.isExpanded
+                                  ? Icons.remove
+                                  : Icons.add, color: primaryColor,),
+                            ),
+                          )
                       ],
                     ),
                     AnimatedCrossFade(
@@ -198,7 +199,7 @@ class _AboutSectionState extends State<AboutSection>
                             section.content,
                             style: const TextStyle(
                               fontFamily: "Poppins",
-                              fontSize: 14.0,
+                              fontSize: 12.0,
                               fontWeight: FontWeight.normal,
                               color: Colors.white,
                             ),
@@ -209,8 +210,8 @@ class _AboutSectionState extends State<AboutSection>
                               Utilities.urlLauncher(Uri.parse(section.link));
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors
-                                  .white, // Set the background color to white
+                              backgroundColor: Colors.white,
+                              foregroundColor: primaryColor,
                             ),
                             child: Text(section.buttonText),
                           ),
@@ -279,7 +280,8 @@ final List<Section> sections = [
   ),
   Section(
     title: 'Events',
-    content: 'Stay connected with The Nephrology Group through our events. See upcoming events and community outreach activities.',
+    content:
+        'Stay connected with The Nephrology Group through our events. See upcoming events and community outreach activities.',
     buttonText: 'View Events',
     link: 'https://www.thenephrologygroupinc.com/Events',
     isExpanded: false,
