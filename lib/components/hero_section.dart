@@ -85,31 +85,31 @@ class _HeroSectionState extends State<HeroSection>
                     ),
                   ),
                   const SizedBox(width: 16), // Add spacing between buttons
-                  Expanded(
-                    child: SizedBox(
-                      height: 50, // Set a fixed height for the buttons
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Utilities.urlLauncher(Uri.parse(
-                              "https://www.myhealthrecord.com/Portal/SSO"));
-                        },
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          backgroundColor: grey, // Button color
-                          alignment: Alignment.center,
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(2.0),
-                          child: Text(
-                            "Patient Portal",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 12.0, fontWeight: FontWeight.w300),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  // Expanded(
+                  //   child: SizedBox(
+                  //     height: 50, // Set a fixed height for the buttons
+                  //     child: ElevatedButton(
+                  //       onPressed: () {
+                  //         Utilities.urlLauncher(Uri.parse(
+                  //             "https://www.myhealthrecord.com/Portal/SSO"));
+                  //       },
+                  //       style: ElevatedButton.styleFrom(
+                  //         foregroundColor: Colors.white,
+                  //         backgroundColor: grey, // Button color
+                  //         alignment: Alignment.center,
+                  //       ),
+                  //       child: const Padding(
+                  //         padding: EdgeInsets.all(2.0),
+                  //         child: Text(
+                  //           "Patient Portal",
+                  //           textAlign: TextAlign.center,
+                  //           style: TextStyle(
+                  //               fontSize: 12.0, fontWeight: FontWeight.w300),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
               const SizedBox(height: 40), // Add spacing before the image
