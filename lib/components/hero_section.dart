@@ -116,13 +116,13 @@ class _HeroSectionState extends State<HeroSection>
             ],
           ),
         ),
-        Image.asset(
-          'assets/images/medical_care.jpeg', // Path to your JPEG image
-          fit: BoxFit.cover, // Adjust the fit as needed
-          width: double.infinity,
-          height: 200, // Set height based on your layout
-        ),
-        const SizedBox(height: 16.0,),
+        // Image.asset(
+        //   'assets/images/medical_care.jpeg', // Path to your JPEG image
+        //   fit: BoxFit.cover, // Adjust the fit as needed
+        //   width: double.infinity,
+        //   height: 200, // Set height based on your layout
+        // ),
+        const SizedBox(height: 12.0,),
       ],
     );
   }
