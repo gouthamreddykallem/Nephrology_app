@@ -7,16 +7,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:nephrology_app/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool onboardingComplete = prefs.getBool('onboarding_complete') ?? false;
-    await tester.pumpWidget(MyApp(onboardingComplete: onboardingComplete));
+    await tester.pumpWidget(const MyApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

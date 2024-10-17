@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 2.0.0+1
+version: 1.0.0+1
 
 environment:
   sdk: '>=3.4.3 <4.0.0'
@@ -42,26 +42,14 @@ dependencies:
   flutter_chat_ui: ^1.6.12
   flutter_chat_types: ^3.6.2
   http: ^1.2.1
-  # uuid: ^4.4.0
+  uuid: ^4.4.0
   url_launcher: ^6.3.0
   easy_search_bar: ^2.5.0
-  syncfusion_flutter_pdfviewer:
-  syncfusion_flutter_pdf:
+  syncfusion_flutter_pdfviewer: ^26.1.40
+  syncfusion_flutter_pdf: ^26.1.40
   permission_handler: ^11.3.1
   path_provider: ^2.1.3
   flutter_native_splash: ^2.4.1
-  shared_preferences: ^2.0.15
-  showcaseview:
-    git: 
-      url: https://github.com/chandrabezzo/flutter_showcaseview
-      ref: bugfix/text-theme/removed-3.22
-  # dialogflow_grpc: any
-  uuid: ^3.0.7
-  google_sign_in: ^6.1.0
-  googleapis_auth: ^1.4.0
-  googleapis: ^11.0.0
-  jwt_decoder: ^2.0.1
-  dart_jsonwebtoken: ^2.4.1
 
 dev_dependencies:
   flutter_test:
@@ -73,7 +61,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
-  # http: ^1.2.1
+  http: ^1.2.1
   flutter_launcher_icons: ^0.13.1
 
 
@@ -109,10 +97,9 @@ flutter:
   - assets/logo_full.jpg
   - assets/logo.png
   - assets/
-  # - assets/providers/
+  - assets/providers/
   - assets/covers/
   - assets/images/
-  - assets/credentials.json
   # /launch_image.jpg
   # - assets/background.jpg
   # - assets/background.jpg

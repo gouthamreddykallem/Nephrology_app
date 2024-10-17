@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:nephrology_app/shared/color.dart';
 import 'package:nephrology_app/utilities/utils.dart';
-import 'package:showcaseview/showcaseview.dart';
 
 class HeroSection extends StatefulWidget {
-  final GlobalKey appointmentKey;
-
-  const HeroSection({Key? key, required this.appointmentKey}) : super(key: key);
+  const HeroSection({super.key});
 
   @override
   State<HeroSection> createState() => _HeroSectionState();
 }
 
-class _HeroSectionState extends State<HeroSection> {
+class _HeroSectionState extends State<HeroSection>
+    with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,20 +20,17 @@ class _HeroSectionState extends State<HeroSection> {
             top: 80.0,
             left: 16.0,
             right: 16.0,
-            bottom: 40.0, // Added bottom padding for the curved shape
           ),
           alignment: Alignment.center,
           width: double.infinity,
           decoration: const BoxDecoration(
             color: primaryColor,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(30.0),
-              bottomRight: Radius.circular(30.0),
-            ),
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment:
+                MainAxisAlignment.center, // Center items vertically
+            crossAxisAlignment:
+                CrossAxisAlignment.center, // Center items horizontally
             children: [
               const SizedBox(height: 10),
               const Text(
@@ -48,7 +43,7 @@ class _HeroSectionState extends State<HeroSection> {
                   color: Colors.white,
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 10), // Add some spacing between texts
               const Text(
                 "Dedicated to providing personalized and advanced treatment for kidney diseases.",
                 textAlign: TextAlign.left,
@@ -59,43 +54,74 @@ class _HeroSectionState extends State<HeroSection> {
                   color: Colors.white,
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 30), // Add spacing before buttons
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment:
+                    MainAxisAlignment.center, // Center buttons horizontally
                 children: [
                   Expanded(
                     child: SizedBox(
-                      height: 50,
-                      child: Showcase(
-                        key: widget.appointmentKey,
-                        description: 'Tap here to schedule an appointment',
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Utilities.urlLauncher(Uri(scheme: 'tel', path: '+1-559-228-6600'));
-                          },
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: darkGrey,
-                            backgroundColor: lightBlue,
-                            alignment: Alignment.center,
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.all(2.0),
-                            child: Text(
-                              "Schedule an Appointment",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w300),
-                            ),
+                      height: 50, // Set a fixed height for the buttons
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Utilities.urlLauncher(
+                              Uri(scheme: 'tel', path: '+1-559-228-6600'));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: darkGrey,
+                          backgroundColor: lightBlue, // Button color
+                          alignment: Alignment.center,
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(2.0),
+                          child: Text(
+                            "Schedule an Appointment",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 12.0, fontWeight: FontWeight.w300),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  const SizedBox(width: 16), // Add spacing between buttons
+                  // Expanded(
+                  //   child: SizedBox(
+                  //     height: 50, // Set a fixed height for the buttons
+                  //     child: ElevatedButton(
+                  //       onPressed: () {
+                  //         Utilities.urlLauncher(Uri.parse(
+                  //             "https://www.myhealthrecord.com/Portal/SSO"));
+                  //       },
+                  //       style: ElevatedButton.styleFrom(
+                  //         foregroundColor: Colors.white,
+                  //         backgroundColor: grey, // Button color
+                  //         alignment: Alignment.center,
+                  //       ),
+                  //       child: const Padding(
+                  //         padding: EdgeInsets.all(2.0),
+                  //         child: Text(
+                  //           "Patient Portal",
+                  //           textAlign: TextAlign.center,
+                  //           style: TextStyle(
+                  //               fontSize: 12.0, fontWeight: FontWeight.w300),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
+              const SizedBox(height: 40), // Add spacing before the image
             ],
           ),
         ),
+        // Image.asset(
+        //   'assets/images/medical_care.jpeg', // Path to your JPEG image
+        //   fit: BoxFit.cover, // Adjust the fit as needed
+        //   width: double.infinity,
+        //   height: 200, // Set height based on your layout
+        // ),
         const SizedBox(height: 12.0,),
       ],
     );
