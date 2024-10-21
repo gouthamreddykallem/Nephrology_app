@@ -24,7 +24,8 @@ class Providers extends StatelessWidget {
                 title,
                 style: picTitleStyle,
                 maxLines: 2, // Allow the text to span up to 2 lines
-                overflow: TextOverflow.ellipsis, // Handle overflow with an ellipsis
+                overflow:
+                    TextOverflow.ellipsis, // Handle overflow with an ellipsis
               ),
             ),
             InkWell(
@@ -86,7 +87,7 @@ class ProviderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     String? name;
     String? imgPath;
-    //Extract details from the list
+    // Extract details from the list
     for (var detail in details) {
       switch (detail.key) {
         case 'name':
@@ -104,7 +105,7 @@ class ProviderCard extends StatelessWidget {
         padding:
             const EdgeInsets.all(5.0), // Add padding around the entire card
         child: ClipRRect(
-          //borderRadius: BorderRadius.circular(20),
+          // borderRadius: BorderRadius.circular(20),
           child: InkWell(
             onTap: () {
               Navigator.push(
@@ -128,13 +129,11 @@ class ProviderCard extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 8.0, vertical: 10.0),
-                  child: Flexible(
-                    child: Text(
-                      name!,
-                      style: picStyle, // Ensure titleStyle is defined correctly
-                      textAlign: TextAlign.center,
-                      //overflow: TextOverflow.ellipsis,
-                    ),
+                  child: Text(
+                    name!,
+                    style: picStyle, // Ensure picStyle is defined correctly
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 const SizedBox(height: 20),

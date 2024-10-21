@@ -14,3 +14,14 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+docker-compose up --build
+
+docker build -t my-chatbot .
+docker run -p 5000:5000 my-chatbot
+
+
+docker-compose down
+docker-compose up -d
+
+flutter build apk --release
