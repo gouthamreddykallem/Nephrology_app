@@ -1,0 +1,17 @@
+# Use the official Rasa image as the base image
+FROM rasa/rasa:latest
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the actions directory to the container
+COPY actions /app/actions
+
+# Install additional dependencies if required
+# RUN pip install <additional-dependencies>
+
+# Expose the port that Rasa action server will run on
+EXPOSE 5055
+
+# Start the Rasa action server
+CMD ["run", "actions", "--actions", "actions"]

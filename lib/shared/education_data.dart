@@ -20,3 +20,4 @@ List<Topic> topics = [
       imageName: 'assets/covers/angular.png',
       quizzes: []),
 ];
+

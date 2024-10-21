@@ -1,0 +1,10 @@
+version: "3.1"
+
+stories:
+
+- story: search for information
+  steps:
+    - intent: ask_information
+      entities:
+        - keyword: "services"
+    - action: action_search_database
