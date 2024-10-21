@@ -9,19 +9,29 @@ class AboutSection extends StatefulWidget {
   State<AboutSection> createState() => _AboutSectionState();
 }
 
-class _AboutSectionState extends State<AboutSection>
-    with SingleTickerProviderStateMixin {
+class _AboutSectionState extends State<AboutSection> with SingleTickerProviderStateMixin {
   void _toggleExpand(int index) {
     setState(() {
       for (int i = 0; i < sections.length; i++) {
         if (i == index) {
-          sections[i].isExpanded =
-              !sections[i].isExpanded; // Toggle selected section
+          sections[i].isExpanded = !sections[i].isExpanded;
         } else {
-          sections[i].isExpanded = false; // Collapse other sections
+          sections[i].isExpanded = false;
         }
       }
     });
+  }
+
+  void _handleItemTap(int index) {
+    if (sections[index].isExpanded) {
+      // If the item is already expanded, close it
+      setState(() {
+        sections[index].isExpanded = false;
+      });
+    } else {
+      // If the item is not expanded, toggle its state
+      _toggleExpand(index);
+    }
   }
 
   bool isTextExpanded = false;
@@ -35,10 +45,9 @@ class _AboutSectionState extends State<AboutSection>
   @override
   Widget build(BuildContext context) {
     const String fullText =
-        "Since 1975, The Nephrology Group, Inc. has been Central California’s largest and most trusted nephrology practice. We have grown from one dedicated physician to a comprehensive team of board-certified nephrologists, nurse practitioners, renal dietitians, nurse educators, and social workers. We offer a wide range of services to support our patients, from in-office visits to hospital care.";
+        "Since 1975, The Nephrology Group, Inc. has been Central California's largest and most trusted nephrology practice. We have grown from one dedicated physician to a comprehensive team of board-certified nephrologists, nurse practitioners, renal dietitians, nurse educators, and social workers. We offer a wide range of services to support our patients, from in-office visits to hospital care.";
 
-    const int truncatedLength =
-        80; // Number of characters to show when truncated
+    const int truncatedLength = 80;
     final String truncatedText = fullText.length > truncatedLength
         ? '${fullText.substring(0, truncatedLength)}...'
         : fullText;
@@ -68,9 +77,7 @@ class _AboutSectionState extends State<AboutSection>
                   color: Colors.white,
                 ),
               ),
-              const SizedBox(
-                width: 6.0,
-              ),
+              const SizedBox(width: 6.0),
               Container(
                 padding: const EdgeInsets.all(6.0),
                 decoration: BoxDecoration(
@@ -88,9 +95,7 @@ class _AboutSectionState extends State<AboutSection>
               ),
             ],
           ),
-          const SizedBox(
-            height: 16.0,
-          ),
+          const SizedBox(height: 16.0),
           const Align(
             alignment: Alignment.centerLeft,
             child: Text("Brief Overview",
@@ -101,9 +106,7 @@ class _AboutSectionState extends State<AboutSection>
                   color: Colors.white,
                 )),
           ),
-          const SizedBox(
-            height: 10.0,
-          ),
+          const SizedBox(height: 10.0),
           GestureDetector(
             onTap: _toggleTextExpand,
             child: AnimatedCrossFade(
@@ -131,100 +134,100 @@ class _AboutSectionState extends State<AboutSection>
                   : CrossFadeState.showFirst,
             ),
           ),
-          const SizedBox(
-            height: 16.0,
-          ),
+          const SizedBox(height: 16.0),
           ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: sections.length,
             itemBuilder: (context, index) {
               final section = sections[index];
-              return Container(
-                margin: const EdgeInsets.symmetric(vertical: 4.0),
-                padding: const EdgeInsets.all(20.0),
-                decoration: BoxDecoration(
-                  color: section.isExpanded ? grey : primaryColorLight,
-                  borderRadius: BorderRadius.circular(26.0),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: primaryColor,
-                              child: Icon(
-                                section.icon,
-                                color: lightBlue,
+              return GestureDetector(
+                onTap: () => _handleItemTap(index),
+                child: Container(
+                  margin: const EdgeInsets.symmetric(vertical: 4.0),
+                  padding: const EdgeInsets.all(20.0),
+                  decoration: BoxDecoration(
+                    color: section.isExpanded ? grey : primaryColorLight,
+                    borderRadius: BorderRadius.circular(26.0),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: primaryColor,
+                                child: Icon(
+                                  section.icon,
+                                  color: lightBlue,
+                                ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 10.0,
-                            ),
-                            Text(
-                              section.title,
-                              style: const TextStyle(
-                                fontFamily: "Poppins",
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white,
+                              const SizedBox(height: 10.0),
+                              Text(
+                                section.title,
+                                style: const TextStyle(
+                                  fontFamily: "Poppins",
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
+                          ),
+                          if (!section.isExpanded)
+                            CircleAvatar(
+                              radius: 30.0,
+                              backgroundColor: lightBlue,
+                              child: IconButton(
+                                onPressed: () => _toggleExpand(index),
+                                icon: Icon(
+                                  section.isExpanded ? Icons.remove : Icons.add,
+                                  color: primaryColor,
+                                ),
                               ),
                             )
-                          ],
-                        ),
-                        if (!section.isExpanded)
-                          CircleAvatar(
-                            radius: 30.0,
-                            backgroundColor: lightBlue,
-                            child: IconButton(
-                              onPressed: () => _toggleExpand(index),
-                              icon: Icon(
-                                section.isExpanded ? Icons.remove : Icons.add,
-                                color: primaryColor,
-                              ),
-                            ),
-                          )
-                      ],
-                    ),
-                    AnimatedCrossFade(
-                      duration: const Duration(milliseconds: 300),
-                      firstChild: Container(), // Empty container when collapsed
-                      secondChild: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            section.content,
-                            style: const TextStyle(
-                              fontFamily: "Poppins",
-                              fontSize: 12.0,
-                              fontWeight: FontWeight.normal,
-                              color: Colors.white,
-                            ),
-                          ),
-                          const SizedBox(height: 10.0),
-                          ElevatedButton(
-                            onPressed: () {
-                              Utilities.urlLauncher(Uri.parse(section.link));
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              foregroundColor: primaryColor,
-                            ),
-                            child: Text(section.buttonText),
-                          ),
                         ],
                       ),
-                      crossFadeState: section.isExpanded
-                          ? CrossFadeState.showSecond
-                          : CrossFadeState.showFirst,
-                    ),
-                  ],
+                      AnimatedCrossFade(
+                        duration: const Duration(milliseconds: 300),
+                        firstChild: Container(),
+                        secondChild: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 10.0),
+                            Text(
+                              section.content,
+                              style: const TextStyle(
+                                fontFamily: "Poppins",
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(height: 10.0),
+                            ElevatedButton(
+                              onPressed: () {
+                                Utilities.urlLauncher(Uri.parse(section.link));
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                foregroundColor: primaryColor,
+                              ),
+                              child: Text(section.buttonText),
+                            ),
+                          ],
+                        ),
+                        crossFadeState: section.isExpanded
+                            ? CrossFadeState.showSecond
+                            : CrossFadeState.showFirst,
+                      ),
+                    ],
+                  ),
                 ),
               );
             },

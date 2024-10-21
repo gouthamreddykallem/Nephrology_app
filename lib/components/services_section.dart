@@ -9,19 +9,29 @@ class ServicesSection extends StatefulWidget {
   State<ServicesSection> createState() => _ServicesSectionState();
 }
 
-class _ServicesSectionState extends State<ServicesSection>
-    with SingleTickerProviderStateMixin {
+class _ServicesSectionState extends State<ServicesSection> with SingleTickerProviderStateMixin {
   void _toggleExpand(int index) {
     setState(() {
       for (int i = 0; i < sections.length; i++) {
         if (i == index) {
-          sections[i].isExpanded =
-              !sections[i].isExpanded; // Toggle selected section
+          sections[i].isExpanded = !sections[i].isExpanded;
         } else {
-          sections[i].isExpanded = false; // Collapse other sections
+          sections[i].isExpanded = false;
         }
       }
     });
+  }
+
+  void _handleItemTap(int index) {
+    if (sections[index].isExpanded) {
+      // If the item is already expanded, close it
+      setState(() {
+        sections[index].isExpanded = false;
+      });
+    } else {
+      // If the item is not expanded, toggle its state
+      _toggleExpand(index);
+    }
   }
 
   @override
@@ -56,9 +66,7 @@ class _ServicesSectionState extends State<ServicesSection>
                       color: primaryColor,
                     )),
               ),
-              const SizedBox(
-                width: 4.0,
-              ),
+              const SizedBox(width: 4.0),
               const Text("Services",
                   style: TextStyle(
                     fontFamily: "Poppins",
@@ -69,9 +77,7 @@ class _ServicesSectionState extends State<ServicesSection>
                   ))
             ],
           ),
-          const SizedBox(
-            height: 16.0,
-          ),
+          const SizedBox(height: 16.0),
           const Align(
             alignment: Alignment.centerLeft,
             child: Text("Key Services Overview",
@@ -82,147 +88,147 @@ class _ServicesSectionState extends State<ServicesSection>
                   color: Colors.white,
                 )),
           ),
-          const SizedBox(
-            height: 16.0,
-          ),
+          const SizedBox(height: 16.0),
           ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: sections.length,
             itemBuilder: (context, index) {
               final section = sections[index];
-              return Container(
-                margin: const EdgeInsets.symmetric(vertical: 4.0),
-                padding: const EdgeInsets.all(20.0),
-                decoration: BoxDecoration(
-                  color: section.isExpanded ? grey : primaryColorLight,
-                  borderRadius: BorderRadius.circular(26.0),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+              return GestureDetector(
+                onTap: () => _handleItemTap(index),
+                child: Container(
+                  margin: const EdgeInsets.symmetric(vertical: 4.0),
+                  padding: const EdgeInsets.all(20.0),
+                  decoration: BoxDecoration(
+                    color: section.isExpanded ? grey : primaryColorLight,
+                    borderRadius: BorderRadius.circular(26.0),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: primaryColor,
+                                child: Icon(
+                                  section.icon,
+                                  color: lightBlue,
+                                ),
+                              ),
+                              const SizedBox(height: 10.0),
+                              Text(
+                                section.title,
+                                style: const TextStyle(
+                                  fontFamily: "Poppins",
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                          if (!section.isExpanded)
                             CircleAvatar(
-                              backgroundColor: primaryColor,
-                              child: Icon(
-                                section.icon,
-                                color: lightBlue,
+                              radius: 30.0,
+                              backgroundColor: lightBlue,
+                              child: IconButton(
+                                onPressed: () => _toggleExpand(index),
+                                icon: Icon(section.isExpanded
+                                    ? Icons.remove
+                                    : Icons.add, color: primaryColor,),
                               ),
                             ),
+                        ],
+                      ),
+                      AnimatedCrossFade(
+                        duration: const Duration(milliseconds: 300),
+                        firstChild: Container(),
+                        secondChild: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
                             const SizedBox(height: 10.0),
                             Text(
-                              section.title,
+                              section.content,
                               style: const TextStyle(
                                 fontFamily: "Poppins",
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.w500,
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.normal,
                                 color: Colors.white,
                               ),
                             ),
+                            const SizedBox(height: 10.0),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: section.subservices.length,
+                              itemBuilder: (context, subIndex) {
+                                final subservice = section.subservices[subIndex];
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 8.0),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Icon(
+                                        subservice.icon,
+                                        color: Colors.white,
+                                        size: 20.0,
+                                      ),
+                                      const SizedBox(width: 8.0),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              subservice.name,
+                                              style: const TextStyle(
+                                                fontFamily: "Poppins",
+                                                fontSize: 14.0,
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                            Text(
+                                              subservice.description,
+                                              style: const TextStyle(
+                                                fontFamily: "Poppins",
+                                                fontSize: 12.0,
+                                                fontWeight: FontWeight.normal,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                            const SizedBox(height: 10.0),
+                            ElevatedButton(
+                              onPressed: () {
+                                Utilities.urlLauncher(Uri.parse(section.link));
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                foregroundColor: primaryColor,
+                              ),
+                              child: Text(section.buttonText),
+                            ),
                           ],
                         ),
-                        if (!section.isExpanded)
-                          CircleAvatar(
-                            radius: 30.0,
-                            backgroundColor: lightBlue,
-                            child: IconButton(
-                              onPressed: () => _toggleExpand(index),
-                              icon: Icon(section.isExpanded
-                                  ? Icons.remove
-                                  : Icons.add, color: primaryColor,),
-                            ),
-                          ),
-                      ],
-                    ),
-                    AnimatedCrossFade(
-                      duration: const Duration(milliseconds: 300),
-                      firstChild: Container(), // Empty container when collapsed
-                      secondChild: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            section.content,
-                            style: const TextStyle(
-                              fontFamily: "Poppins",
-                              fontSize: 12.0,
-                              fontWeight: FontWeight.normal,
-                              color: Colors.white,
-                            ),
-                          ),
-                          const SizedBox(height: 10.0),
-                          // Display subservices as bullet points with icons
-                          ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: section.subservices.length,
-                            itemBuilder: (context, subIndex) {
-                              final subservice = section.subservices[subIndex];
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 8.0),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Icon(
-                                      subservice.icon,
-                                      color: Colors.white,
-                                      size: 20.0,
-                                    ),
-                                    const SizedBox(width: 8.0),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            subservice.name,
-                                            style: const TextStyle(
-                                              fontFamily: "Poppins",
-                                              fontSize: 14.0,
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                          Text(
-                                            subservice.description,
-                                            style: const TextStyle(
-                                              fontFamily: "Poppins",
-                                              fontSize: 12.0,
-                                              fontWeight: FontWeight.normal,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                          ),
-                          const SizedBox(height: 10.0),
-                          ElevatedButton(
-                            onPressed: () {
-                              Utilities.urlLauncher(Uri.parse(section.link));
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              foregroundColor: primaryColor,
-                            ),
-                            child: Text(section.buttonText),
-                          ),
-                        ],
+                        crossFadeState: section.isExpanded
+                            ? CrossFadeState.showSecond
+                            : CrossFadeState.showFirst,
                       ),
-                      crossFadeState: section.isExpanded
-                          ? CrossFadeState.showSecond
-                          : CrossFadeState.showFirst,
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               );
             },
