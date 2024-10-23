@@ -82,7 +82,8 @@ def needs_more_info(response):
         "need more details",
         "No information",
         "I'm sorry",
-        "I don't have enough context"
+        "I don't have enough context",
+        "I don't know"
     ]
     return any(keyword.lower() in response.lower() for keyword in keywords)
 
@@ -146,7 +147,7 @@ def chatbot_request():
         response = qa_chain({"query": query})
 
         if needs_more_info(response["result"]):
-            return jsonify({
+            return jsonify({ 
                 "text": "To better assist you with your query, we'll need some additional information.",
                 "collect_info": True
             })

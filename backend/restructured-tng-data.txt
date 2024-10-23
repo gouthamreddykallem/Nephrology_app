@@ -124,7 +124,7 @@ Consists of CEO and President, Executive Vice President, Treasurer, and Secretar
 
 
 # Payment services, make a payment,
-Please contact 33333 for any payment related queries
+Please contact 559-228-6600 for any payment related queries
 
 # Appointment Scheduling
 Online appointment scheduler available
@@ -144,36 +144,46 @@ Tehachapi: 20041 W. Valley Blvd #4 Tehachapi, California 93561
 Merced: 1140 Olivewood Dr. Merced, California 95348
 Los Banos: 1451 West Pacheco Blvd. STE E Los Banos, California 93635
 
+
+#Patient Referral Form link:
+https://www.thenephrologygroupinc.com/Portals/0/Online%20Forms/TNG%20NP%20referral%20form%208.23.pdf?ver=2024-02-08-174350-423
+
+#This is the link for Patient Information form, Patient Information form, Patient Information link:
+https://www.thenephrologygroupinc.com/Portals/0/Online%20Forms/Forms%201-7-2019/PatientInfo2019.pdf?ver=2019-01-14-153158-077
+
+#Medical History link:
+https://www.thenephrologygroupinc.com/Portals/0/medical-history.pdf
+
+#Patient Satisfaction Survey:
+https://www.thenephrologygroupinc.com/Portals/0/TNG%20Patient%20Survey%202023.pdf?ver=2023-08-10-192031-077
+
+
+
 #Frequently Asked Questions (FAQs)
 
-What are Renal Physicians?
-A Renal Physician or Nephrologist is a doctor who specializes in kidneys. They diagnose and care for patients with kidney diseases.
+#What are Renal Physicians?
+#A Renal Physician or Nephrologist is a doctor who specializes in kidneys. They diagnose and care for patients with kidney diseases.
 
-What do kidneys do?
+#What do kidneys do?
 Kidneys filter waste products and regulate fluid and electrolytes in the body. They also produce hormones to regulate blood pressure, produce blood cells, and maintain bone health.
 
-What is the GFR?
+#What is the GFR?
 The Glomerular Filtration Rate (GFR) measures kidney function through a calculation of serum creatinine, age, and gender. It's measured during a 24-hour urine collection.
 
-What is CKD?
+#What is CKD?
 CKD stands for Chronic Kidney Disease. It's a condition where kidney damage or reduced function persists for over 3 months. The leading causes are diabetes and high blood pressure.
 
-What tests can detect CKD?
+#What tests can detect CKD?
 Tests include blood pressure analysis, serum creatinine levels, and urine albumin. Your nephrologist may order more detailed tests based on your condition.
 
-What medications can I take if I have CKD?
+#What medications can I take if I have CKD?
 Patients with CKD should avoid NSAIDs, IV dyes, certain enemas, laxatives, and herbal products. Always consult your renal physician before starting any new medications.
 
-What happens if my kidneys fail?
+#What happens if my kidneys fail?
 Kidney failure leads to uremia, where the body fills with extra water and waste products. Without treatment (dialysis or kidney transplant), it can lead to seizures, coma, and death. Patients have the right to refuse or withdraw from treatment.
 
-# Patient Forms:
-provide the form links to user when asked
 
-Patient Information link (https://www.thenephrologygroupinc.com/Portals/0/Online%20Forms/Forms%201-7-2019/PatientInfo2019.pdf?ver=2019-01-14-153158-077)
-Medical History link (https://www.thenephrologygroupinc.com/Portals/0/medical-history.pdf)
-Patient Satisfaction Survey (https://www.thenephrologygroupinc.com/Portals/0/TNG%20Patient%20Survey%202023.pdf?ver=2023-08-10-192031-077)
 
-# New Patient Referral Form link:
-https://www.thenephrologygroupinc.com/Portals/0/Online%20Forms/TNG%20NP%20referral%20form%208.23.pdf?ver=2024-02-08-174350-423
+
+
 
