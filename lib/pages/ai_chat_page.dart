@@ -14,9 +14,12 @@ class CustomChatTheme extends DefaultChatTheme {
 }
 
 class PatientInfoForm extends StatefulWidget {
-  final Function(String, String, String) onSubmit;
+  final Function(Map<String, String>) onSubmit;
 
-  const PatientInfoForm({super.key, required this.onSubmit});
+  const PatientInfoForm({
+    super.key,
+    required this.onSubmit,
+  });
 
   @override
   State<PatientInfoForm> createState() => _PatientInfoFormState();
@@ -27,12 +30,14 @@ class _PatientInfoFormState extends State<PatientInfoForm> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _mobileController = TextEditingController();
+  final _queryController = TextEditingController();
 
   @override
   void dispose() {
     _nameController.dispose();
     _emailController.dispose();
     _mobileController.dispose();
+    _queryController.dispose();
     super.dispose();
   }
 
@@ -68,23 +73,51 @@ class _PatientInfoFormState extends State<PatientInfoForm> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              const Text(
+                'To better assist you, please provide your contact information:',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _nameController,
-                decoration: const InputDecoration(labelText: 'Full Name'),
+                decoration: const InputDecoration(
+                  labelText: 'Full Name',
+                  border: OutlineInputBorder(),
+                ),
                 validator: (value) =>
                     value?.isEmpty ?? true ? 'Please enter your name' : null,
               ),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _emailController,
-                decoration: const InputDecoration(labelText: 'Email'),
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  border: OutlineInputBorder(),
+                ),
                 validator: _validateEmail,
                 keyboardType: TextInputType.emailAddress,
               ),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _mobileController,
-                decoration: const InputDecoration(labelText: 'Mobile Number'),
+                decoration: const InputDecoration(
+                  labelText: 'Mobile Number',
+                  border: OutlineInputBorder(),
+                ),
                 validator: _validateMobile,
                 keyboardType: TextInputType.phone,
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: _queryController,
+                decoration: const InputDecoration(
+                  labelText: 'Message',
+                  hintText: 'Enter your query or message here...',
+                  border: OutlineInputBorder(),
+                  alignLabelWithHint: true,
+                ),
+                maxLines: 4,
+                keyboardType: TextInputType.multiline,
               ),
             ],
           ),
@@ -98,11 +131,15 @@ class _PatientInfoFormState extends State<PatientInfoForm> {
         ElevatedButton(
           onPressed: () {
             if (_formKey.currentState?.validate() ?? false) {
-              widget.onSubmit(
-                _nameController.text,
-                _emailController.text,
-                _mobileController.text,
-              );
+              widget.onSubmit({
+                'full_name': _nameController.text,
+                'email': _emailController.text,
+                'mobile': _mobileController.text,
+                'text': _queryController.text.isNotEmpty 
+                    ? _queryController.text 
+                    : 'No additional message provided',
+                'is_followup': 'true',
+              });
               Navigator.of(context).pop();
             }
           },
@@ -146,45 +183,8 @@ class _ChatScreenState extends State<ChatScreen> {
     });
   }
 
-  Future<void> _showPatientInfoForm(String question) async {
-    await showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => PatientInfoForm(
-        onSubmit: (name, email, mobile) async {
-          final response = await http.post(
-            Uri.parse('http://62.72.27.109/chatbot'),
-            headers: {'Content-Type': 'application/json'},
-            body: jsonEncode({
-              'text': question,
-              'full_name': name,
-              'email': email,
-              'mobile': mobile,
-            }),
-          );
-
-          if (response.statusCode == 200) {
-            final responseData = jsonDecode(response.body);
-            _addBotMessage(responseData['text']);
-          } else {
-            _addBotMessage(
-                "I apologize, but I'm having trouble processing your request. Please try again later.");
-          }
-        },
-      ),
-    );
-  }
-
-  void _handleSendPressed(types.PartialText message) async {
-    final textMessage = types.TextMessage(
-      author: _user,
-      createdAt: DateTime.now().millisecondsSinceEpoch,
-      id: const Uuid().v4(),
-      text: message.text,
-    );
-
+  Future<void> _sendChatbotRequest(Map<String, dynamic> payload) async {
     setState(() {
-      _messages.insert(0, textMessage);
       _isLoading = true;
     });
 
@@ -192,14 +192,24 @@ class _ChatScreenState extends State<ChatScreen> {
       final response = await http.post(
         Uri.parse('http://62.72.27.109/chatbot'),
         headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({'text': message.text}),
+        body: jsonEncode(payload),
       );
 
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
         
         if (responseData['collect_info'] == true) {
-          await _showPatientInfoForm(message.text);
+          // Show the form to collect information
+          if (!mounted) return;
+          await showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => PatientInfoForm(
+              onSubmit: (patientInfo) async {
+                await _sendChatbotRequest(patientInfo);
+              },
+            ),
+          );
         } else {
           _addBotMessage(responseData['text']);
         }
@@ -215,6 +225,21 @@ class _ChatScreenState extends State<ChatScreen> {
         _isLoading = false;
       });
     }
+  }
+
+  void _handleSendPressed(types.PartialText message) async {
+    final textMessage = types.TextMessage(
+      author: _user,
+      createdAt: DateTime.now().millisecondsSinceEpoch,
+      id: const Uuid().v4(),
+      text: message.text,
+    );
+
+    setState(() {
+      _messages.insert(0, textMessage);
+    });
+
+    await _sendChatbotRequest({'text': message.text});
   }
 
   @override
