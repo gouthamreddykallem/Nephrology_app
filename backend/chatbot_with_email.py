@@ -15,7 +15,64 @@ from email.mime.multipart import MIMEMultipart
 
 app = Flask(__name__)
 
-# [Previous configurations remain the same...]
+# Load environment variables
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = "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"
+
+# Load the document
+loader = TextLoader("restructured-tng-data.txt")
+documents = loader.load()
+
+# Split the document into chunks
+text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+texts = text_splitter.split_documents(documents)
+
+# Create embeddings
+embeddings = HuggingFaceEmbeddings()
+
+# Create a vector store
+db = Chroma.from_documents(texts, embeddings)
+
+# Initialize the Hugging Face model
+llm = HuggingFaceEndpoint(
+    repo_id="mistralai/Mistral-Nemo-Instruct-2407",
+    task="text-generation",
+    max_new_tokens=512,
+    do_sample=False,
+    repetition_penalty=1.03
+)
+
+# Create a retrieval chain
+qa_chain = RetrievalQA.from_chain_type(
+    llm=llm,
+    chain_type="stuff",
+    retriever=db.as_retriever(),
+    return_source_documents=True
+)
+
+def is_valid_email(email):
+    pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+    return re.match(pattern, email) is not None
+
+def is_valid_mobile(mobile):
+    pattern = r'^\+?1?\d{9,15}$'
+    return re.match(pattern, mobile) is not None
+
+def send_email(subject, body):
+    sender_email = "tngincapp@gmail.com"
+    sender_password = "cxrvfltrinkzbllu"
+    receiver_email = "gouthamkallem11@gmail.com"
+
+    message = MIMEMultipart()
+    message["From"] = sender_email
+    message["To"] = receiver_email
+    message["Subject"] = subject
+
+    message.attach(MIMEText(body, "plain"))
+
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+        server.login(sender_email, sender_password)
+        server.send_message(message)
+
 
 def needs_more_info(response):
     keywords = [
