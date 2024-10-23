@@ -25,8 +25,7 @@ def needs_more_info(response):
         "need more details",
         "No information",
         "I'm sorry",
-        "I don't have enough context",
-        "I don't know"
+        "I don't have enough context"
     ]
     return any(keyword.lower() in response.lower() for keyword in keywords)
 
@@ -62,9 +61,10 @@ def chatbot_request():
 
         # Check if this is a follow-up with patient information
         has_patient_info = all(key in data for key in ['full_name', 'email', 'mobile'])
+        is_followup = data.get('is_followup', False)
 
-        if has_patient_info:
-            # Send email with patient information
+        # If this is a follow-up with patient info after needs_more_info
+        if has_patient_info and is_followup:
             subject = "New Patient Query"
             body = f"Patient Information:\n\n" \
                    f"Full Name: {data['full_name']}\n" \
@@ -90,7 +90,7 @@ def chatbot_request():
 
         if needs_more_info(response["result"]):
             return jsonify({
-                "text": "To better assist you, we'll need some additional information.",
+                "text": "To better assist you with your query, we'll need some additional information.",
                 "collect_info": True
             })
         else:
