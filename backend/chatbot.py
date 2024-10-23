@@ -78,7 +78,8 @@ def needs_more_info(response):
                 "need more details",
                 "No information",
                 "I'm sorry",
-                "I don't have enough context"
+                "I don't have enough context",
+                "I don't know"
             ]
     return any(keyword.lower() in response.lower() for keyword in keywords)
 
