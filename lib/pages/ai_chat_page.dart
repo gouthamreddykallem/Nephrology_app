@@ -31,6 +31,9 @@ class _PatientInfoFormState extends State<PatientInfoForm> {
   final _emailController = TextEditingController();
   final _mobileController = TextEditingController();
   final _queryController = TextEditingController();
+  final _dobController = TextEditingController();
+  DateTime? _selectedDate;
+
 
   @override
   void dispose() {
@@ -38,6 +41,7 @@ class _PatientInfoFormState extends State<PatientInfoForm> {
     _emailController.dispose();
     _mobileController.dispose();
     _queryController.dispose();
+    _dobController.dispose();
     super.dispose();
   }
 
@@ -63,6 +67,34 @@ class _PatientInfoFormState extends State<PatientInfoForm> {
     return null;
   }
 
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate ?? DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: const ColorScheme.light(
+              primary: Color(0xff1C4D85), // Header background color
+              onPrimary: Colors.white, // Header text color
+              onSurface: Colors.black, // Calendar text color
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
+    
+    if (picked != null && picked != _selectedDate) {
+      setState(() {
+        _selectedDate = picked;
+        _dobController.text = "${picked.month}/${picked.day}/${picked.year}";
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -86,6 +118,22 @@ class _PatientInfoFormState extends State<PatientInfoForm> {
                 ),
                 validator: (value) =>
                     value?.isEmpty ?? true ? 'Please enter your name' : null,
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: _dobController,
+                decoration: InputDecoration(
+                  labelText: 'Date of Birth',
+                  border: const OutlineInputBorder(),
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.calendar_today),
+                    onPressed: () => _selectDate(context),
+                  ),
+                ),
+                readOnly: true,
+                validator: (value) =>
+                    value?.isEmpty ?? true ? 'Please select your date of birth' : null,
+                onTap: () => _selectDate(context),
               ),
               const SizedBox(height: 16),
               TextFormField(
@@ -133,6 +181,7 @@ class _PatientInfoFormState extends State<PatientInfoForm> {
             if (_formKey.currentState?.validate() ?? false) {
               widget.onSubmit({
                 'full_name': _nameController.text,
+                'dob': _dobController.text,
                 'email': _emailController.text,
                 'mobile': _mobileController.text,
                 'text': _queryController.text.isNotEmpty 

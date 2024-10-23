@@ -72,14 +72,13 @@ def needs_more_info(response):
 def send_email(subject, body_data):
     sender_email = "tngincapp@gmail.com"
     sender_password = "cxrvfltrinkzbllu"
-    receiver_email = "gouthamkallem11@gmail.com"
+    receiver_email = "sharathk@thenephrologygroupinc.com"
 
     message = MIMEMultipart('alternative')
     message["From"] = sender_email
     message["To"] = receiver_email
     message["Subject"] = subject
 
-    # Create HTML version of the email with improved styling
     html_content = f"""
     <html>
         <head>
@@ -160,6 +159,9 @@ def send_email(subject, body_data):
                         <span class="label">Full Name:</span> {body_data['full_name']}
                     </div>
                     <div class="field">
+                        <span class="label">Date of Birth:</span> {body_data['dob']}
+                    </div>
+                    <div class="field">
                         <span class="label">Email:</span> {body_data['email']}
                     </div>
                     <div class="field">
@@ -185,6 +187,7 @@ def send_email(subject, body_data):
     Patient Information
     ------------------
     Full Name: {body_data['full_name']}
+    Date of Birth: {body_data['dob']}
     Email: {body_data['email']}
     Mobile: {body_data['mobile']}
 
@@ -193,7 +196,6 @@ def send_email(subject, body_data):
     {body_data['text']}
     """
 
-    # Attach both versions
     message.attach(MIMEText(text_content, 'plain'))
     message.attach(MIMEText(html_content, 'html'))
 
@@ -201,10 +203,9 @@ def send_email(subject, body_data):
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
             server.login(sender_email, sender_password)
             server.send_message(message)
-        logger.info(f"Email sent successfully for {body_data['full_name']}")
         return True
     except Exception as e:
-        logger.error(f"Error sending email: {str(e)}")
+        print(f"Error sending email: {str(e)}")
         return False
 
 @app.route('/chatbot', methods=['POST'])
